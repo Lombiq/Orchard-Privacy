@@ -108,7 +108,6 @@
     <Content Include="Styles\Web.config" />
     <Content Include="Module.txt" />
   </ItemGroup>
-  
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
       <Project>{2D1D92BB-4555-4CBE-8D0E-63563D6CE4C6}</Project>
@@ -120,6 +119,21 @@
       <Name>Orchard.Core</Name>
       <Private>false</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Lombiq.Privacy.ConsentBanner.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EditorTemplates\Parts.PrivacySettings.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Licence.md" />
+    <None Include="packages.config" />
+    <Content Include="placement.info" />
+    <Content Include="Views\Lombiq.Privacy.ConsentBanner.Text.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
