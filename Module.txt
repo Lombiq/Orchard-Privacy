@@ -17,7 +17,7 @@ Features:
         Name: Lombiq Privacy - Registration consent
         Description: Description for feature Lombiq.Privacy.RegistrationConsent.
         Category: Privacy
-        Dependencies: Lombiq.Privacy
+        Dependencies: Lombiq.Privacy, Orchard.Layouts, Orchard.Users
     Lombiq.Privacy.FormConsent
         Name: Lombiq Privacy - Form consent
         Description: Description for feature Lombiq.Privacy.FormConsent.
