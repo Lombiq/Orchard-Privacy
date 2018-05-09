@@ -1,9 +1,13 @@
-﻿@{
+﻿@using Lombiq.Privacy.Constants
+
+@{
     Script.Require("jQueryUI");
     Style.Require("jQueryUI");
+
+    Script.Require(ResourceNames.JsCookie);
 }
 
-<div id="consent-banner" class="consentBanner" title="@T("Compliance check")">
+<div id="consent-banner" class="consentBanner" title="@T("Compliance check")" hidden>
     @Display.Lombiq_Privacy_ConsentBanner_Text()
 </div>
 
@@ -18,9 +22,11 @@
                     },
                     buttons: {
                         "@T("I agree, don't show me this any more").Text": function () {
+                            Cookies.set("@CookieNames.HasConsent", "true", { expires: 1000 });
                             $(this).dialog("close");
                         },
                         "@T("I agree, but continue to show me this each time I visit the site").Text": function () {
+                            Cookies.set("@CookieNames.HasConsent", "true");
                             $(this).dialog("close");
                         },
                     }
