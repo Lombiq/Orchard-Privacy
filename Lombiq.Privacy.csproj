@@ -93,6 +93,7 @@
   <ItemGroup>
     <Compile Include="Constants\CookieNames.cs" />
     <Compile Include="Constants\EditorGroupIds.cs" />
+    <Compile Include="Constants\FeatureNames.cs" />
     <Compile Include="Constants\ResourceNames.cs" />
     <Compile Include="Drivers\PrivacySettingsPartDriver.cs" />
     <Compile Include="Filters\ConsentBannerInjectionFilter.cs" />
