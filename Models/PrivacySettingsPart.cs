@@ -9,5 +9,11 @@ namespace Lombiq.Privacy.Models
             get { return this.Retrieve(x => x.EnableConsentBanner); }
             set { this.Store(x => x.EnableConsentBanner, true); }
         }
+
+        public bool EnablePrivacyCheckboxOnRegistrationPage
+        {
+            get { return this.Retrieve(x => x.EnablePrivacyCheckboxOnRegistrationPage); }
+            set { this.Store(x => x.EnablePrivacyCheckboxOnRegistrationPage, true); }
+        }
     }
 }

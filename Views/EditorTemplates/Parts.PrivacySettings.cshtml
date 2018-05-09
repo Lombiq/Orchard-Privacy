@@ -9,5 +9,10 @@
             @Html.CheckBoxFor(m => m.EnableConsentBanner, new { @class = "text-box single-line" })
             @Html.Hint(T("Enable showing the consent banner."))
         </li>
+        <li>
+            @Html.LabelFor(m => m.EnablePrivacyCheckboxOnRegistrationPage, T("Enable privacy policy checkbox on the registration page"))
+            @Html.CheckBoxFor(m => m.EnablePrivacyCheckboxOnRegistrationPage, new { @class = "text-box single-line" })
+            @Html.Hint(T("Enable showing the required privacy policy checkbox on the registration page."))
+        </li>
     </ul>
 </fieldset>
