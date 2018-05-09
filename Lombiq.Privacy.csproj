@@ -146,6 +146,8 @@
     <Content Include="placement.info" />
     <Content Include="Views\Lombiq.Privacy.ConsentBanner.Text.cshtml" />
     <Content Include="Styles\lombiq-privacy-consent-banner.scss" />
+    <Content Include="Views\Lombiq.Privacy.RegistrationCheckbox.cshtml" />
+    <Content Include="Views\Lombiq.Privacy.RegistrationCheckbox.Text.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

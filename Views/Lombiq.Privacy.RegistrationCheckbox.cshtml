@@ -1,0 +1,21 @@
+﻿@{
+    Script.Require("jQuery");
+}
+
+<div id="registration-checkbox">
+    <label>
+        <input type="checkbox" required>
+        @Display.Lombiq_Privacy_RegistrationCheckbox_Text()
+    </label>
+</div>
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        ; (function ($) {
+            $(function () {
+                $("#registration-checkbox").insertAfter($("#confirmPassword").closest("div"));
+            });
+        })(jQuery);
+    </script>
+}
