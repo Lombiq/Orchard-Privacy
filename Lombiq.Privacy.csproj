@@ -99,6 +99,9 @@
     <Compile Include="Handlers\PrivacySettingsPartHandler.cs" />
     <Compile Include="Models\PrivacySettingsPart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceManifest.cs" />
+    <Compile Include="Services\CookieService.cs" />
+    <Compile Include="Services\ICookieService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets.json" />
@@ -142,6 +145,7 @@
     <None Include="packages.config" />
     <Content Include="placement.info" />
     <Content Include="Views\Lombiq.Privacy.ConsentBanner.Text.cshtml" />
+    <Content Include="Styles\lombiq-privacy-consent-banner.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
