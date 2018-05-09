@@ -103,8 +103,13 @@
   <ItemGroup>
     <Content Include="Assets.json" />
     <Content Include="Assets\Styles.less" />
-    <Content Include="Styles\Styles.css" />
-    <Content Include="Styles\Styles.min.css" />
+    <Content Include="Scripts\Vendors\js.cookie.js" />
+    <Content Include="Styles\lombiq-privacy-consent-banner.css">
+      <DependentUpon>lombiq-privacy-consent-banner.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\lombiq-privacy-consent-banner.min.css">
+      <DependentUpon>lombiq-privacy-consent-banner.css</DependentUpon>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Styles\Web.config" />
@@ -133,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Licence.md" />
+    <Content Include="compilerconfig.json" />
     <None Include="packages.config" />
     <Content Include="placement.info" />
     <Content Include="Views\Lombiq.Privacy.ConsentBanner.Text.cshtml" />
