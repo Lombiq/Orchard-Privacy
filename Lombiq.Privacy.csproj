@@ -96,6 +96,7 @@
     <Compile Include="Constants\ResourceNames.cs" />
     <Compile Include="Drivers\PrivacySettingsPartDriver.cs" />
     <Compile Include="Filters\ConsentBannerInjectionFilter.cs" />
+    <Compile Include="Filters\PrivacyPolicyCheckboxToRegistrationFormInjectionFilter.cs" />
     <Compile Include="Handlers\PrivacySettingsPartHandler.cs" />
     <Compile Include="Models\PrivacySettingsPart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
