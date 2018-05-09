@@ -2,3 +2,16 @@
 hidden {
     display: none;
 }
+
+.ui-dialog {
+    width: 20%;
+
+    .ui-dialog-buttonpane {
+        text-align: center;
+
+        .ui-button {
+            width: 45%;
+            height: 100px;
+        }
+    }
+}

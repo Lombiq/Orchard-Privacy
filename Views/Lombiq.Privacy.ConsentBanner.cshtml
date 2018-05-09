@@ -5,6 +5,7 @@
     Style.Require("jQueryUI");
 
     Script.Require(ResourceNames.JsCookie);
+    Style.Require(ResourceNames.ConsentBanner);
 }
 
 <div id="consent-banner" class="consentBanner" title="@T("Compliance check")" hidden>
@@ -18,11 +19,15 @@
             $(function () {
                 if (Cookies.get("@CookieNames.HasConsent") !== "true") {
                     $("#consent-banner").dialog({
+                        closeOnEscape: false,
+                        resizable: false,
                         position: {
-                            my: "right top", at: "right top", of: $("#layout-main-container")
+                            my: "left top",
+                            at: "right top+50",
+                            of: "html"
                         },
                         buttons: {
-                            "@T("I agree, don't show me this any more").Text": function () {
+                            "@T("I agree, do not show me this any more").Text": function () {
                                 Cookies.set("@CookieNames.HasConsent", "true", { expires: 1000 });
                                 $(this).dialog("close");
                             },
