@@ -105,8 +105,6 @@
     <Compile Include="Services\ICookieService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets.json" />
-    <Content Include="Assets\Styles.less" />
     <Content Include="Scripts\Vendors\js.cookie.js" />
     <Content Include="Styles\lombiq-privacy-consent-banner.css">
       <DependentUpon>lombiq-privacy-consent-banner.scss</DependentUpon>
