@@ -16,21 +16,23 @@
     <script type="text/javascript">
         ; (function ($) {
             $(function () {
-                $("#consent-banner").dialog({
-                    position: {
-                        my: "right top", at: "right top", of: $("#layout-main-container")
-                    },
-                    buttons: {
-                        "@T("I agree, don't show me this any more").Text": function () {
-                            Cookies.set("@CookieNames.HasConsent", "true", { expires: 1000 });
-                            $(this).dialog("close");
+                if (Cookies.get("@CookieNames.HasConsent") !== "true") {
+                    $("#consent-banner").dialog({
+                        position: {
+                            my: "right top", at: "right top", of: $("#layout-main-container")
                         },
-                        "@T("I agree, but continue to show me this each time I visit the site").Text": function () {
-                            Cookies.set("@CookieNames.HasConsent", "true");
-                            $(this).dialog("close");
-                        },
-                    }
-                });
+                        buttons: {
+                            "@T("I agree, don't show me this any more").Text": function () {
+                                Cookies.set("@CookieNames.HasConsent", "true", { expires: 1000 });
+                                $(this).dialog("close");
+                            },
+                            "@T("I agree, but continue to show me this each time I visit the site").Text": function () {
+                                Cookies.set("@CookieNames.HasConsent", "true");
+                                $(this).dialog("close");
+                            },
+                        }
+                    });
+                }
             });
         })(jQuery);
     </script>
