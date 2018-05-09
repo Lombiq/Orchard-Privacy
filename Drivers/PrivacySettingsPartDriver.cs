@@ -1,7 +1,7 @@
 ﻿using Lombiq.Privacy.Models;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Drivers;
-using static Lombiq.Privacy.Constants.PrivacyConstants;
+using static Lombiq.Privacy.Constants.EditorGroupIds;
 
 namespace Lombiq.Privacy.Drivers
 {
@@ -24,6 +24,6 @@ namespace Lombiq.Privacy.Drivers
                         Model: part,
                         Prefix: Prefix);
                 })
-            .OnGroup(SettingsGroupId);
+            .OnGroup(PrivacySettings);
     }
 }

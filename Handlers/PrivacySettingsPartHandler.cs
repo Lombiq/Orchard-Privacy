@@ -2,7 +2,7 @@
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Handlers;
 using Orchard.Localization;
-using static Lombiq.Privacy.Constants.PrivacyConstants;
+using static Lombiq.Privacy.Constants.EditorGroupIds;
 
 namespace Lombiq.Privacy.Handlers
 {
@@ -25,7 +25,7 @@ namespace Lombiq.Privacy.Handlers
 
             base.GetItemMetadata(context);
 
-            context.Metadata.EditorGroupInfo.Add(new GroupInfo(T("Privacy Settings")) { Id = SettingsGroupId });
+            context.Metadata.EditorGroupInfo.Add(new GroupInfo(T("Privacy Settings")) { Id = PrivacySettings });
         }
     }
 }
