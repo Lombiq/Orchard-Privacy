@@ -1,4 +1,5 @@
 ﻿using Lombiq.Privacy.Models;
+using Lombiq.Privacy.Services;
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.Mvc.Filters;
@@ -8,12 +9,14 @@ namespace Lombiq.Privacy.Filters
 {
     public class ConsentBannerInjectionFilter : FilterProvider, IResultFilter
     {
+        private readonly ICookieService _cookieService;
         private readonly IOrchardServices _orchardServices;
 
-
         public ConsentBannerInjectionFilter(
+            ICookieService cookieService,
             IOrchardServices orchardServices)
         {
+            _cookieService = cookieService;
             _orchardServices = orchardServices;
         }
 
@@ -30,7 +33,7 @@ namespace Lombiq.Privacy.Filters
 
             if (!workContext.CurrentSite.As<PrivacySettingsPart>().EnableConsentBanner) return;
 
-            if (workContext.CurrentUser == null)
+            if (!_cookieService.UserHasConsent())
             {
                 workContext.Layout.Content.Add(_orchardServices.New.Lombiq_Privacy_ConsentBanner(), "after");
             }
