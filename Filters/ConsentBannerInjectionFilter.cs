@@ -2,11 +2,14 @@
 using Lombiq.Privacy.Services;
 using Orchard;
 using Orchard.ContentManagement;
+using Orchard.Environment.Extensions;
 using Orchard.Mvc.Filters;
 using System.Web.Mvc;
+using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Lombiq.Privacy.Filters
 {
+    [OrchardFeature(Lombiq_Privacy_Consent_Banner)]
     public class ConsentBannerInjectionFilter : FilterProvider, IResultFilter
     {
         private readonly ICookieService _cookieService;

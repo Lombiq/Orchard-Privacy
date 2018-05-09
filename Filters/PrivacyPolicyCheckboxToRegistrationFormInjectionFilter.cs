@@ -1,12 +1,15 @@
 ﻿using Lombiq.Privacy.Models;
 using Orchard;
 using Orchard.ContentManagement;
+using Orchard.Environment.Extensions;
 using Orchard.Layouts.Services;
 using Orchard.Mvc.Filters;
 using System.Web.Mvc;
+using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Lombiq.Privacy.Filters
 {
+    [OrchardFeature(Lombiq_Privacy_Registration_Consent)]
     public class PrivacyPolicyCheckboxToRegistrationFormInjectionFilter : FilterProvider, IResultFilter
     {
         private readonly IOrchardServices _orchardServices;
