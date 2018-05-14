@@ -20,10 +20,14 @@
                     $("#consent-banner").dialog({
                         closeOnEscape: false,
                         resizable: false,
+                        draggable: false,
                         position: {
                             my: "left top",
                             at: "right top+50",
                             of: "html"
+                        },
+                        open: function (event, ui) {
+                            jQuery('.ui-dialog-titlebar-close').hide();
                         },
                         buttons: {
                             "@T("I agree, do not show me this any more").Text": function () {
