@@ -99,6 +99,8 @@
     <Compile Include="Filters\ConsentBannerInjectionFilter.cs" />
     <Compile Include="Filters\PrivacyPolicyCheckboxToRegistrationFormInjectionFilter.cs" />
     <Compile Include="Handlers\PrivacySettingsPartHandler.cs" />
+    <Compile Include="Migrations\ConsentCheckBoxMigrations.cs" />
+    <Compile Include="Models\ConsentCheckboxPart.cs" />
     <Compile Include="Models\PrivacySettingsPart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceManifest.cs" />
