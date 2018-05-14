@@ -95,9 +95,11 @@
     <Compile Include="Constants\EditorGroupIds.cs" />
     <Compile Include="Constants\FeatureNames.cs" />
     <Compile Include="Constants\ResourceNames.cs" />
+    <Compile Include="Drivers\ConsentCheckboxPartDriver.cs" />
     <Compile Include="Drivers\PrivacySettingsPartDriver.cs" />
     <Compile Include="Filters\ConsentBannerInjectionFilter.cs" />
     <Compile Include="Filters\PrivacyPolicyCheckboxToRegistrationFormInjectionFilter.cs" />
+    <Compile Include="Handlers\ConsentCheckboxPartHandler.cs" />
     <Compile Include="Handlers\PrivacySettingsPartHandler.cs" />
     <Compile Include="Migrations\ConsentCheckBoxMigrations.cs" />
     <Compile Include="Models\ConsentCheckboxPart.cs" />
