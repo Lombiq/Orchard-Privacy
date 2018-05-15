@@ -2,9 +2,16 @@
 
 
 
-## Project Description
+## Module Description
 
-Orchard module containing features related to the EU law on the handling of personal data, [The General Data Protection Regulation](http://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1462439808430&uri=CELEX:32016R0679), that is often referred to as GDPR. Do not forget to create a privacy policy page that you need to refer. Important that using this module will not make your site GDPR compliant.
+Orchard module containing features related to data protection/privacy and the EU law on it, the [General Data Protection Regulation](http://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1462439808430&uri=CELEX:32016R0679) (GDPR).
+
+Do not forget to create a privacy policy page that you need to link to from the various consent-asking features.
+
+**Important!** Using this module will not make your site GDPR-compliant alone.
+
+The module is also available for [DotNest](https://dotnest.com/) sites.
+
 
 ## Features
 
@@ -25,7 +32,8 @@ This feature also adds a form element that you can use in Dynamic Forms.
 
 You can use these features as described on the above pages.
 
-The module is also available for [DotNest](http://dotnest.com/) sites.
+
+## Soure code and contributing
 
 The module's source is available in two public source repositories, automatically mirrored in both directions with [Git-hg Mirror](https://githgmirror.com):
 

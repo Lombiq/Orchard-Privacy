@@ -6,20 +6,20 @@ OrchardVersion: 1.10.1
 Features:
     Lombiq.Privacy:
         Name: Lombiq Privacy
-        Description: Basic features of Lombiq Privacy.
+        Description: Various data protection/privacy-related, GDPR-ready features.
         Category: Privacy
     Lombiq.Privacy.ConsentBanner
         Name: Lombiq Privacy - Consent banner
-        Description: Showing consent banner to unauthenticated users.
+        Description: Adds the ability to show a privacy consent banner to unauthenticated users.
         Category: Privacy
         Dependencies: Lombiq.Privacy
     Lombiq.Privacy.RegistrationConsent
         Name: Lombiq Privacy - Registration consent
-        Description: Adding a consent checkbox to the registration form.
+        Description: Adds a privacy consent checkbox to the registration form.
         Category: Privacy
         Dependencies: Lombiq.Privacy, Orchard.Layouts, Orchard.Users
     Lombiq.Privacy.FormConsent
         Name: Lombiq Privacy - Form consent
-        Description: An attachable part that adds consent checkbox. Also adding a consent checkbox that can be used in Dynamic Forms.
+        Description: An attachable part that displays a privacy consent checkbox. Also adds a consent checkbox that can be used in Dynamic Forms.
         Category: Privacy
         Dependencies: Lombiq.Privacy, Orchard.DynamicForms, Orchard.Tokens
