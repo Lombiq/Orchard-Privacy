@@ -19,18 +19,17 @@ The module consists of the following independent features:
 
 ### Consent Banner Feature
 
-Showing a banner where unauthenticated users can accept the privacy policy.
+Shows a banner where unauthenticated users can accept the privacy policy.
 
 ### Registration Consent Feature
 
-Showing a consent checkbox on the registration form on your page that need to be checked by the users to be able to register.
+Shows a privacy consent checkbox on the registration form that needs to be checked by the users to be able to register.
 
 ### Form Consent Feature
 
-Adding a new ConsentCheckboxPart content part that can be attachable to any content types (for instance comment boxes, contact forms). In this case the users must accept the privacy policy before they can post content to the site (if they haven't accepted it already).
-This feature also adds a form element that you can use in Dynamic Forms.
+Adds a new `ConsentCheckboxPart` content part that can be attached to any content type (for instance comment boxes, contact forms). In this case the users must accept the privacy policy before they can post content to the site (if they haven't accepted it already via the banner).
 
-You can use these features as described on the above pages.
+This feature also adds a similar form element that you can use in Dynamic Forms.
 
 
 ## Soure code and contributing
