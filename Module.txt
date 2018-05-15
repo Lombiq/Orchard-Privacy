@@ -22,4 +22,4 @@ Features:
         Name: Lombiq Privacy - Form consent
         Description: Description for feature Lombiq.Privacy.FormConsent.
         Category: Privacy
-        Dependencies: Lombiq.Privacy
+        Dependencies: Lombiq.Privacy, Orchard.DynamicForms, Orchard.Tokens
