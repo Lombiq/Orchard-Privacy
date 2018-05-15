@@ -5,9 +5,12 @@
     Style.Require("jQueryUI");
 
     Script.Require(ResourceNames.JsCookie);
+
+    const string ConsentBannerId = "consent-banner";
 }
 
-<div id="consent-banner" class="consentBanner" title="@T("Compliance check")" hidden>
+
+<div id="@ConsentBannerId" class="consentBanner" title="@T("Compliance check")" hidden>
     @Display.Lombiq_Privacy_ConsentBanner_Text()
 </div>
 
@@ -17,7 +20,7 @@
         ; (function ($) {
             $(function () {
                 if (Cookies.get("@CookieNames.HasConsent") !== "true") {
-                    $("#consent-banner").dialog({
+                    $("#@ConsentBannerId").dialog({
                         closeOnEscape: false,
                         resizable: false,
                         draggable: false,

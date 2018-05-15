@@ -1,8 +1,11 @@
 ﻿@{
     Script.Require("jQuery");
+
+    const string RegistrationCheckboxId = "registration-checkbox";
 }
 
-<div id="registration-checkbox">
+
+<div id="@RegistrationCheckboxId" class="registrationCheckbox">
     <label>
         <input type="checkbox" required>
         @Display.Lombiq_Privacy_RegistrationCheckbox_Text()
@@ -14,7 +17,7 @@
     <script type="text/javascript">
         ; (function ($) {
             $(function () {
-                $("#registration-checkbox").insertAfter($("#confirmPassword").closest("div"));
+                $("#@RegistrationCheckboxId").insertAfter($("#confirmPassword").closest("div"));
             });
         })(jQuery);
     </script>

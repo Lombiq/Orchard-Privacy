@@ -25,8 +25,6 @@ namespace Lombiq.Privacy.Filters
         }
 
 
-        public void OnResultExecuted(ResultExecutedContext filterContext) { }
-
         public void OnResultExecuting(ResultExecutingContext filterContext)
         {
             if (Orchard.UI.Admin.AdminFilter.IsApplied(filterContext.RequestContext)) return;
@@ -38,12 +36,14 @@ namespace Lombiq.Privacy.Filters
             if (!workContext.CurrentSite.As<RegistrationConsentSettingsPart>().EnablePrivacyCheckboxOnRegistrationPage) return;
 
             if (_currentControllerAccessor.CurrentController == null) return;
-            
-            if (workContext.HttpContext.Request.Path == 
+
+            if (workContext.HttpContext.Request.Path ==
                 $"/{nameof(Orchard.Users)}/Account/{nameof(Orchard.Users.Controllers.AccountController.Register)}")
             {
                 workContext.Layout.Content.Add(_orchardServices.New.Lombiq_Privacy_RegistrationCheckbox(), "before");
             }
         }
+
+        public void OnResultExecuted(ResultExecutedContext filterContext) { }
     }
 }

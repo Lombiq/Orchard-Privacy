@@ -24,8 +24,6 @@ namespace Lombiq.Privacy.Filters
         }
 
 
-        public void OnResultExecuted(ResultExecutedContext filterContext) { }
-
         public void OnResultExecuting(ResultExecutingContext filterContext)
         {
             if (Orchard.UI.Admin.AdminFilter.IsApplied(filterContext.RequestContext)) return;
@@ -37,9 +35,9 @@ namespace Lombiq.Privacy.Filters
             if (!workContext.CurrentSite.As<ConsentBannerSettingsPart>().EnableConsentBanner) return;
 
             if (!_cookieService.UserHasConsent())
-            {
                 workContext.Layout.Content.Add(_orchardServices.New.Lombiq_Privacy_ConsentBanner(), "after");
-            }
         }
+
+        public void OnResultExecuted(ResultExecutedContext filterContext) { }
     }
 }
