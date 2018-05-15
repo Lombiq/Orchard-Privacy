@@ -13,7 +13,7 @@ namespace Lombiq.Privacy.Migrations
         public int Create()
         {
             ContentDefinitionManager.AlterPartDefinition(nameof(ConsentCheckboxPart), part => part
-                .WithDescription("Attach to a content type to provide Privacy Consent checkbox.")
+                .WithDescription("When attached to a content type will provide a privacy consent checkbox.")
                 .Attachable());
 
             return 1;
