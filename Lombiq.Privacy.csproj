@@ -110,6 +110,7 @@
     <Compile Include="ResourceManifest.cs" />
     <Compile Include="Services\CookieService.cs" />
     <Compile Include="Services\ICookieService.cs" />
+    <Compile Include="Validators\ConsentCheckboxValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\Vendors\js.cookie.js" />
