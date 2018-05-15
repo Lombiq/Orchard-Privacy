@@ -14,8 +14,7 @@ namespace Lombiq.Privacy.Drivers
             Editor(part, null, shapeHelper);
 
         protected override DriverResult Editor(ConsentBannerSettingsPart part, IUpdateModel updater, dynamic shapeHelper) =>
-            ContentShape("Parts_ConsentBannerSettings_Edit",
-                () =>
+            ContentShape("Parts_ConsentBannerSettings_Edit", () =>
                 {
                     if (updater != null)
                     {

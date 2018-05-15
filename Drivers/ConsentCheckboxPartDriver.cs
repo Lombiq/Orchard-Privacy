@@ -1,5 +1,5 @@
 ﻿using Lombiq.Privacy.Models;
-using Orchard;
+using Lombiq.Privacy.Services;
 using Orchard.ContentManagement.Drivers;
 using Orchard.Environment.Extensions;
 using static Lombiq.Privacy.Constants.FeatureNames;
@@ -9,19 +9,19 @@ namespace Lombiq.Privacy.Drivers
     [OrchardFeature(Lombiq_Privacy_Form_Consent)]
     public class ConsentCheckboxPartDriver : ContentPartDriver<ConsentCheckboxPart>
     {
-        private readonly IWorkContextAccessor _wca;
+        private readonly ICookieService _cookieService;
 
 
-        public ConsentCheckboxPartDriver(IWorkContextAccessor wca)
+        public ConsentCheckboxPartDriver(ICookieService cookieService)
         {
-            _wca = wca;
+            _cookieService = cookieService;
         }
 
 
         protected override DriverResult Editor(ConsentCheckboxPart part, dynamic shapeHelper) =>
             ContentShape("Parts_ConsentCheckbox_Edit", () =>
             {
-                if (_wca.GetContext()?.CurrentUser == null)
+                if (!_cookieService.UserHasConsent())
                     return shapeHelper.Parts_ConsentCheckbox_Edit();
 
                 return null;

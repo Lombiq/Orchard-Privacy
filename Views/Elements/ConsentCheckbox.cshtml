@@ -2,6 +2,8 @@
 @using Orchard.DynamicForms.Elements
 @using Orchard.Layouts.Helpers
 
+@if (Model.UserHasConsent == "True") { return; }
+
 @{ 
     var element = (ConsentCheckbox)Model.Element;
     var tagBuilder = (OrchardTagBuilder)TagBuilderExtensions.CreateElementTagBuilder(Model, "input");
