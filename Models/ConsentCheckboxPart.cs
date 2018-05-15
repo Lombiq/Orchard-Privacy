@@ -4,6 +4,6 @@ using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Lombiq.Privacy.Models
 {
-    [OrchardFeature(Lombiq_Privacy_Form_Consent)]
+    [OrchardFeature(FormConsent)]
     public class ConsentCheckboxPart : ContentPart { }
 }

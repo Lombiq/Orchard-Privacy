@@ -4,7 +4,7 @@ using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Lombiq.Privacy.Models
 {
-    [OrchardFeature(Lombiq_Privacy_Consent_Banner)]
+    [OrchardFeature(ConsentBanner)]
     public class ConsentBannerSettingsPart : ContentPart
     {
         public bool EnableConsentBanner

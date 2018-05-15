@@ -9,7 +9,7 @@ using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Lombiq.Privacy.Filters
 {
-    [OrchardFeature(Lombiq_Privacy_Consent_Banner)]
+    [OrchardFeature(ConsentBanner)]
     public class ConsentBannerInjectionFilter : FilterProvider, IResultFilter
     {
         private readonly ICookieService _cookieService;

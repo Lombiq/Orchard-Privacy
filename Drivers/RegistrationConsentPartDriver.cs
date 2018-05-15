@@ -7,7 +7,7 @@ using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Lombiq.Privacy.Drivers
 {
-    [OrchardFeature(Lombiq_Privacy_Registration_Consent)]
+    [OrchardFeature(RegistrationConsent)]
     public class RegistrationConsentPartDriver : ContentPartDriver<RegistrationConsentSettingsPart>
     {
         protected override DriverResult Editor(RegistrationConsentSettingsPart part, dynamic shapeHelper) =>

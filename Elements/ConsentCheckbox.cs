@@ -4,7 +4,7 @@ using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Orchard.DynamicForms.Elements
 {
-    [OrchardFeature(Lombiq_Privacy_Form_Consent)]
+    [OrchardFeature(FormConsent)]
     public class ConsentCheckbox : FormElement
     {
         public override string Name => "ConsentCheckbox";

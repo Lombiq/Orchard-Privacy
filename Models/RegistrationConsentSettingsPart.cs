@@ -4,7 +4,7 @@ using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Lombiq.Privacy.Models
 {
-    [OrchardFeature(Lombiq_Privacy_Registration_Consent)]
+    [OrchardFeature(RegistrationConsent)]
     public class RegistrationConsentSettingsPart : ContentPart
     {
         public bool EnablePrivacyCheckboxOnRegistrationPage

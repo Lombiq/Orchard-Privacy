@@ -9,7 +9,7 @@ using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Lombiq.Privacy.Filters
 {
-    [OrchardFeature(Lombiq_Privacy_Registration_Consent)]
+    [OrchardFeature(RegistrationConsent)]
     public class PrivacyPolicyCheckboxToRegistrationFormInjectionFilter : FilterProvider, IResultFilter
     {
         private readonly IOrchardServices _orchardServices;

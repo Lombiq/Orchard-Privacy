@@ -10,7 +10,7 @@ using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Lombiq.Privacy.Drivers
 {
-    [OrchardFeature(Lombiq_Privacy_Form_Consent)]
+    [OrchardFeature(FormConsent)]
     public class ConsentCheckboxElementDriver : FormsElementDriver<ConsentCheckbox>
     {
         private readonly ITokenizer _tokenizer;

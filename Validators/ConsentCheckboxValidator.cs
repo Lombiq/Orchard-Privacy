@@ -8,7 +8,7 @@ using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Lombiq.Privacy.Validators
 {
-    [OrchardFeature(Lombiq_Privacy_Form_Consent)]
+    [OrchardFeature(FormConsent)]
     public class ConsentCheckboxValidator : ElementValidator<ConsentCheckbox>
     {
         private readonly IValidationRuleFactory _validationRuleFactory;

@@ -6,7 +6,7 @@ using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Lombiq.Privacy.Drivers
 {
-    [OrchardFeature(Lombiq_Privacy_Form_Consent)]
+    [OrchardFeature(FormConsent)]
     public class ConsentCheckboxPartDriver : ContentPartDriver<ConsentCheckboxPart>
     {
         private readonly ICookieService _cookieService;

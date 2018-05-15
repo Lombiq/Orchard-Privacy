@@ -8,7 +8,7 @@ using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Lombiq.Privacy.Handlers
 {
-    [OrchardFeature(Lombiq_Privacy_Registration_Consent)]
+    [OrchardFeature(RegistrationConsent)]
     public class RegistrationConsentSettingsPartHandler : ContentHandler
     {
         public Localizer T { get; set; }

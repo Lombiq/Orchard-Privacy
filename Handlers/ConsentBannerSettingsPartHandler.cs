@@ -8,7 +8,7 @@ using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Lombiq.Privacy.Handlers
 {
-    [OrchardFeature(Lombiq_Privacy_Consent_Banner)]
+    [OrchardFeature(ConsentBanner)]
     public class ConsentBannerSettingsPartHandler : ContentHandler
     {
         public Localizer T { get; set; }
