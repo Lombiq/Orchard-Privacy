@@ -12,19 +12,19 @@ namespace Lombiq.Privacy.Validators
     public class ConsentCheckboxValidator : ElementValidator<ConsentCheckbox>
     {
         private readonly IValidationRuleFactory _validationRuleFactory;
-        private readonly ICookieService _cookieService;
+        private readonly IConsentService _consentService;
 
 
-        public ConsentCheckboxValidator(IValidationRuleFactory validationRuleFactory, ICookieService cookieService)
+        public ConsentCheckboxValidator(IValidationRuleFactory validationRuleFactory, IConsentService consentService)
         {
             _validationRuleFactory = validationRuleFactory;
-            _cookieService = cookieService;
+            _consentService = consentService;
         }
 
 
         protected override IEnumerable<IValidationRule> GetValidationRules(ConsentCheckbox element)
         {
-            if (!_cookieService.UserHasConsent())
+            if (!_consentService.UserHasConsent())
                 yield return _validationRuleFactory.Create<Mandatory>("You have to agree to the privacy policy.");
         }
     }

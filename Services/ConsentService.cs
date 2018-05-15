@@ -4,19 +4,23 @@ using static Lombiq.Privacy.Constants.CookieNames;
 
 namespace Lombiq.Privacy.Services
 {
-    public class CookieService : ICookieService
+    public class ConsentService : IConsentService
     {
         private readonly IWorkContextAccessor _wca;
 
 
-        public CookieService(IWorkContextAccessor wca)
+        public ConsentService(IWorkContextAccessor wca)
         {
             _wca = wca;
         }
 
 
-        public bool UserHasConsent() =>
-            UserHasConsentCookie() || UserLoggedIn();
+        public bool UserHasConsent()
+        {
+            var context = _wca.GetContext();
+
+            return context.HttpContext.Request.Cookies[HasConsent]?.Value.ToLowerInvariant() == "true" || context.CurrentUser != null;
+        }
 
         public void SetConsentCookie()
         {
@@ -26,12 +30,5 @@ namespace Lombiq.Privacy.Services
                     Value = HasConsent
                 });
         }
-
-
-        private bool UserHasConsentCookie() => 
-            _wca.GetContext().HttpContext.Request.Cookies[HasConsent]?.Value == "true";
-
-        private bool UserLoggedIn() =>
-            _wca.GetContext().CurrentUser != null;
     }
 }

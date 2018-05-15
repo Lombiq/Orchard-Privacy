@@ -9,17 +9,17 @@ namespace Lombiq.Privacy.Drivers
     [OrchardFeature(FormConsent)]
     public class ConsentCheckboxPartDriver : ContentPartDriver<ConsentCheckboxPart>
     {
-        private readonly ICookieService _cookieService;
+        private readonly IConsentService _consentService;
 
 
-        public ConsentCheckboxPartDriver(ICookieService cookieService)
+        public ConsentCheckboxPartDriver(IConsentService consentService)
         {
-            _cookieService = cookieService;
+            _consentService = consentService;
         }
 
 
         protected override DriverResult Editor(ConsentCheckboxPart part, dynamic shapeHelper) =>
             ContentShape("Parts_ConsentCheckbox_Edit", () =>
-                !_cookieService.UserHasConsent() ? shapeHelper.Parts_ConsentCheckbox_Edit() : null);
+                !_consentService.UserHasConsent() ? shapeHelper.Parts_ConsentCheckbox_Edit() : null);
     }
 }

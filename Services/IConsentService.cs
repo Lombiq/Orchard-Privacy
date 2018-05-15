@@ -5,7 +5,7 @@ namespace Lombiq.Privacy.Services
     /// <summary>
     /// Managing consent-related cookies.
     /// </summary>
-    public interface ICookieService : IDependency
+    public interface IConsentService : IDependency
     {
         /// <summary>
         /// Check if the user has consent.
