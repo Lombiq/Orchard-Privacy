@@ -1,9 +1,12 @@
 ﻿using Lombiq.Privacy.Models;
 using Orchard;
 using Orchard.ContentManagement.Drivers;
+using Orchard.Environment.Extensions;
+using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Lombiq.Privacy.Drivers
 {
+    [OrchardFeature(Lombiq_Privacy_Form_Consent)]
     public class ConsentCheckboxPartDriver : ContentPartDriver<ConsentCheckboxPart>
     {
         private readonly IWorkContextAccessor _wca;

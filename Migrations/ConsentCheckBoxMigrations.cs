@@ -2,9 +2,12 @@
 using Orchard.ContentManagement.MetaData;
 using Orchard.Core.Contents.Extensions;
 using Orchard.Data.Migration;
+using Orchard.Environment.Extensions;
+using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Lombiq.Privacy.Migrations
 {
+    [OrchardFeature(Lombiq_Privacy_Form_Consent)]
     public class ConsentCheckBoxMigrations : DataMigrationImpl
     {
         public int Create()

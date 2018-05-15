@@ -1,10 +1,13 @@
 ﻿using Orchard.DynamicForms.Elements;
 using Orchard.DynamicForms.Services;
 using Orchard.DynamicForms.ValidationRules;
+using Orchard.Environment.Extensions;
 using System.Collections.Generic;
+using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Lombiq.Privacy.Validators
 {
+    [OrchardFeature(Lombiq_Privacy_Form_Consent)]
     public class ConsentCheckboxValidator : ElementValidator<ConsentCheckbox>
     {
         private readonly IValidationRuleFactory _validationRuleFactory;
