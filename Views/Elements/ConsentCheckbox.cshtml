@@ -1,0 +1,23 @@
+﻿@using Orchard.DisplayManagement.Shapes
+@using Orchard.DynamicForms.Elements
+@using Orchard.Layouts.Helpers
+
+@{ 
+    var element = (ConsentCheckbox)Model.Element;
+    var tagBuilder = (OrchardTagBuilder)TagBuilderExtensions.CreateElementTagBuilder(Model, "input");
+
+    tagBuilder.Attributes["type"] = "checkbox";
+    tagBuilder.Attributes["name"] = Model.ProcessedName;
+    tagBuilder.Attributes["value"] = Model.ProcessedValue;
+
+    if (!string.IsNullOrWhiteSpace(element.PostedValue)) {
+        tagBuilder.Attributes["checked"] = "checked";
+    }
+}
+
+<label>
+    @tagBuilder.ToHtmlString(TagRenderMode.SelfClosing)
+    @Display.Lombiq_Privacy_ConsentCheckboxElement_Text()
+</label>
+
+@Html.ValidationMessage((string)Model.ProcessedName)

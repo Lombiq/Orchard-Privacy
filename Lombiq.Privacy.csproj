@@ -165,6 +165,8 @@
     <Content Include="Views\Lombiq.Privacy.RegistrationCheckbox.Text.cshtml" />
     <Content Include="Views\Parts\ConsentCheckbox.Edit.cshtml" />
     <Content Include="Views\Lombiq.Privacy.ConsentCheckbox.Text.cshtml" />
+    <Content Include="Views\Elements\ConsentCheckbox.cshtml" />
+    <Content Include="Views\Lombiq.Privacy.ConsentCheckboxElement.Text.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
