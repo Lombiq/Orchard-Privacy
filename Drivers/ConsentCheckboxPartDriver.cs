@@ -20,11 +20,6 @@ namespace Lombiq.Privacy.Drivers
 
         protected override DriverResult Editor(ConsentCheckboxPart part, dynamic shapeHelper) =>
             ContentShape("Parts_ConsentCheckbox_Edit", () =>
-            {
-                if (!_cookieService.UserHasConsent())
-                    return shapeHelper.Parts_ConsentCheckbox_Edit();
-
-                return null;
-            });
+                !_cookieService.UserHasConsent() ? shapeHelper.Parts_ConsentCheckbox_Edit() : null);
     }
 }
