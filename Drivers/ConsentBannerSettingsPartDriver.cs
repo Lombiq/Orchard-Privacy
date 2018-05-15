@@ -1,17 +1,20 @@
 ﻿using Lombiq.Privacy.Models;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Drivers;
+using Orchard.Environment.Extensions;
 using static Lombiq.Privacy.Constants.EditorGroupIds;
+using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Lombiq.Privacy.Drivers
 {
-    public class PrivacySettingsPartDriver : ContentPartDriver<PrivacySettingsPart>
+    [OrchardFeature(Lombiq_Privacy_Consent_Banner)]
+    public class ConsentBannerSettingsPartDriver : ContentPartDriver<ConsentBannerSettingsPart>
     {
-        protected override DriverResult Editor(PrivacySettingsPart part, dynamic shapeHelper) => 
+        protected override DriverResult Editor(ConsentBannerSettingsPart part, dynamic shapeHelper) =>
             Editor(part, null, shapeHelper);
 
-        protected override DriverResult Editor(PrivacySettingsPart part, IUpdateModel updater, dynamic shapeHelper) => 
-            ContentShape("Parts_PrivacySettings_Edit",
+        protected override DriverResult Editor(ConsentBannerSettingsPart part, IUpdateModel updater, dynamic shapeHelper) =>
+            ContentShape("Parts_ConsentBannerSettings_Edit",
                 () =>
                 {
                     if (updater != null)
@@ -20,7 +23,7 @@ namespace Lombiq.Privacy.Drivers
                     }
 
                     return shapeHelper.EditorTemplate(
-                        TemplateName: "Parts.PrivacySettings",
+                        TemplateName: "Parts.ConsentBannerSettings",
                         Model: part,
                         Prefix: Prefix);
                 })

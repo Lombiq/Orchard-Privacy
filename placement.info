@@ -1,6 +1,7 @@
 ﻿<Placement>
     <Place 
-        Parts_PrivacySettings_Edit="Content:11"
+        Parts_ConsentBannerSettings_Edit="Content:11"
+        Parts_RegistrationConsentSettings_Edit="Content:11"
         Parts_ConsentCheckbox_Edit="Content:after"
     />
 </Placement>

@@ -34,7 +34,7 @@ namespace Lombiq.Privacy.Filters
 
             var workContext = _orchardServices.WorkContext;
 
-            if (!workContext.CurrentSite.As<PrivacySettingsPart>().EnableConsentBanner) return;
+            if (!workContext.CurrentSite.As<ConsentBannerSettingsPart>().EnableConsentBanner) return;
 
             if (!_cookieService.UserHasConsent())
             {

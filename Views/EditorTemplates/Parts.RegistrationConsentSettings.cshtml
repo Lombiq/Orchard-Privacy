@@ -1,14 +1,9 @@
-﻿@model Lombiq.Privacy.Models.PrivacySettingsPart
+﻿@model Lombiq.Privacy.Models.RegistrationConsentSettingsPart
 
 <fieldset>
-    <legend>@T("Privacy Settings")</legend>
+    <legend>@T("Registration Consent Settings")</legend>
 
     <ul>
-        <li>
-            @Html.LabelFor(m => m.EnableConsentBanner, T("Enable consent banner"))
-            @Html.CheckBoxFor(m => m.EnableConsentBanner, new { @class = "text-box single-line" })
-            @Html.Hint(T("Enable showing the consent banner."))
-        </li>
         <li>
             @Html.LabelFor(m => m.EnablePrivacyCheckboxOnRegistrationPage, T("Enable privacy policy checkbox on the registration page"))
             @Html.CheckBoxFor(m => m.EnablePrivacyCheckboxOnRegistrationPage, new { @class = "text-box single-line" })

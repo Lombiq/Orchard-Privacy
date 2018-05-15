@@ -1,21 +1,24 @@
 ﻿using Lombiq.Privacy.Models;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Handlers;
+using Orchard.Environment.Extensions;
 using Orchard.Localization;
 using static Lombiq.Privacy.Constants.EditorGroupIds;
+using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Lombiq.Privacy.Handlers
 {
-    public class PrivacySettingsPartHandler : ContentHandler
+    [OrchardFeature(Lombiq_Privacy_Consent_Banner)]
+    public class ConsentBannerSettingsPartHandler : ContentHandler
     {
         public Localizer T { get; set; }
 
 
-        public PrivacySettingsPartHandler()
+        public ConsentBannerSettingsPartHandler()
         {
             T = NullLocalizer.Instance;
 
-            Filters.Add(new ActivatingFilter<PrivacySettingsPart>("Site"));
+            Filters.Add(new ActivatingFilter<ConsentBannerSettingsPart>("Site"));
         }
 
 

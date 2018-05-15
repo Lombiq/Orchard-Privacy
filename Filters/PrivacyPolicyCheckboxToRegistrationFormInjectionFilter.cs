@@ -35,7 +35,7 @@ namespace Lombiq.Privacy.Filters
 
             var workContext = _orchardServices.WorkContext;
 
-            if (!workContext.CurrentSite.As<PrivacySettingsPart>().EnablePrivacyCheckboxOnRegistrationPage) return;
+            if (!workContext.CurrentSite.As<RegistrationConsentSettingsPart>().EnablePrivacyCheckboxOnRegistrationPage) return;
 
             if (_currentControllerAccessor.CurrentController == null) return;
             

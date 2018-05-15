@@ -95,17 +95,20 @@
     <Compile Include="Constants\EditorGroupIds.cs" />
     <Compile Include="Constants\FeatureNames.cs" />
     <Compile Include="Constants\ResourceNames.cs" />
+    <Compile Include="Drivers\ConsentBannerSettingsPartDriver.cs" />
     <Compile Include="Drivers\ConsentCheckboxElementDriver.cs" />
     <Compile Include="Drivers\ConsentCheckboxPartDriver.cs" />
-    <Compile Include="Drivers\PrivacySettingsPartDriver.cs" />
+    <Compile Include="Drivers\RegistrationConsentPartDriver.cs" />
     <Compile Include="Elements\ConsentCheckbox.cs" />
     <Compile Include="Filters\ConsentBannerInjectionFilter.cs" />
     <Compile Include="Filters\PrivacyPolicyCheckboxToRegistrationFormInjectionFilter.cs" />
+    <Compile Include="Handlers\ConsentBannerSettingsPartHandler.cs" />
     <Compile Include="Handlers\ConsentCheckboxPartHandler.cs" />
-    <Compile Include="Handlers\PrivacySettingsPartHandler.cs" />
+    <Compile Include="Handlers\RegistrationConsentSettingsPartHandler.cs" />
     <Compile Include="Migrations\ConsentCheckBoxMigrations.cs" />
+    <Compile Include="Models\ConsentBannerSettingsPart.cs" />
     <Compile Include="Models\ConsentCheckboxPart.cs" />
-    <Compile Include="Models\PrivacySettingsPart.cs" />
+    <Compile Include="Models\RegistrationConsentSettingsPart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceManifest.cs" />
     <Compile Include="Services\CookieService.cs" />
@@ -153,14 +156,12 @@
       <Name>Orchard.Users</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\Lombiq.Privacy.ConsentBanner.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\EditorTemplates\Parts.PrivacySettings.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts.ConsentBannerSettings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Licence.md" />
@@ -175,6 +176,7 @@
     <Content Include="Views\Lombiq.Privacy.ConsentCheckbox.Text.cshtml" />
     <Content Include="Views\Elements\ConsentCheckbox.cshtml" />
     <Content Include="Views\Lombiq.Privacy.ConsentCheckboxElement.Text.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts.RegistrationConsentSettings.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
