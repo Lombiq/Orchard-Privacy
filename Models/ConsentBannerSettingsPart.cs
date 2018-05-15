@@ -9,8 +9,8 @@ namespace Lombiq.Privacy.Models
     {
         public bool EnableConsentBanner
         {
-            get { return this.Retrieve(x => x.EnableConsentBanner); }
-            set { this.Store(x => x.EnableConsentBanner, true); }
+            get { return this.Retrieve(x => x.EnableConsentBanner, true); }
+            set { this.Store(x => x.EnableConsentBanner, value); }
         }
     }
 }

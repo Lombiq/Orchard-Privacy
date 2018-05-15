@@ -9,8 +9,8 @@ namespace Lombiq.Privacy.Models
     {
         public bool EnablePrivacyCheckboxOnRegistrationPage
         {
-            get { return this.Retrieve(x => x.EnablePrivacyCheckboxOnRegistrationPage); }
-            set { this.Store(x => x.EnablePrivacyCheckboxOnRegistrationPage, true); }
+            get { return this.Retrieve(x => x.EnablePrivacyCheckboxOnRegistrationPage, true); }
+            set { this.Store(x => x.EnablePrivacyCheckboxOnRegistrationPage, value); }
         }
     }
 }
