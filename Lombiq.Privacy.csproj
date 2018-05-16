@@ -99,7 +99,7 @@
     <Compile Include="Drivers\ConsentBannerSettingsPartDriver.cs" />
     <Compile Include="Drivers\ConsentCheckboxElementDriver.cs" />
     <Compile Include="Drivers\ConsentCheckboxPartDriver.cs" />
-    <Compile Include="Drivers\RegistrationConsentPartDriver.cs" />
+    <Compile Include="Drivers\RegistrationConsentSettingsPartDriver.cs" />
     <Compile Include="Elements\ConsentCheckbox.cs" />
     <Compile Include="Filters\ConsentBannerInjectionFilter.cs" />
     <Compile Include="Filters\PrivacyPolicyCheckboxToRegistrationFormInjectionFilter.cs" />
@@ -108,6 +108,7 @@
     <Compile Include="Handlers\RegistrationConsentSettingsPartHandler.cs" />
     <Compile Include="Migrations\ConsentBannerMigrations.cs" />
     <Compile Include="Migrations\ConsentCheckBoxMigrations.cs" />
+    <Compile Include="Migrations\RegistartionConsentMigrations.cs" />
     <Compile Include="Models\ConsentBannerSettingsPart.cs" />
     <Compile Include="Models\ConsentCheckboxPart.cs" />
     <Compile Include="Models\RegistrationConsentSettingsPart.cs" />
@@ -124,6 +125,12 @@
     </Content>
     <Content Include="Styles\lombiq-privacy-consent-banner.min.css">
       <DependentUpon>lombiq-privacy-consent-banner.css</DependentUpon>
+    </Content>
+    <Content Include="Styles\lombiq-privacy-registration-consent.css">
+      <DependentUpon>lombiq-privacy-registration-consent.scss</DependentUpon>
+    </Content>
+    <Content Include="Styles\lombiq-privacy-registration-consent.min.css">
+      <DependentUpon>lombiq-privacy-registration-consent.css</DependentUpon>
     </Content>
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
@@ -157,6 +164,10 @@
       <Project>{79aed36e-abd0-4747-93d3-8722b042454b}</Project>
       <Name>Orchard.Users</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Piedone.HelpfulLibraries\Piedone.HelpfulLibraries.csproj">
+      <Project>{ea61ad10-39d6-41a9-b12b-227f50c54158}</Project>
+      <Name>Piedone.HelpfulLibraries</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -168,6 +179,9 @@
   <ItemGroup>
     <Content Include="Licence.md" />
     <Content Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <Content Include="placement.info" />
     <Content Include="Views\Lombiq.Privacy.ConsentBanner.Text.cshtml" />
@@ -178,8 +192,9 @@
     <Content Include="Views\Lombiq.Privacy.ConsentCheckbox.Text.cshtml" />
     <Content Include="Views\Elements\ConsentCheckbox.cshtml" />
     <Content Include="Views\Lombiq.Privacy.ConsentCheckboxElement.Text.cshtml" />
-    <Content Include="Views\EditorTemplates\Parts.RegistrationConsentSettings.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts\RegistrationConsentSettings.cshtml" />
     <Content Include="Readme.md" />
+    <Content Include="Styles\lombiq-privacy-registration-consent.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

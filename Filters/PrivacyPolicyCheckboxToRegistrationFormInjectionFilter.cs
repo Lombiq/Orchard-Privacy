@@ -1,6 +1,4 @@
-﻿using Lombiq.Privacy.Models;
-using Orchard;
-using Orchard.ContentManagement;
+﻿using Orchard;
 using Orchard.Environment.Extensions;
 using Orchard.Mvc.Filters;
 using System.Web.Mvc;
@@ -27,8 +25,6 @@ namespace Lombiq.Privacy.Filters
             if (filterContext.Result is PartialViewResult) return;
 
             var workContext = _orchardServices.WorkContext;
-
-            if (!workContext.CurrentSite.As<RegistrationConsentSettingsPart>().EnablePrivacyCheckboxOnRegistrationPage) return;
 
             var routeDataValues = workContext.HttpContext.Request.RequestContext.RouteData.Values;
 

@@ -8,24 +8,21 @@ using static Lombiq.Privacy.Constants.FeatureNames;
 namespace Lombiq.Privacy.Drivers
 {
     [OrchardFeature(RegistrationConsent)]
-    public class RegistrationConsentPartDriver : ContentPartDriver<RegistrationConsentSettingsPart>
+    public class RegistrationConsentSettingsPartDriver : ContentPartDriver<RegistrationConsentSettingsPart>
     {
         protected override DriverResult Editor(RegistrationConsentSettingsPart part, dynamic shapeHelper) =>
             Editor(part, null, shapeHelper);
 
         protected override DriverResult Editor(RegistrationConsentSettingsPart part, IUpdateModel updater, dynamic shapeHelper) =>
             ContentShape("Parts_RegistrationConsentSettings_Edit", () =>
-                {
-                    if (updater != null)
-                    {
-                        updater.TryUpdateModel(part, Prefix, null, null);
-                    }
+            {
+                updater?.TryUpdateModel(part, Prefix, null, null);
 
-                    return shapeHelper.EditorTemplate(
-                        TemplateName: "Parts.RegistrationConsentSettings",
-                        Model: part,
-                        Prefix: Prefix);
-                })
+                return shapeHelper.EditorTemplate(
+                    TemplateName: "Parts/RegistrationConsentSettings",
+                    Model: part,
+                    Prefix: Prefix);
+            })
             .OnGroup(PrivacySettings);
     }
 }

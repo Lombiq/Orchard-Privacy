@@ -6,5 +6,6 @@
 
         public const string JsCookie = Prefix + nameof(JsCookie);
         public const string ConsentBanner = Prefix + nameof(ConsentBanner);
+        public const string RegistrationConsent = Prefix + nameof(RegistrationConsent);
     }
 }

@@ -15,17 +15,14 @@ namespace Lombiq.Privacy.Drivers
 
         protected override DriverResult Editor(ConsentBannerSettingsPart part, IUpdateModel updater, dynamic shapeHelper) =>
             ContentShape("Parts_ConsentBannerSettings_Edit", () =>
-                {
-                    if (updater != null)
-                    {
-                        updater.TryUpdateModel(part, Prefix, null, null);
-                    }
+            {
+                updater?.TryUpdateModel(part, Prefix, null, null);
 
-                    return shapeHelper.EditorTemplate(
-                        TemplateName: "Parts/ConsentBannerSettings",
-                        Model: part,
-                        Prefix: Prefix);
-                })
+                return shapeHelper.EditorTemplate(
+                    TemplateName: "Parts/ConsentBannerSettings",
+                    Model: part,
+                    Prefix: Prefix);
+            })
             .OnGroup(PrivacySettings);
     }
 }

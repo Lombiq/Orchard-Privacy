@@ -1,1 +1,10 @@
-﻿@T("I've read and agree to the site's <a href='/privacy-policy' target='_blank'>privacy policy</a>.")
+﻿@using Lombiq.Privacy.Models
+@using Orchard.ContentManagement
+@using Orchard.Settings
+
+@{
+    var registrationConsentText = WorkContext.Resolve<ISiteService>().GetSiteSettings().As<RegistrationConsentSettingsPart>().RegistrationConsentTextField.Value;
+}
+
+
+@Html.Raw(registrationConsentText)
