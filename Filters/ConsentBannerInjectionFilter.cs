@@ -1,5 +1,4 @@
-﻿using Lombiq.Privacy.Services;
-using Orchard;
+﻿using Orchard;
 using Orchard.Environment.Extensions;
 using Orchard.Mvc.Filters;
 using System.Web.Mvc;
@@ -10,14 +9,11 @@ namespace Lombiq.Privacy.Filters
     [OrchardFeature(ConsentBanner)]
     public class ConsentBannerInjectionFilter : FilterProvider, IResultFilter
     {
-        private readonly IConsentService _consentService;
         private readonly IOrchardServices _orchardServices;
 
-        public ConsentBannerInjectionFilter(
-            IConsentService consentService,
-            IOrchardServices orchardServices)
+
+        public ConsentBannerInjectionFilter(IOrchardServices orchardServices)
         {
-            _consentService = consentService;
             _orchardServices = orchardServices;
         }
 
@@ -30,7 +26,7 @@ namespace Lombiq.Privacy.Filters
 
             var workContext = _orchardServices.WorkContext;
 
-            if (!_consentService.UserHasConsent())
+            if (workContext.CurrentUser == null)
                 workContext.Layout.Content.Add(_orchardServices.New.Lombiq_Privacy_ConsentBanner(), "after");
         }
 

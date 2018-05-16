@@ -4,7 +4,7 @@
     Script.Require("jQueryUI");
     Style.Require("jQueryUI");
 
-    Script.Require(ResourceNames.JsCookie);
+    Script.Require(ResourceNames.JsConsentService);
 
     Style.Require(ResourceNames.ConsentBanner);
 
@@ -23,7 +23,7 @@
     <script type="text/javascript">
         ; (function ($) {
             $(function () {
-                if (Cookies.get("@CookieNames.HasConsent") !== "true") {
+                if (ConsentCookie.HasConsentCookie() !== true) {
                     $("#@ConsentBannerId").dialog({
                         closeOnEscape: false,
                         resizable: false,
@@ -38,13 +38,13 @@
                         },
                         buttons: {
                             "@T("I agree, do not show me this any more").Text": function () {
-                                Cookies.set("@CookieNames.HasConsent", "true", { expires: 1000 });
+                                ConsentCookie.Set();
                                 $(this).dialog("close");
                             },
                             "@T("I agree, but continue to show me this each time I visit the site").Text": function () {
-                                Cookies.set("@CookieNames.HasConsent", "true");
+                                ConsentCookie.Set("true");
                                 $(this).dialog("close");
-                            },
+                            }
                         }
                     });
                 }

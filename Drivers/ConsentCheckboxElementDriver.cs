@@ -1,4 +1,4 @@
-﻿using Lombiq.Privacy.Services;
+﻿using Orchard;
 using Orchard.DynamicForms.Elements;
 using Orchard.Environment.Extensions;
 using Orchard.Layouts.Framework.Display;
@@ -14,20 +14,20 @@ namespace Lombiq.Privacy.Drivers
     public class ConsentCheckboxElementDriver : FormsElementDriver<ConsentCheckbox>
     {
         private readonly ITokenizer _tokenizer;
-        private readonly IConsentService _consentService;
+        private readonly IWorkContextAccessor _wca;
 
 
-        public ConsentCheckboxElementDriver(IFormsBasedElementServices formsServices, ITokenizer tokenizer, IConsentService consentService)
+        public ConsentCheckboxElementDriver(IFormsBasedElementServices formsServices, ITokenizer tokenizer, IWorkContextAccessor wca)
             : base(formsServices)
         {
             _tokenizer = tokenizer;
-            _consentService = consentService;
+            _wca = wca;
         }
 
 
         protected override void OnDisplaying(ConsentCheckbox element, ElementDisplayingContext context)
         {
-            context.ElementShape.UserHasConsent = _tokenizer.Replace(_consentService.UserHasConsent().ToString(), context.GetTokenData());
+            context.ElementShape.UserHasConsent = _tokenizer.Replace((_wca.GetContext().CurrentUser != null).ToString(), context.GetTokenData());
             context.ElementShape.ProcessedName = _tokenizer.Replace("ConsentCheckbox", context.GetTokenData());
             // https://github.com/OrchardCMS/Orchard/issues/4123
             context.ElementShape.ProcessedValue = _tokenizer.Replace("false", context.GetTokenData());

@@ -119,6 +119,13 @@
     <Compile Include="Validators\ConsentCheckboxValidator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\consent-service.es5.js">
+      <DependentUpon>consent-service.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\consent-service.es5.min.js">
+      <DependentUpon>consent-service.es5.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\consent-service.js" />
     <Content Include="Scripts\Vendors\js.cookie.js" />
     <Content Include="Styles\lombiq-privacy-consent-banner.css">
       <DependentUpon>lombiq-privacy-consent-banner.scss</DependentUpon>
@@ -126,11 +133,11 @@
     <Content Include="Styles\lombiq-privacy-consent-banner.min.css">
       <DependentUpon>lombiq-privacy-consent-banner.css</DependentUpon>
     </Content>
-    <Content Include="Styles\lombiq-privacy-registration-consent.css">
-      <DependentUpon>lombiq-privacy-registration-consent.scss</DependentUpon>
+    <Content Include="Styles\lombiq-privacy-consent-checkbox.css">
+      <DependentUpon>lombiq-privacy-consent-checkbox.scss</DependentUpon>
     </Content>
-    <Content Include="Styles\lombiq-privacy-registration-consent.min.css">
-      <DependentUpon>lombiq-privacy-registration-consent.css</DependentUpon>
+    <Content Include="Styles\lombiq-privacy-consent-checkbox.min.css">
+      <DependentUpon>lombiq-privacy-consent-checkbox.css</DependentUpon>
     </Content>
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
@@ -194,7 +201,7 @@
     <Content Include="Views\Lombiq.Privacy.ConsentCheckboxElement.Text.cshtml" />
     <Content Include="Views\EditorTemplates\Parts\RegistrationConsentSettings.cshtml" />
     <Content Include="Readme.md" />
-    <Content Include="Styles\lombiq-privacy-registration-consent.scss" />
+    <Content Include="Styles\lombiq-privacy-consent-checkbox.scss" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

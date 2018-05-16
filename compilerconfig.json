@@ -4,7 +4,11 @@
     "inputFile": "Styles/lombiq-privacy-consent-banner.scss"
   },
   {
-    "outputFile": "Styles/lombiq-privacy-registration-consent.css",
-    "inputFile": "Styles/lombiq-privacy-registration-consent.scss"
+    "outputFile": "Scripts/consent-service.es5.js",
+    "inputFile": "Scripts/consent-service.js"
+  },
+  {
+    "outputFile": "Styles/lombiq-privacy-consent-checkbox.css",
+    "inputFile": "Styles/lombiq-privacy-consent-checkbox.scss"
   }
 ]

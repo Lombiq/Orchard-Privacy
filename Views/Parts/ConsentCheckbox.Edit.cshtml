@@ -1,6 +1,29 @@
-﻿<div class="consent-checkbox">
+﻿@using Lombiq.Privacy.Constants
+
+@{
+    Style.Require(ResourceNames.ConsentCheckbox);
+
+    Script.Require(ResourceNames.JsConsentService);
+}
+
+
+<div class="consent-checkbox">
     <label>
-        <input type="checkbox" required>
+        <input type="checkbox" name="ConsentCheckbox" required>
         @Display.Lombiq_Privacy_ConsentCheckbox_Text()
     </label>
 </div>
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        ; (function ($) {
+            $(function () {
+                if (ConsentCookie.HasConsentCookie()) {
+                    $(".consent-checkbox").hide();
+                    $("input[name='ConsentCheckbox']").prop('checked', true);
+                }
+            });
+        })(jQuery);
+    </script>
+}

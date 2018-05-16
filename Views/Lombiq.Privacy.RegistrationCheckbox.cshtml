@@ -2,14 +2,15 @@
 
 @{
     Script.Require("jQuery");
+    Script.Require(ResourceNames.JsConsentService);
 
-    Style.Require(ResourceNames.RegistrationConsent);
+    Style.Require(ResourceNames.ConsentCheckbox);
 
     const string RegistrationCheckboxId = "registration-checkbox";
 }
 
 
-<div id="@RegistrationCheckboxId" class="registrationCheckbox">
+<div id="@RegistrationCheckboxId" class="registrationCheckbox consent-checkbox">
     <label>
         <input type="checkbox" required>
         <span>

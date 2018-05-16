@@ -1,4 +1,4 @@
-﻿using Lombiq.Privacy.Services;
+﻿using Orchard;
 using Orchard.DynamicForms.Elements;
 using Orchard.DynamicForms.Services;
 using Orchard.DynamicForms.ValidationRules;
@@ -12,19 +12,19 @@ namespace Lombiq.Privacy.Validators
     public class ConsentCheckboxValidator : ElementValidator<ConsentCheckbox>
     {
         private readonly IValidationRuleFactory _validationRuleFactory;
-        private readonly IConsentService _consentService;
+        private readonly IWorkContextAccessor _wca;
 
 
-        public ConsentCheckboxValidator(IValidationRuleFactory validationRuleFactory, IConsentService consentService)
+        public ConsentCheckboxValidator(IValidationRuleFactory validationRuleFactory, IWorkContextAccessor wca)
         {
             _validationRuleFactory = validationRuleFactory;
-            _consentService = consentService;
+            _wca = wca;
         }
 
 
         protected override IEnumerable<IValidationRule> GetValidationRules(ConsentCheckbox element)
         {
-            if (!_consentService.UserHasConsent())
+            if (_wca.GetContext().CurrentUser == null)
                 yield return _validationRuleFactory.Create<Mandatory>("You have to agree to the privacy policy.");
         }
     }
