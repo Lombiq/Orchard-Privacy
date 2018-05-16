@@ -2,7 +2,7 @@
 @using Orchard.DynamicForms.Elements
 @using Orchard.Layouts.Helpers
 
-@if (Model.UserHasConsent == "True") { return; }
+@if (Model.UserHasConsent.ToLowerInvariant() == "true") { return; }
 
 @{ 
     var element = (ConsentCheckbox)Model.Element;
