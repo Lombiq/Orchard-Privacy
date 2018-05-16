@@ -2,7 +2,6 @@
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
-using Orchard.Layouts.Services;
 using Orchard.Mvc.Filters;
 using System.Web.Mvc;
 using static Lombiq.Privacy.Constants.FeatureNames;
@@ -13,15 +12,11 @@ namespace Lombiq.Privacy.Filters
     public class PrivacyPolicyCheckboxToRegistrationFormInjectionFilter : FilterProvider, IResultFilter
     {
         private readonly IOrchardServices _orchardServices;
-        private readonly ICurrentControllerAccessor _currentControllerAccessor;
 
 
-        public PrivacyPolicyCheckboxToRegistrationFormInjectionFilter(
-            IOrchardServices orchardServices,
-            ICurrentControllerAccessor currentControllerAccessor)
+        public PrivacyPolicyCheckboxToRegistrationFormInjectionFilter(IOrchardServices orchardServices)
         {
             _orchardServices = orchardServices;
-            _currentControllerAccessor = currentControllerAccessor;
         }
 
 
@@ -35,10 +30,11 @@ namespace Lombiq.Privacy.Filters
 
             if (!workContext.CurrentSite.As<RegistrationConsentSettingsPart>().EnablePrivacyCheckboxOnRegistrationPage) return;
 
-            if (_currentControllerAccessor.CurrentController == null) return;
+            var routeDataValues = workContext.HttpContext.Request.RequestContext.RouteData.Values;
 
-            if (workContext.HttpContext.Request.Path ==
-                $"/{nameof(Orchard.Users)}/Account/{nameof(Orchard.Users.Controllers.AccountController.Register)}")
+            if (routeDataValues["area"]?.ToString() == $"{nameof(Orchard)}.{nameof(Orchard.Users)}" &&
+                routeDataValues["controller"]?.ToString() == "Account" &&
+                routeDataValues["action"]?.ToString() == nameof(Orchard.Users.Controllers.AccountController.Register))
             {
                 workContext.Layout.Content.Add(_orchardServices.New.Lombiq_Privacy_RegistrationCheckbox(), "before");
             }
