@@ -159,6 +159,10 @@
       <Project>{82190F52-2901-46D6-8A4C-34649959483F}</Project>
       <Name>Orchard.DynamicForms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Orchard.Fields\Orchard.Fields.csproj">
+      <Project>{3787DDE5-E5C8-4841-BDA7-DCB325388064}</Project>
+      <Name>Orchard.Fields</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Orchard.Layouts\Orchard.Layouts.csproj">
       <Project>{6bd8b2fa-f2e3-4ac8-a4c3-2925a653889a}</Project>
       <Name>Orchard.Layouts</Name>
@@ -202,6 +206,7 @@
     <Content Include="Views\EditorTemplates\Parts\RegistrationConsentSettings.cshtml" />
     <Content Include="Readme.md" />
     <Content Include="Styles\lombiq-privacy-consent-checkbox.scss" />
+    <Content Include="Views\EditorTemplate-HasConsent.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

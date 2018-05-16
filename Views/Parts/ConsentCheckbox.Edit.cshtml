@@ -1,4 +1,7 @@
 ﻿@using Lombiq.Privacy.Constants
+@using Lombiq.Privacy.Models
+@using Orchard.Fields.Fields
+@using Piedone.HelpfulLibraries.Contents
 
 @{
     Style.Require(ResourceNames.ConsentCheckbox);
@@ -9,8 +12,9 @@
 
 <div class="consent-checkbox">
     <label>
-        <input type="checkbox" name="ConsentCheckbox" required>
+        @Html.CheckBox("ConsentCheckboxPart.HasConsent.Value", (Model.ContentPart as ConsentCheckboxPart).AsField<BooleanField>("ConsentCheckboxPart", "HasConsent").Value.Value, new { required = true })
         @Display.Lombiq_Privacy_ConsentCheckbox_Text()
+        @Html.ValidationMessage("HasConsent")
     </label>
 </div>
 
@@ -21,7 +25,7 @@
             $(function () {
                 if (ConsentCookie.HasConsentCookie()) {
                     $(".consent-checkbox").hide();
-                    $("input[name='ConsentCheckbox']").prop('checked', true);
+                    $("input[name='ConsentCheckboxPart.HasConsent.Value']").prop('checked', true);
                 }
             });
         })(jQuery);

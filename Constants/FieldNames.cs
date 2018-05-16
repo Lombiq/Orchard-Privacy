@@ -11,5 +11,10 @@
         {
             public const string RegistrationConsentText = nameof(RegistrationConsentText);
         }
+
+        public static class ConsentCheckboxPart
+        {
+            public const string HasConsent = nameof(HasConsent);
+        }
     }
 }
