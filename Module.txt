@@ -12,12 +12,12 @@ Features:
         Name: Lombiq Privacy - Consent banner
         Description: Adds the ability to show a privacy consent banner to unauthenticated users.
         Category: Privacy
-        Dependencies: Lombiq.Privacy
+        Dependencies: Lombiq.Privacy, Piedone.HelpfulLibraries
     Lombiq.Privacy.RegistrationConsent
         Name: Lombiq Privacy - Registration consent
         Description: Adds a privacy consent checkbox to the registration form.
         Category: Privacy
-        Dependencies: Lombiq.Privacy, Orchard.Layouts, Orchard.Users
+        Dependencies: Lombiq.Privacy, Orchard.Layouts, Orchard.Users, Piedone.HelpfulLibraries
     Lombiq.Privacy.FormConsent
         Name: Lombiq Privacy - Form consent
         Description: An attachable part that displays a privacy consent checkbox. Also adds a consent checkbox that can be used in Dynamic Forms.
