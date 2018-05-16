@@ -9,6 +9,7 @@
     var tagBuilder = (OrchardTagBuilder)TagBuilderExtensions.CreateElementTagBuilder(Model, "input");
 
     tagBuilder.Attributes["type"] = "checkbox";
+    tagBuilder.Attributes["required"] = "true";
     tagBuilder.Attributes["name"] = Model.ProcessedName;
     tagBuilder.Attributes["value"] = Model.ProcessedValue;
 
