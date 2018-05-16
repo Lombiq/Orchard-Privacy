@@ -6,12 +6,16 @@
 
     Script.Require(ResourceNames.JsCookie);
 
+    Style.Require(ResourceNames.ConsentBanner);
+
     const string ConsentBannerId = "consent-banner";
 }
 
 
 <div id="@ConsentBannerId" class="consentBanner" title="@T("Privacy consent")" hidden>
-    @Display.Lombiq_Privacy_ConsentBanner_Text()
+    <span>
+        @Display.Lombiq_Privacy_ConsentBanner_Text()
+    </span>
 </div>
 
 @using (Script.Foot())
