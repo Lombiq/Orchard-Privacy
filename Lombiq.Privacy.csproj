@@ -94,6 +94,7 @@
     <Compile Include="Constants\CookieNames.cs" />
     <Compile Include="Constants\EditorGroupIds.cs" />
     <Compile Include="Constants\FeatureNames.cs" />
+    <Compile Include="Constants\FieldNames.cs" />
     <Compile Include="Constants\ResourceNames.cs" />
     <Compile Include="Drivers\ConsentBannerSettingsPartDriver.cs" />
     <Compile Include="Drivers\ConsentCheckboxElementDriver.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Handlers\ConsentBannerSettingsPartHandler.cs" />
     <Compile Include="Handlers\ConsentCheckboxPartHandler.cs" />
     <Compile Include="Handlers\RegistrationConsentSettingsPartHandler.cs" />
+    <Compile Include="Migrations\ConsentBannerMigrations.cs" />
     <Compile Include="Migrations\ConsentCheckBoxMigrations.cs" />
     <Compile Include="Models\ConsentBannerSettingsPart.cs" />
     <Compile Include="Models\ConsentCheckboxPart.cs" />
@@ -161,7 +163,7 @@
     <Content Include="Views\Lombiq.Privacy.ConsentBanner.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\EditorTemplates\Parts.ConsentBannerSettings.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts\ConsentBannerSettings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Licence.md" />

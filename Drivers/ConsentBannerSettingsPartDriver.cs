@@ -22,7 +22,7 @@ namespace Lombiq.Privacy.Drivers
                     }
 
                     return shapeHelper.EditorTemplate(
-                        TemplateName: "Parts.ConsentBannerSettings",
+                        TemplateName: "Parts/ConsentBannerSettings",
                         Model: part,
                         Prefix: Prefix);
                 })

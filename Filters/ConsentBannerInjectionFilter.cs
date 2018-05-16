@@ -1,7 +1,5 @@
-﻿using Lombiq.Privacy.Models;
-using Lombiq.Privacy.Services;
+﻿using Lombiq.Privacy.Services;
 using Orchard;
-using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
 using Orchard.Mvc.Filters;
 using System.Web.Mvc;
@@ -31,8 +29,6 @@ namespace Lombiq.Privacy.Filters
             if (filterContext.Result is PartialViewResult) return;
 
             var workContext = _orchardServices.WorkContext;
-
-            if (!workContext.CurrentSite.As<ConsentBannerSettingsPart>().EnableConsentBanner) return;
 
             if (!_consentService.UserHasConsent())
                 workContext.Layout.Content.Add(_orchardServices.New.Lombiq_Privacy_ConsentBanner(), "after");

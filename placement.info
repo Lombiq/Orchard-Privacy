@@ -1,6 +1,7 @@
 ﻿<Placement>
     <Place 
-        Parts_ConsentBannerSettings_Edit="Content:11"
+        Parts_ConsentBannerSettings_Edit="Content: 8@PrivacySettings"
+        Fields_Common_Text_Edit-ConsentBannerText="Content: 8.5@PrivacySettings"
         Parts_RegistrationConsentSettings_Edit="Content:11"
         Parts_ConsentCheckbox_Edit="Content:after"
     />
