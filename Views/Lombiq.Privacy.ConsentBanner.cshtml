@@ -25,7 +25,7 @@
     <script type="text/javascript">
         ; (function ($) {
             $(function () {
-                if (ConsentCookie.HasConsentCookie() !== true) {
+                if (!ConsentCookie.HasConsentCookie()) {
                     $("#@ConsentBannerId").dialog({
                         closeOnEscape: false,
                         resizable: false,

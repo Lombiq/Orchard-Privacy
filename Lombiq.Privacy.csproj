@@ -103,12 +103,13 @@
     <Compile Include="Elements\ConsentCheckbox.cs" />
     <Compile Include="Filters\ConsentBannerInjectionFilter.cs" />
     <Compile Include="Filters\PrivacyPolicyCheckboxToRegistrationFormInjectionFilter.cs" />
+    <Compile Include="Filters\PrivacyPolicyCheckboxToRegistrationFormValidationFilter.cs" />
     <Compile Include="Handlers\ConsentBannerSettingsPartHandler.cs" />
     <Compile Include="Handlers\ConsentCheckboxPartHandler.cs" />
     <Compile Include="Handlers\RegistrationConsentSettingsPartHandler.cs" />
     <Compile Include="Migrations\ConsentBannerMigrations.cs" />
     <Compile Include="Migrations\ConsentCheckBoxMigrations.cs" />
-    <Compile Include="Migrations\RegistartionConsentMigrations.cs" />
+    <Compile Include="Migrations\RegistrationConsentMigrations.cs" />
     <Compile Include="Models\ConsentBannerSettingsPart.cs" />
     <Compile Include="Models\ConsentCheckboxPart.cs" />
     <Compile Include="Models\RegistrationConsentSettingsPart.cs" />

@@ -13,12 +13,13 @@
 
 <div id="@RegistrationCheckboxId" class="registrationCheckbox consent-checkbox">
     <label>
-        <input type="checkbox" required>
+        @Html.CheckBox("RegistrationCheckbox", new { required = true })
         <span>
             @Display.Lombiq_Privacy_RegistrationCheckbox_Text()
         </span>
     </label>
 </div>
+
 
 @using (Script.Foot())
 {
