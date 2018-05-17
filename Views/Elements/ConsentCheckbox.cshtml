@@ -3,6 +3,7 @@
 @using Orchard.DynamicForms.Elements
 @using Orchard.Layouts.Helpers
 
+
 @if (Model.UserHasConsent.ToLowerInvariant() == "true") { return; }
 
 @{ 
@@ -30,6 +31,7 @@
 </div>
 
 @Html.ValidationMessage((string)Model.ProcessedName)
+
 
 @using (Script.Foot())
 {

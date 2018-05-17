@@ -24,15 +24,13 @@ namespace Lombiq.Privacy.Filters
 
             if (filterContext.Result is PartialViewResult) return;
 
-            var workContext = _orchardServices.WorkContext;
-
-            var routeDataValues = workContext.HttpContext.Request.RequestContext.RouteData.Values;
+            var routeDataValues = filterContext.HttpContext.Request.RequestContext.RouteData.Values;
 
             if (routeDataValues["area"]?.ToString() == $"{nameof(Orchard)}.{nameof(Orchard.Users)}" &&
                 routeDataValues["controller"]?.ToString() == "Account" &&
                 routeDataValues["action"]?.ToString() == nameof(Orchard.Users.Controllers.AccountController.Register))
             {
-                workContext.Layout.Content.Add(_orchardServices.New.Lombiq_Privacy_RegistrationCheckbox(), "before");
+                _orchardServices.WorkContext.Layout.Content.Add(_orchardServices.New.Lombiq_Privacy_RegistrationCheckbox(), "before");
             }
         }
 

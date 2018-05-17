@@ -2,6 +2,7 @@
 @using Orchard.ContentManagement
 @using Orchard.Settings
 
+
 @{
     var consentBannerText = WorkContext.Resolve<ISiteService>().GetSiteSettings().As<ConsentBannerSettingsPart>().ConsentBannerTextField.Value;
 }

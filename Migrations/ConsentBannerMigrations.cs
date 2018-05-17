@@ -1,5 +1,6 @@
 ﻿using Lombiq.Privacy.Models;
 using Orchard.ContentManagement.MetaData;
+using Orchard.Core.Common.Fields;
 using Orchard.Data.Migration;
 using Orchard.Environment.Extensions;
 using static Lombiq.Privacy.Constants.FeatureNames;
@@ -14,7 +15,7 @@ namespace Lombiq.Privacy.Migrations
         {
             ContentDefinitionManager.AlterPartDefinition(nameof(ConsentBannerSettingsPart), part => part
                 .WithField(ConsentBannerText, field => field
-                    .OfType("TextField")
+                    .OfType(nameof(TextField))
                     .WithDisplayName("Privacy consent text")
                     .WithSetting("TextFieldSettings.Required", "True")
                     .WithSetting("TextFieldSettings.Hint", "Set the text of privacy consent banner.")
