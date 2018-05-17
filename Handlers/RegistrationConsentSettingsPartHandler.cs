@@ -19,6 +19,13 @@ namespace Lombiq.Privacy.Handlers
             T = NullLocalizer.Instance;
 
             Filters.Add(new ActivatingFilter<RegistrationConsentSettingsPart>("Site"));
+
+            OnLoaded<RegistrationConsentSettingsPart>((context, part) =>
+            {
+                if (part.RegistrationConsentTextField.Value == null)
+                    part.RegistrationConsentTextField.Value = part.RegistrationConsentTextField.PartFieldDefinition.Settings["TextFieldSettings.DefaultValue"];
+            });
+
         }
 
 

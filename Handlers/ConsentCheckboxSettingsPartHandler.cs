@@ -19,6 +19,12 @@ namespace Lombiq.Privacy.Handlers
             T = NullLocalizer.Instance;
 
             Filters.Add(new ActivatingFilter<ConsentCheckboxSettingsPart>("Site"));
+
+            OnLoaded<ConsentCheckboxSettingsPart>((context, part) =>
+            {
+                if (part.ConsentCheckboxTextField.Value == null)
+                    part.ConsentCheckboxTextField.Value = part.ConsentCheckboxTextField.PartFieldDefinition.Settings["TextFieldSettings.DefaultValue"];
+            });
         }
 
 

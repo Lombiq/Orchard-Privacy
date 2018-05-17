@@ -19,9 +19,15 @@ namespace Lombiq.Privacy.Handlers
             T = NullLocalizer.Instance;
 
             Filters.Add(new ActivatingFilter<ConsentBannerSettingsPart>("Site"));
+
+            OnLoaded<ConsentBannerSettingsPart>((context, part) =>
+            {
+                if (part.ConsentBannerTextField.Value == null)
+                    part.ConsentBannerTextField.Value = part.ConsentBannerTextField.PartFieldDefinition.Settings["TextFieldSettings.DefaultValue"];
+            });
         }
 
-
+        
         protected override void GetItemMetadata(GetContentItemMetadataContext context)
         {
             if (context.ContentItem.ContentType != "Site") return;
