@@ -4,7 +4,6 @@ using Orchard.ContentManagement;
 using Orchard.ContentManagement.Drivers;
 using Orchard.Environment.Extensions;
 using Orchard.Localization;
-using Orchard.UI.Notify;
 using static Lombiq.Privacy.Constants.FeatureNames;
 
 namespace Lombiq.Privacy.Drivers
@@ -13,15 +12,13 @@ namespace Lombiq.Privacy.Drivers
     public class ConsentCheckboxPartDriver : ContentPartDriver<ConsentCheckboxPart>
     {
         private readonly IWorkContextAccessor _wca;
-        private readonly INotifier _notifier;
 
         public Localizer T { get; set; }
 
 
-        public ConsentCheckboxPartDriver(IWorkContextAccessor wca, INotifier notifier)
+        public ConsentCheckboxPartDriver(IWorkContextAccessor wca)
         {
             _wca = wca;
-            _notifier = notifier;
 
             T = NullLocalizer.Instance;
         }
@@ -36,8 +33,10 @@ namespace Lombiq.Privacy.Drivers
             if (!part.HasConsentField.Value.Value)
             {
                 var hasNoConsentText = T("Please accept the privacy policy.");
+
                 updater.AddModelError(nameof(part.HasConsentField), hasNoConsentText);
-                _notifier.Error(hasNoConsentText);
+                return ContentShape("Parts_ConsentCheckbox_Edit", () =>
+                    shapeHelper.Parts_ConsentCheckbox_Edit(MissingConsent: hasNoConsentText));
             }
 
             return Editor(part, shapeHelper);
