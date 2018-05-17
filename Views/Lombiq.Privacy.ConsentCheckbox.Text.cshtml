@@ -1,1 +1,11 @@
-﻿@Display.Lombiq_Privacy_RegistrationCheckbox_Text()
+﻿@using Lombiq.Privacy.Models
+@using Orchard.ContentManagement
+@using Orchard.Settings
+
+
+@{
+    var consentCheckboxText = WorkContext.Resolve<ISiteService>().GetSiteSettings().As<ConsentCheckboxSettingsPart>().ConsentCheckboxTextField.Value;
+}
+
+
+@Html.Raw(consentCheckboxText)
