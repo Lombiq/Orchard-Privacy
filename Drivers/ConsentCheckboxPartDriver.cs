@@ -5,6 +5,7 @@ using Orchard.ContentManagement.Drivers;
 using Orchard.Environment.Extensions;
 using Orchard.Localization;
 using static Lombiq.Privacy.Constants.FeatureNames;
+using static Lombiq.Privacy.Constants.FieldNames.ConsentCheckboxPart;
 
 namespace Lombiq.Privacy.Drivers
 {
@@ -30,7 +31,7 @@ namespace Lombiq.Privacy.Drivers
 
         protected override DriverResult Editor(ConsentCheckboxPart part, IUpdateModel updater, dynamic shapeHelper)
         {
-            if (!part.HasConsentField.Value.Value)
+            if (!_wca.GetContext().HttpContext.Request.Form[$"{nameof(ConsentCheckboxPart)}.{nameof(HasConsent)}"].ToLowerInvariant().Contains("true"))
             {
                 var hasNoConsentText = T("Please accept the privacy policy.");
 
