@@ -17,10 +17,10 @@ namespace Lombiq.Privacy.Migrations
                 .WithField(RegistrationConsentText, field => field
                     .OfType(nameof(TextField))
                     .WithDisplayName("Registration privacy consent text")
-                    .WithSetting("TextFieldSettings.Required", "True")
+                    .WithSetting("TextFieldSettings.Required", "true")
                     .WithSetting("TextFieldSettings.Hint", "Set the text of registration consent checkbox.")
                     .WithSetting("TextFieldSettings.DefaultValue", "<div>I've read and agree to the site's <a href='/privacy-policy' target='_blank'>privacy policy</a >.</div>")
-                    .WithSetting("TextFieldSettings.Flavor", "Html")));
+                    .WithSetting("TextFieldSettings.Flavor", "html")));
 
             ContentDefinitionManager.AlterTypeDefinition("Site", type => type.WithPart(nameof(RegistrationConsentSettingsPart)));
 

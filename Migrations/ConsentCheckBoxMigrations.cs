@@ -22,9 +22,8 @@ namespace Lombiq.Privacy.Migrations
                 .Attachable()
                 .WithField(HasConsent, field => field
                     .OfType(nameof(BooleanField))
-                    .WithSetting("BooleanFieldSettings.DefaultValue", "False")
-                    .WithSetting("BooleanFieldSettings.SelectionMode", SelectionMode.Checkbox.ToString())
-                    .WithSetting("BooleanFieldSettings.Optional", "False")));
+                    .WithSetting("BooleanFieldSettings.DefaultValue", "false")
+                    .WithSetting("BooleanFieldSettings.Optional", "false")));
 
             ContentDefinitionManager.AlterPartDefinition(nameof(ConsentCheckboxSettingsPart), part => part
                 .WithField(ConsentCheckboxText, field => field
@@ -33,7 +32,7 @@ namespace Lombiq.Privacy.Migrations
                     .WithSetting("TextFieldSettings.Required", "true")
                     .WithSetting("TextFieldSettings.Hint", "Set the text of consent checkbox.")
                     .WithSetting("TextFieldSettings.DefaultValue", "<div>I've read and agree to the site's <a href='/privacy-policy' target='_blank'>privacy policy</a >.</div>")
-                    .WithSetting("TextFieldSettings.Flavor", "Html")));
+                    .WithSetting("TextFieldSettings.Flavor", "html")));
 
             ContentDefinitionManager.AlterTypeDefinition("Site", type => type.WithPart(nameof(ConsentCheckboxSettingsPart)));
 
