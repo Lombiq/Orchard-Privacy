@@ -106,7 +106,6 @@
     <Compile Include="Filters\PrivacyPolicyCheckboxToRegistrationFormInjectionFilter.cs" />
     <Compile Include="Filters\PrivacyPolicyCheckboxToRegistrationFormValidationFilter.cs" />
     <Compile Include="Handlers\ConsentBannerSettingsPartHandler.cs" />
-    <Compile Include="Handlers\ConsentCheckboxPartHandler.cs" />
     <Compile Include="Handlers\ConsentCheckboxSettingsPartHandler.cs" />
     <Compile Include="Handlers\RegistrationConsentSettingsPartHandler.cs" />
     <Compile Include="Migrations\ConsentBannerMigrations.cs" />
