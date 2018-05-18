@@ -20,9 +20,8 @@ namespace Lombiq.Privacy.Filters
 
         public void OnResultExecuting(ResultExecutingContext filterContext)
         {
-            if (Orchard.UI.Admin.AdminFilter.IsApplied(filterContext.RequestContext)) return;
-
-            if (filterContext.Result is PartialViewResult) return;
+            if (filterContext.Result is PartialViewResult ||
+                Orchard.UI.Admin.AdminFilter.IsApplied(filterContext.RequestContext)) return;
 
             var workContext = _orchardServices.WorkContext;
 
