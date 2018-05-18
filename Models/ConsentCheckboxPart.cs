@@ -13,6 +13,7 @@ namespace Lombiq.Privacy.Models
         public BooleanField HasConsentField => this.AsField<BooleanField>(HasConsent);
     }
 
+
     internal static class ConsentCheckboxPartPartExtensions
     {
         public static T AsField<T>(this ConsentCheckboxPart part, string fieldName) where T : ContentField =>
