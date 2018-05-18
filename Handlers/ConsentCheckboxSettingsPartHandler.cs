@@ -20,6 +20,8 @@ namespace Lombiq.Privacy.Handlers
 
             Filters.Add(new ActivatingFilter<ConsentCheckboxSettingsPart>("Site"));
 
+            // The TextField won't get it's default value by setting it during migration using TextFieldSettings,
+            // therefore we need to set the default value here.
             OnLoaded<ConsentCheckboxSettingsPart>((context, part) =>
             {
                 if (part.ConsentCheckboxTextField.Value == null)
