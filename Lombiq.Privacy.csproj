@@ -211,6 +211,7 @@
     <Content Include="Readme.md" />
     <Content Include="Styles\lombiq-privacy-consent-checkbox.scss" />
     <Content Include="Views\EditorTemplates\Parts\ConsentCheckboxSettings.cshtml" />
+    <Content Include="Views\Lombiq.Privacy.ConsentBanner.Resources.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
