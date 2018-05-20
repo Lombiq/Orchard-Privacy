@@ -31,8 +31,8 @@ namespace Lombiq.Privacy.Drivers
 
         protected override DriverResult Editor(ConsentCheckboxPart part, IUpdateModel updater, dynamic shapeHelper)
         {
-            // Model Binder wont get the value from the view (because the HasConsentField will always has null value)
-            // therefore we need to check the posted value from the current HTTP request.
+            // Model Binder wont get the value from the view (because the HasConsentField will always have a null value)
+            // therefore we need to get the posted value from the current HTTP request.
             if (!_wca.GetContext().HttpContext.Request.Form[$"{nameof(ConsentCheckboxPart)}.{nameof(HasConsent)}"].ToLowerInvariant().Contains("true"))
             {
                 var hasNoConsentText = T("Please accept the privacy policy.");
