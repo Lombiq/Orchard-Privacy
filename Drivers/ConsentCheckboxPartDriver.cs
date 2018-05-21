@@ -27,7 +27,7 @@ namespace Lombiq.Privacy.Drivers
 
         protected override DriverResult Editor(ConsentCheckboxPart part, dynamic shapeHelper) =>
             ContentShape("Parts_ConsentCheckbox_Edit", () =>
-                _wca.GetContext().CurrentUser ?? shapeHelper.Parts_ConsentCheckbox_Edit());
+                _wca.GetContext().CurrentUser == null ? shapeHelper.Parts_ConsentCheckbox_Edit() : null);
 
         protected override DriverResult Editor(ConsentCheckboxPart part, IUpdateModel updater, dynamic shapeHelper)
         {
