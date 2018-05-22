@@ -2,6 +2,7 @@
   display: none; }
 
 .ui-dialog {
+  font-size: 15px;
   padding: 0;
   position: fixed;
   top: 3% !important;

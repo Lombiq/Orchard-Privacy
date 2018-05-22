@@ -4,6 +4,7 @@ hidden {
 }
 
 .ui-dialog {
+    font-size: 15px;
     padding: 0;
     position: fixed;
     top: 3% !important; // Adding !important for some style to override the inline styling of the jQueryUI dialog.
