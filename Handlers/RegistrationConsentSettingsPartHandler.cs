@@ -18,8 +18,6 @@ namespace Lombiq.Privacy.Handlers
         {
             T = NullLocalizer.Instance;
 
-            Filters.Add(new ActivatingFilter<RegistrationConsentSettingsPart>("Site"));
-
             // The TextField won't get its default value by setting it during migration using TextFieldSettings,
             // therefore we need to set the default value here.
             OnLoaded<RegistrationConsentSettingsPart>((context, part) =>
