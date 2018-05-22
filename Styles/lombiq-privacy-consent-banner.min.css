@@ -1,1 +1,1 @@
-﻿hidden{display:none;}.ui-dialog{width:20%;}.ui-dialog .ui-dialog-buttonpane{text-align:center;}.ui-dialog .ui-dialog-buttonpane .ui-button{width:45%;height:100px;}
+﻿hidden{display:none;}.ui-dialog{padding:0;position:fixed;top:3% !important;right:2%;left:unset !important;width:400px !important;}.ui-dialog .ui-dialog-buttonpane{text-align:center;}.ui-dialog .ui-dialog-buttonpane .ui-button{width:45%;height:100px;}.ui-dialog .ui-dialog-buttonpane .ui-button .ui-button-text{white-space:pre-wrap;}

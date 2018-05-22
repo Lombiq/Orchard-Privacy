@@ -4,7 +4,12 @@ hidden {
 }
 
 .ui-dialog {
-    width: 20%;
+    padding: 0;
+    position: fixed;
+    top: 3% !important; // Adding !important for some style to override the inline styling of the jQueryUI dialog.
+    right: 2%;
+    left: unset !important;
+    width: 400px !important;
 
     .ui-dialog-buttonpane {
         text-align: center;
@@ -12,6 +17,10 @@ hidden {
         .ui-button {
             width: 45%;
             height: 100px;
+
+            .ui-button-text {
+                white-space: pre-wrap;
+            }
         }
     }
 }
