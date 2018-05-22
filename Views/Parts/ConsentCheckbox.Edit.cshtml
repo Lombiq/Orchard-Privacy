@@ -15,9 +15,11 @@
     </label>
     @if (Model.MissingConsent != null)
     {
-        <span class="field-validation-error">
-            @Model.MissingConsent
-        </span>
+        <div class="consent-checkbox-field-validation-error">
+            <span class="field-validation-error">
+                @Model.MissingConsent
+            </span>
+        </div>
     }
 </div>
 
