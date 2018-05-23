@@ -1,20 +1,23 @@
 ﻿"use strict";
 
-var consentCookieName = "HasConsent";
-var consentCookieTrueValue = "true";
-
 var ConsentCookie = {};
 
 ConsentCookie = {
+    consentCookieName: function consentCookieName() {
+        return "HasConsent";
+    },
+    consentCookieTrueValue: function consentCookieTrueValue() {
+        return "true";
+    },
     Set: function Set(sessionCookie) {
-        if (sessionCookie === consentCookieTrueValue) {
-            Cookies.set(consentCookieName, consentCookieTrueValue);
+        if (sessionCookie === this.consentCookieTrueValue()) {
+            Cookies.set(this.consentCookieName(), this.consentCookieTrueValue());
         } else {
-            Cookies.set(consentCookieName, consentCookieTrueValue, { expires: 1000 });
+            Cookies.set(this.consentCookieName(), this.consentCookieTrueValue(), { expires: 1000 });
         }
     },
     HasConsentCookie: function HasConsentCookie() {
-        return Cookies.get(consentCookieName) === consentCookieTrueValue;
+        return Cookies.get(this.consentCookieName()) === this.consentCookieTrueValue();
     }
 };
 

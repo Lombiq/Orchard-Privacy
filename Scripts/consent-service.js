@@ -1,18 +1,21 @@
-﻿var consentCookieName = "HasConsent";
-var consentCookieTrueValue = "true";
-
-var ConsentCookie = {};
+﻿var ConsentCookie = {};
 
 ConsentCookie = {
+    consentCookieName: function () {
+        return "HasConsent";
+    },
+    consentCookieTrueValue: function () {
+        return "true";
+    },
     Set: function (sessionCookie) {
-        if (sessionCookie === consentCookieTrueValue) {
-            Cookies.set(consentCookieName, consentCookieTrueValue);
+        if (sessionCookie === this.consentCookieTrueValue()) {
+            Cookies.set(this.consentCookieName(), this.consentCookieTrueValue());
         }
         else {
-            Cookies.set(consentCookieName, consentCookieTrueValue, { expires: 1000 });
+            Cookies.set(this.consentCookieName(), this.consentCookieTrueValue(), { expires: 1000 });
         }
     },
     HasConsentCookie: function () {
-        return Cookies.get(consentCookieName) === consentCookieTrueValue;
+        return Cookies.get(this.consentCookieName()) === this.consentCookieTrueValue();
     }
 }
