@@ -5,7 +5,8 @@
     Script.Require("jQueryUI");
     Style.Require("jQueryUI");
 
-    Script.Require(ResourceNames.JsConsentService);
+    // Needed in the head so analytics scripts can check for it.
+    Script.Require(ResourceNames.JsConsentService).AtHead();
 
     Style.Require(ResourceNames.ConsentBanner);
 
