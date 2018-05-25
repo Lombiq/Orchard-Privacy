@@ -1,0 +1,16 @@
+﻿// IE fallback
+hidden {
+    display: none;
+}
+
+.consent-checkbox {
+    div {
+        display: inline-block;
+    }
+
+    .consent-checkbox-field-validation-error {
+        color: red;
+        display: block;
+        font-weight: bold;
+    }
+}

@@ -1,0 +1,11 @@
+﻿@using Lombiq.Privacy.Models
+@using Orchard.ContentManagement
+@using Orchard.Settings
+
+
+@{
+    var registrationConsentText = WorkContext.Resolve<ISiteService>().GetSiteSettings().As<RegistrationConsentSettingsPart>().RegistrationConsentTextField.Value;
+}
+
+
+@Html.Raw(registrationConsentText)

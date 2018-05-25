@@ -1,0 +1,11 @@
+﻿hidden {
+  display: none; }
+
+.consent-checkbox div {
+  display: inline-block; }
+
+.consent-checkbox .consent-checkbox-field-validation-error {
+  color: red;
+  display: block;
+  font-weight: bold; }
+

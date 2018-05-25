@@ -1,0 +1,59 @@
+﻿@using Lombiq.Privacy.Constants
+
+
+@{
+    Script.Require("jQueryUI");
+    Style.Require("jQueryUI");
+
+    // Needed in the head so analytics scripts can check for it.
+    Script.Require(ResourceNames.JsConsentService).AtHead();
+
+    Style.Require(ResourceNames.ConsentBanner);
+
+    const string ConsentBannerId = "consent-banner";
+}
+
+
+@Display.Lombiq_Privacy_ConsentBanner_Resources()
+
+<div id="@ConsentBannerId" class="consentBanner" title="@T("Privacy consent")" hidden>
+    <span>
+        @Display.Lombiq_Privacy_ConsentBanner_Text()
+    </span>
+</div>
+
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        ; (function ($) {
+            $(function () {
+                if (!ConsentCookie.HasConsentCookie()) {
+                    $("#@ConsentBannerId").dialog({
+                        closeOnEscape: false,
+                        resizable: false,
+                        draggable: false,
+                        position: {
+                            my: "right-10% top+10",
+                            at: "right top+50",
+                            of: "html"
+                        },
+                        open: function (event, ui) {
+                            jQuery('.ui-dialog-titlebar-close').hide();
+                        },
+                        buttons: {
+                            "@T("I agree, do not show me this any more").Text": function () {
+                                ConsentCookie.Set();
+                                $(this).dialog("close");
+                            },
+                            "@T("I agree, but continue to show me this each time I visit the site").Text": function () {
+                                ConsentCookie.Set("true");
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+                }
+            });
+        })(jQuery);
+    </script>
+}
