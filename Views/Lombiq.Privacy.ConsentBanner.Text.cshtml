@@ -1,0 +1,11 @@
+﻿@using Lombiq.Privacy.Models
+@using Orchard.ContentManagement
+@using Orchard.Settings
+
+
+@{
+    var consentBannerText = WorkContext.Resolve<ISiteService>().GetSiteSettings().As<ConsentBannerSettingsPart>().ConsentBannerTextField.Value;
+}
+
+
+@Html.Raw(consentBannerText)

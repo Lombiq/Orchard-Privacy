@@ -1,0 +1,33 @@
+﻿@using Lombiq.Privacy.Constants
+
+
+@{
+    Script.Require("jQuery");
+    Script.Require(ResourceNames.JsConsentService);
+
+    Style.Require(ResourceNames.ConsentCheckbox);
+
+    const string RegistrationCheckboxId = "registration-checkbox";
+}
+
+
+<div id="@RegistrationCheckboxId" class="registrationCheckbox consent-checkbox">
+    <label>
+        @Html.CheckBox("RegistrationCheckbox", new { required = true })
+        <span>
+            @Display.Lombiq_Privacy_RegistrationCheckbox_Text()
+        </span>
+    </label>
+</div>
+
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        ; (function ($) {
+            $(function () {
+                $("#@RegistrationCheckboxId").insertAfter($("#confirmPassword").closest("div"));
+            });
+        })(jQuery);
+    </script>
+}

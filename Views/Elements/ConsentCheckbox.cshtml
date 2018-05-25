@@ -1,0 +1,48 @@
+﻿@using Lombiq.Privacy.Constants
+@using Orchard.DisplayManagement.Shapes
+@using Orchard.DynamicForms.Elements
+@using Orchard.Layouts.Helpers
+
+
+@if (Model.UserHasConsent.ToLowerInvariant() == "true") { return; }
+
+@{ 
+    Style.Require(ResourceNames.ConsentCheckbox);
+
+    var element = (ConsentCheckbox)Model.Element;
+    var tagBuilder = (OrchardTagBuilder)TagBuilderExtensions.CreateElementTagBuilder(Model, "input");
+
+    tagBuilder.Attributes["type"] = "checkbox";
+    tagBuilder.Attributes["required"] = "true";
+    tagBuilder.Attributes["name"] = Model.ProcessedName;
+    tagBuilder.Attributes["value"] = Model.ProcessedValue;
+
+    if (!string.IsNullOrWhiteSpace(element.PostedValue)) {
+        tagBuilder.Attributes["checked"] = "checked";
+    }
+}
+
+
+<div class="consent-checkbox">
+    <label>
+        @tagBuilder.ToHtmlString(TagRenderMode.SelfClosing)
+        @Display.Lombiq_Privacy_ConsentCheckboxElement_Text()
+    </label>
+</div>
+
+@Html.ValidationMessage((string)Model.ProcessedName)
+
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        ; (function ($) {
+            $(function () {
+                if (ConsentCookie.HasConsentCookie()) {
+                    $(".consent-checkbox").hide();
+                    $("input[name='ConsentCheckbox']").prop('checked', true);
+                }
+            });
+        })(jQuery);
+    </script>
+}
