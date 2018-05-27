@@ -4,6 +4,13 @@
 .consent-checkbox div {
   display: inline-block; }
 
+.consent-checkbox input[type="checkbox"] {
+  margin-bottom: 0;
+  margin-right: 10px; }
+
+.consent-checkbox p {
+  display: inline; }
+
 .consent-checkbox .consent-checkbox-field-validation-error {
   color: red;
   display: block;
