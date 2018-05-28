@@ -2,11 +2,19 @@
 
 
 @{
-    Script.Require("jQueryUI");
-    Style.Require("jQueryUI");
-
     // Needed in the head so analytics scripts can check for it.
     Script.Require(ResourceNames.JsConsentService).AtHead();
+
+    // Setting the authenticated flag for authenticated users and not executing the rest of the template because it's
+    // not needed.
+    if (WorkContext.CurrentUser != null)
+    {
+        Script.Include("authenticated-flag-setter.js").AtHead();
+        return;
+    }
+
+    Script.Require("jQueryUI");
+    Style.Require("jQueryUI");
 
     Style.Require(ResourceNames.ConsentBanner);
 

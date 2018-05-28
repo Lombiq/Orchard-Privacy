@@ -23,10 +23,7 @@ namespace Lombiq.Privacy.Filters
             if (filterContext.Result is PartialViewResult ||
                 Orchard.UI.Admin.AdminFilter.IsApplied(filterContext.RequestContext)) return;
 
-            var workContext = _orchardServices.WorkContext;
-
-            if (workContext.CurrentUser == null)
-                workContext.Layout.Content.Add(_orchardServices.New.Lombiq_Privacy_ConsentBanner(), "after");
+            _orchardServices.WorkContext.Layout.Content.Add(_orchardServices.New.Lombiq_Privacy_ConsentBanner(), "after");
         }
 
         public void OnResultExecuted(ResultExecutedContext filterContext) { }
