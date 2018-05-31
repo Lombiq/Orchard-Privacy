@@ -1,0 +1,1 @@
+﻿window["user-is-authenticated"] = true;
