@@ -11,7 +11,10 @@
   .ui-dialog .ui-dialog-buttonpane {
     text-align: center; }
     .ui-dialog .ui-dialog-buttonpane .ui-button {
-      height: 80px; }
+      height: 80px;
+      width: 45%; }
+      .ui-dialog .ui-dialog-buttonpane .ui-button .ui-button-text {
+        white-space: pre-wrap; }
 
 @media only screen and (min-width: 420px) {
   .ui-dialog {
@@ -21,9 +24,11 @@
     right: 2%;
     left: unset !important;
     width: 400px !important; }
-    .ui-dialog .ui-dialog-buttonpane .ui-button {
-      width: 45%;
-      height: 100px; }
-      .ui-dialog .ui-dialog-buttonpane .ui-button .ui-button-text {
-        white-space: pre-wrap; } }
+    .ui-dialog .ui-dialog-buttonpane {
+      text-align: center; }
+      .ui-dialog .ui-dialog-buttonpane .ui-button {
+        width: 45%;
+        height: 100px; }
+        .ui-dialog .ui-dialog-buttonpane .ui-button .ui-button-text {
+          white-space: pre-wrap; } }
 
