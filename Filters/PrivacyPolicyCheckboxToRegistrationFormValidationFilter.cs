@@ -26,7 +26,8 @@ namespace Lombiq.Privacy.Filters
                 routeDataValues["controller"]?.ToString() == "Account" &&
                 routeDataValues["action"]?.ToString() == nameof(Orchard.Users.Controllers.AccountController.Register) &&
                 filterContext.HttpContext.Request.HttpMethod.ToString().Equals("POST") &&
-                !filterContext.HttpContext.Request.Form["RegistrationCheckbox"].ToLowerInvariant().Contains("true"))
+                // This needs to be != true so it covers the null case as well as when the checkbox is not ticked.
+                filterContext.HttpContext.Request.Form["RegistrationCheckbox"]?.ToLowerInvariant().Contains("true") != true)
             {
                 filterContext.Controller.ViewData.ModelState.AddModelError("RegistrationCheckbox", T("You have to accept the privacy policy.").Text);
             }
