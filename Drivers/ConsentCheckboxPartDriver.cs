@@ -33,7 +33,11 @@ namespace Lombiq.Privacy.Drivers
         {
             // Model Binder wont get the value from the view (because the HasConsentField will always have a null value)
             // therefore we need to get the posted value from the current HTTP request.
-            if (!_wca.GetContext().HttpContext.Request.Form[$"{nameof(ConsentCheckboxPart)}.{nameof(HasConsent)}"].ToLowerInvariant().Contains("true"))
+
+            var wc = _wca.GetContext();
+            // This needs to be != true so it covers the null case as well as when the checkbox is not ticked.
+            if (wc.HttpContext.Request.Form[$"{nameof(ConsentCheckboxPart)}.{nameof(HasConsent)}"]?.ToLowerInvariant().Contains("true") != true &&
+                wc.CurrentUser == null)
             {
                 var hasNoConsentText = T("Please accept the privacy policy.");
 
