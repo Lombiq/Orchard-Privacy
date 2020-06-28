@@ -1,8 +1,8 @@
-# Lombiq Privacy Orchard module Readme
+# Lombiq Privacy Orchard module
 
 
 
-## Module Description
+## About
 
 Orchard module containing features related to data protection/privacy and the EU law on it, the [General Data Protection Regulation](http://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1462439808430&uri=CELEX:32016R0679) (GDPR).
 
@@ -32,14 +32,8 @@ Adds a new `ConsentCheckboxPart` content part that can be attached to any conten
 This feature also adds a similar form element that you can use in Dynamic Forms.
 
 
-## Soure code and contributing
+## Contributing and support
 
-The module's source is available in two public source repositories, automatically mirrored in both directions with [Git-hg Mirror](https://githgmirror.com):
+Bug reports, feature requests, comments, questions, code contributions, and love letters are warmly welcome, please do so via GitHub issues and pull requests. Please adhere to our [open-source guidelines](https://lombiq.com/open-source-guidelines) while doing so.
 
-- [https://bitbucket.org/Lombiq/orchard-privacy](https://bitbucket.org/Lombiq/orchard-privacy) (Mercurial repository)
-- [https://github.com/Lombiq/Orchard-Privacy](https://github.com/Lombiq/Orchard-Privacy) (Git repository)
-
-Bug reports, feature requests and comments are warmly welcome, **please do so via GitHub**.
-Feel free to send pull requests too, no matter which source repository you choose for this purpose.
-
-This project is developed by [Lombiq Technologies Ltd](https://lombiq.com/). Commercial-grade support is available through Lombiq.
+This project is developed by [Lombiq Technologies](https://lombiq.com/). Commercial-grade support is available through Lombiq.
