@@ -1,33 +1,13 @@
-﻿@using Lombiq.Privacy.Constants
+@model RegistrationConsentCheckboxViewModel
 
-
-@{
-    Script.Require("jQuery");
-    Script.Require(ResourceNames.JsConsentService);
-
-    Style.Require(ResourceNames.ConsentCheckbox);
-
-    const string RegistrationCheckboxId = "registration-checkbox";
-}
-
-
-<div id="@RegistrationCheckboxId" class="registrationCheckbox consent-checkbox">
-    <label>
-        @Html.CheckBox("RegistrationCheckbox", new { required = true })
-        <span>
-            @Display.Lombiq_Privacy_RegistrationCheckbox_Text()
-        </span>
-    </label>
-</div>
-
-
-@using (Script.Foot())
-{
-    <script type="text/javascript">
-        ; (function ($) {
-            $(function () {
-                $("#@RegistrationCheckboxId").insertAfter($("#confirmPassword").closest("div"));
-            });
-        })(jQuery);
-    </script>
-}
+<fieldset class="form-group" asp-validation-class-for="RegistrationCheckbox">
+    <div class="col-md-9">
+        <div class="form-check">
+            <input asp-for="RegistrationCheckbox" class="form-check-input" required />
+            <label>
+                <shape Type="Lombiq_Privacy_RegistrationCheckbox_Text" />
+            </label><br>
+            <span asp-validation-for="RegistrationCheckbox" class="text-danger"></span>
+        </div>
+    </div>
+</fieldset>

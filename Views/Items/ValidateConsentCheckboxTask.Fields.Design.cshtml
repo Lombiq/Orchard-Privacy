@@ -1,0 +1,8 @@
+@model ActivityViewModel<ValidateConsentCheckboxTask>
+@using OrchardCore.Workflows.ViewModels;
+@using OrchardCore.Workflows.Helpers;
+@using Lombiq.Privacy.Activities;
+
+<header>
+    <h4><i class="fa fa-shield-alt"></i>@Model.Activity.GetTitleOrDefault(() => T["Validate Consent Checkbox"])</h4>
+</header>

@@ -12,6 +12,7 @@ Do not forget to create a privacy policy page that you need to link to from the 
 
 The module is also available for [DotNest](https://dotnest.com/) sites.
 
+**NOTE:** This module has an Orchard 1 version in the [dev-orchard-1 branch](https://github.com/Lombiq/Orchard-Privacy/tree/dev-orchard-1).
 
 ## Features
 
@@ -19,18 +20,20 @@ The module consists of the following independent features:
 
 ### Consent Banner Feature
 
-Shows a banner where unauthenticated users can accept the privacy policy.
+Shows a banner where unauthenticated users can accept the privacy policy. 
 
 ### Registration Consent Feature
 
-Shows a privacy consent checkbox on the registration form that needs to be checked by the users to be able to register.
+Shows a privacy consent checkbox on the registration form that needs to be checked by the users to be able to register. After registration, the user's consent is stored in the Privacy section of the user's properties.
+
+**NOTE:** If the user registered before this feature was enabled then they can accept the consent with the consent banner (if it's enabled). The consent will be stored in this case as well. 
 
 ### Form Consent Feature
 
-Adds a new `ConsentCheckboxPart` content part that can be attached to any content type (for instance comment boxes, contact forms). In this case the users must accept the privacy policy before they can post content to the site (if they haven't accepted it already via the banner).
+Adds a new `ConsentCheckbox` content type that can be attached to Dynamic Forms. In this case the users must accept the privacy policy before they can post content to the site. You can validate the consent wiht `Validate Consent Checkbox` workflow activity on the following way:
 
-This feature also adds a similar form element that you can use in Dynamic Forms.
-
+![Consent Checkbox Workflow](Docs/ConsentCheckboxWorkflow.png)
+ 
 
 ## Contributing and support
 

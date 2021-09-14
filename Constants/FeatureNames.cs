@@ -1,11 +1,11 @@
-﻿namespace Lombiq.Privacy.Constants
+namespace Lombiq.Privacy.Constants
 {
     public static class FeatureNames
     {
-        private const string Prefix = "Lombiq.Privacy.";
+        public const string Module = "Lombiq.Privacy";
 
-        public const string ConsentBanner = Prefix + "ConsentBanner";
-        public const string RegistrationConsent = Prefix + "RegistrationConsent";
-        public const string FormConsent = Prefix + "FormConsent";
+        public const string ConsentBanner = Module + "." + nameof(ConsentBanner);
+        public const string RegistrationConsent = Module + "." + nameof(RegistrationConsent);
+        public const string FormConsent = Module + "." + nameof(FormConsent);
     }
 }

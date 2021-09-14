@@ -1,67 +1,87 @@
-﻿@using Lombiq.Privacy.Constants
+@inject OrchardCore.Environment.Shell.IShellFeaturesManager shellFeaturesManager
+@using Microsoft.AspNetCore.Http.Features
 
+<style asp-name="@ResourceNames.ConsentBanner"></style>
+<script asp-name="jQuery"></script>
 
 @{
-    // Needed in the head so analytics scripts can check for it.
-    Script.Require(ResourceNames.JsConsentService).AtHead();
+    var bannerId = "privacy-consent-banner";
+    var acceptButtonId = "privacy-consent-accept-button";
+    var deniedButtonId = "privacy-consent-denied-button";
 
-    // Setting the authenticated flag for authenticated users and not executing the rest of the template because it's
-    // not needed.
-    if (WorkContext.CurrentUser != null)
-    {
-        Script.Include("authenticated-flag-setter.js").AtHead();
-        return;
-    }
+    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+    var acceptCookie = consentFeature?.CreateConsentCookie();
+    var deniedCookie = acceptCookie.Replace("yes", "no");
 
-    Script.Require("jQueryUI");
-    Style.Require("jQueryUI");
+    var isRegistrationConsentFeatureEnabled = (await shellFeaturesManager.GetEnabledFeaturesAsync())
+        .Any(feature => feature.Id == FeatureNames.RegistrationConsent);
 
-    Style.Require(ResourceNames.ConsentBanner);
-
-    const string ConsentBannerId = "consent-banner";
+    // This represents the case when a user registered before the Registration consent feature was enabled
+    // so they need to accept the consent now.
+    var isAuthenticatedHasNotConsent = isRegistrationConsentFeatureEnabled && User.Identity.IsAuthenticated;
 }
 
+<shape Type="Lombiq_Privacy_ConsentBanner_Resources" />
 
-@Display.Lombiq_Privacy_ConsentBanner_Resources()
-
-<div id="@ConsentBannerId" class="consentBanner" title="@T("Privacy consent")" hidden>
-    <span>
-        @Display.Lombiq_Privacy_ConsentBanner_Text()
-    </span>
+<div id="@bannerId" class="privacy-consent-banner">
+    <div class="modal-content">
+        <div class="modal-header bg-secondary">
+            <h5 class="modal-title" id="exampleModalLabel">@T["Privacy consent"]</h5>
+        </div>
+        <div class="modal-body">
+            <shape Type="Lombiq_Privacy_ConsentBanner_Text" />
+        </div>
+        <div class="modal-footer justify-content-center">
+            <div class="btn-group btn-group-lg" role="group">
+                <button id="@acceptButtonId" type="button" class="btn btn-success" data-cookie-string="@acceptCookie">
+                    @T["I agree, do not show me this any more"]
+                </button>
+                @if (!isAuthenticatedHasNotConsent)
+                {
+                    <button id="@deniedButtonId" type="button" class="btn btn-secondary" data-cookie-string="@deniedCookie">
+                        @T["I don't agree, do not show me this any more"]
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
 </div>
 
-
-@using (Script.Foot())
+@if (!isAuthenticatedHasNotConsent)
 {
-    <script type="text/javascript">
-        ; (function ($) {
-            $(function () {
-                if (!ConsentCookie.HasConsentCookie()) {
-                    $("#@ConsentBannerId").dialog({
-                        closeOnEscape: false,
-                        resizable: false,
-                        draggable: false,
-                        position: {
-                            my: "right-10% top+10",
-                            at: "right top+50",
-                            of: "html"
-                        },
-                        open: function (event, ui) {
-                            jQuery('.ui-dialog-titlebar-close').hide();
-                        },
-                        buttons: {
-                            "@T("I agree, do not show me this any more").Text": function () {
-                                ConsentCookie.Set();
-                                $(this).dialog("close");
-                            },
-                            "@T("I agree, but continue to show me this each time I visit the site").Text": function () {
-                                ConsentCookie.Set("true");
-                                $(this).dialog("close");
-                            }
-                        }
-                    });
-                }
-            });
-        })(jQuery);
+    <script depends-on="jQuery" at="Foot">
+        $("#@acceptButtonId").click(function () {
+            document.cookie = $("#@acceptButtonId")[0].dataset.cookieString;
+            $("#@bannerId").remove();
+        });
+
+        $("#@deniedButtonId").click(function () {
+            document.cookie = $("#@deniedButtonId")[0].dataset.cookieString;
+            $("#@bannerId").remove();
+        });
     </script>
 }
+else
+{
+    var request = Context.Request;
+
+    var acceptanceOfConsentURL = new UriBuilder
+    {
+        Scheme = request.Scheme,
+        Host = request.Host.Host,
+        Port = request.Host.Port ?? 80,
+        Path = request.PathBase.HasValue
+            ? $"{request.PathBase.Value}/Lombiq.Privacy/Consent/AcceptanceOfConsent"
+            : "Lombiq.Privacy/Consent/AcceptanceOfConsent"
+    }.ToString();
+
+    <script depends-on="jQuery" at="Foot">
+        $("#@acceptButtonId").click(function () {
+            var antiforgerytoken = $("[name='__RequestVerificationToken']").val();
+
+            $.post("@acceptanceOfConsentURL", { "__RequestVerificationToken": antiforgerytoken })
+                .done(function () { $("#@bannerId").remove(); });
+        });
+    </script>
+}
+

@@ -1,0 +1,1 @@
+.privacy-consent-banner{z-index:1500;position:fixed;top:0;right:0;margin-top:0;max-width:500px;animation-name:slide-right-in;animation-duration:2s}@keyframes slide-right-in{0%{right:-500px}100%{right:0}}

@@ -1,40 +1,26 @@
-﻿using Lombiq.Privacy.Models;
-using Orchard.ContentManagement.MetaData;
-using Orchard.Core.Common.Fields;
-using Orchard.Core.Contents.Extensions;
-using Orchard.Data.Migration;
-using Orchard.Environment.Extensions;
-using Orchard.Fields.Fields;
-using Orchard.Fields.Settings;
-using static Lombiq.Privacy.Constants.FeatureNames;
-using static Lombiq.Privacy.Constants.FieldNames.ConsentCheckboxPart;
-using static Lombiq.Privacy.Constants.FieldNames.ConsentCheckboxSettingsPart;
+using Lombiq.Privacy.Models;
+using OrchardCore.ContentManagement.Metadata;
+using OrchardCore.ContentManagement.Metadata.Settings;
+using OrchardCore.Data.Migration;
+using static Lombiq.Privacy.Constants.TypeNames;
 
 namespace Lombiq.Privacy.Migrations
 {
-    [OrchardFeature(FormConsent)]
-    public class ConsentCheckBoxMigrations : DataMigrationImpl
+    public class ConsentCheckboxMigrations : DataMigration
     {
+        private readonly IContentDefinitionManager _contentDefinitionManager;
+
+        public ConsentCheckboxMigrations(IContentDefinitionManager contentDefinitionManager) =>
+            _contentDefinitionManager = contentDefinitionManager;
+
         public int Create()
         {
-            ContentDefinitionManager.AlterPartDefinition(nameof(ConsentCheckboxPart), part => part
-                .WithDescription("When attached to a content type will provide a privacy consent checkbox.")
-                .Attachable()
-                .WithField(HasConsent, field => field
-                    .OfType(nameof(BooleanField))
-                    .WithSetting("BooleanFieldSettings.DefaultValue", "false")
-                    .WithSetting("BooleanFieldSettings.Optional", "false")));
+            _contentDefinitionManager.AlterPartDefinition(nameof(ConsentCheckboxPart), part => part
+                .WithDescription("Provides privacy consent checkbox properties."));
 
-            ContentDefinitionManager.AlterPartDefinition(nameof(ConsentCheckboxSettingsPart), part => part
-                .WithField(ConsentCheckboxText, field => field
-                    .OfType(nameof(TextField))
-                    .WithDisplayName("Consent checkbox text")
-                    .WithSetting("TextFieldSettings.Required", "true")
-                    .WithSetting("TextFieldSettings.Hint", "Set the text of consent checkbox.")
-                    .WithSetting("TextFieldSettings.DefaultValue", "<div>I've read and agree to the site's <a href='/privacy-policy' target='_blank'>privacy policy</a >.</div>")
-                    .WithSetting("TextFieldSettings.Flavor", "html")));
-
-            ContentDefinitionManager.AlterTypeDefinition("Site", type => type.WithPart(nameof(ConsentCheckboxSettingsPart)));
+            _contentDefinitionManager.AlterTypeDefinition(ConsentCheckbox, type => type
+                .WithPart(nameof(ConsentCheckboxPart))
+                .Stereotype("Widget"));
 
             return 1;
         }

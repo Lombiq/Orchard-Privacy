@@ -1,11 +1,8 @@
-﻿@using Lombiq.Privacy.Models
-@using Orchard.ContentManagement
-@using Orchard.Settings
-
+@inject OrchardCore.Settings.ISiteService _siteService
 
 @{
-    var consentCheckboxText = WorkContext.Resolve<ISiteService>().GetSiteSettings().As<ConsentCheckboxSettingsPart>().ConsentCheckboxTextField.Value;
+    var consentCheckboxText = (await _siteService.GetSiteSettingsAsync())
+        .As<ConsentCheckboxSettings>().ConsentCheckboxSettingsText;
 }
-
 
 @Html.Raw(consentCheckboxText)

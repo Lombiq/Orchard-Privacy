@@ -1,31 +1,51 @@
-﻿using Orchard;
-using Orchard.Environment.Extensions;
-using Orchard.Mvc.Filters;
-using System.Web.Mvc;
-using static Lombiq.Privacy.Constants.FeatureNames;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Options;
+using OrchardCore.DisplayManagement;
+using OrchardCore.DisplayManagement.Layout;
+using System.Threading.Tasks;
 
 namespace Lombiq.Privacy.Filters
 {
-    [OrchardFeature(ConsentBanner)]
-    public class ConsentBannerInjectionFilter : FilterProvider, IResultFilter
+    public class ConsentBannerInjectionFilter : IAsyncResultFilter
     {
-        private readonly IOrchardServices _orchardServices;
+        private readonly ILayoutAccessor _layoutAccessor;
+        private readonly IShapeFactory _shapeFactory;
+        private readonly IHttpContextAccessor _hca;
+        private readonly IOptions<CookiePolicyOptions> _cookiePolicyOptions;
 
-
-        public ConsentBannerInjectionFilter(IOrchardServices orchardServices)
+        public ConsentBannerInjectionFilter(
+            ILayoutAccessor layoutAccessor,
+            IShapeFactory shapeFactory,
+            IHttpContextAccessor hca,
+            IOptions<CookiePolicyOptions> cookiePolicyOptions)
         {
-            _orchardServices = orchardServices;
+            _layoutAccessor = layoutAccessor;
+            _shapeFactory = shapeFactory;
+            _hca = hca;
+            _cookiePolicyOptions = cookiePolicyOptions;
         }
 
-
-        public void OnResultExecuting(ResultExecutingContext filterContext)
+        public async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
         {
-            if (filterContext.Result is PartialViewResult ||
-                Orchard.UI.Admin.AdminFilter.IsApplied(filterContext.RequestContext)) return;
+            var consentFeature = _hca.HttpContext.Features.Get<ITrackingConsentFeature>();
+            var consentCookie = _hca.HttpContext.Request.Cookies[_cookiePolicyOptions.Value.ConsentCookie.Name];
 
-            _orchardServices.WorkContext.Layout.Content.Add(_orchardServices.New.Lombiq_Privacy_ConsentBanner(), "after");
+            if (context.IsNotFullViewRendering() ||
+               !consentFeature.IsConsentNeeded ||
+               consentCookie != null)
+            {
+                await next();
+                return;
+            }
+
+            var layout = await _layoutAccessor.GetLayoutAsync();
+            var contentZone = layout.Zones["Content"];
+            await contentZone.AddAsync(await _shapeFactory.CreateAsync("Lombiq_Privacy_ConsentBanner"));
+
+            await next();
         }
-
-        public void OnResultExecuted(ResultExecutedContext filterContext) { }
     }
 }

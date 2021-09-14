@@ -1,0 +1,20 @@
+.privacy-consent-banner {
+  z-index: 1500;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  margin-top: 0px;
+  max-width: 500px;
+  animation-name: slide-right-in;
+  animation-duration: 2s;
+}
+
+@keyframes slide-right-in {
+  0% {
+    right: -500px;
+  }
+  100% {
+    right: 0px;
+  }
+}
+/*# sourceMappingURL=lombiq-privacy-consent-banner.css.map */
