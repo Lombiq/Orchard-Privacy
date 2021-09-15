@@ -18,7 +18,7 @@
 
     // This represents the case when a user registered before the Registration consent feature was enabled
     // so they need to accept the consent now.
-    var isAuthenticatedHasNotConsent = isRegistrationConsentFeatureEnabled && User.Identity.IsAuthenticated;
+    var isAuthenticatedHasNoConsent = isRegistrationConsentFeatureEnabled && User.Identity.IsAuthenticated;
 }
 
 <shape Type="Lombiq_Privacy_ConsentBanner_Resources" />
@@ -34,12 +34,12 @@
         <div class="modal-footer justify-content-center">
             <div class="btn-group btn-group-lg" role="group">
                 <button id="@acceptButtonId" type="button" class="btn btn-success" data-cookie-string="@acceptCookie">
-                    @T["I agree, do not show me this any more"]
+                    @T["I agree, do not show me this anymore"]
                 </button>
-                @if (!isAuthenticatedHasNotConsent)
+                @if (!isAuthenticatedHasNoConsent)
                 {
                     <button id="@deniedButtonId" type="button" class="btn btn-secondary" data-cookie-string="@deniedCookie">
-                        @T["I don't agree, do not show me this any more"]
+                        @T["I don't agree, do not show me this anymore"]
                     </button>
                 }
             </div>
@@ -47,17 +47,17 @@
     </div>
 </div>
 
-@if (!isAuthenticatedHasNotConsent)
+@if (!isAuthenticatedHasNoConsent)
 {
     <script depends-on="jQuery" at="Foot">
-        $("#@acceptButtonId").click(function () {
-            document.cookie = $("#@acceptButtonId")[0].dataset.cookieString;
-            $("#@bannerId").remove();
+        $('#@acceptButtonId').click(function () {
+            document.cookie = $('#@acceptButtonId').data('cookie-string');
+            $('#@bannerId').remove();
         });
 
-        $("#@deniedButtonId").click(function () {
-            document.cookie = $("#@deniedButtonId")[0].dataset.cookieString;
-            $("#@bannerId").remove();
+        $('#@deniedButtonId').click(function () {
+            document.cookie = $('#@deniedButtonId').data('cookie-string');
+            $('#@bannerId').remove();
         });
     </script>
 }
@@ -76,11 +76,11 @@ else
     }.ToString();
 
     <script depends-on="jQuery" at="Foot">
-        $("#@acceptButtonId").click(function () {
+        $('#@acceptButtonId').click(function () {
             var antiforgerytoken = $("[name='__RequestVerificationToken']").val();
 
-            $.post("@acceptanceOfConsentURL", { "__RequestVerificationToken": antiforgerytoken })
-                .done(function () { $("#@bannerId").remove(); });
+            $.post('@acceptanceOfConsentURL', { '__RequestVerificationToken': antiforgerytoken })
+                .done(function () { $('#@bannerId').remove(); });
         });
     </script>
 }

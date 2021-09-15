@@ -15,7 +15,7 @@ namespace Lombiq.Privacy.Navigation
 
         public Task BuildNavigationAsync(string name, NavigationBuilder builder)
         {
-            if (!string.Equals(name, "admin", StringComparison.OrdinalIgnoreCase)) return Task.CompletedTask;
+            if (name.EqualsOrdinalIgnoreCase("admin")) return Task.CompletedTask;
 
             builder.Add(T["Configuration"], configuration => configuration
                 .Add(T["Settings"], settings => settings

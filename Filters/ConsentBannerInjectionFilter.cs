@@ -33,9 +33,7 @@ namespace Lombiq.Privacy.Filters
             var consentFeature = _hca.HttpContext.Features.Get<ITrackingConsentFeature>();
             var consentCookie = _hca.HttpContext.Request.Cookies[_cookiePolicyOptions.Value.ConsentCookie.Name];
 
-            if (context.IsNotFullViewRendering() ||
-               !consentFeature.IsConsentNeeded ||
-               consentCookie != null)
+            if (context.IsNotFullViewRendering() || !consentFeature.IsConsentNeeded || consentCookie != null)
             {
                 await next();
                 return;

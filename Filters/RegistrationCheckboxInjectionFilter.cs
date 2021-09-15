@@ -26,8 +26,8 @@ namespace Lombiq.Privacy.Filters
         {
             var routeValues = context.ActionDescriptor.RouteValues;
             if (context.IsNotFullViewRendering() ||
-                !routeValues["Controller"].EqualsOrdinalIgnoreCase(typeof(RegistrationController).ControllerName()) ||
                 !routeValues["Area"].EqualsOrdinalIgnoreCase($"{nameof(OrchardCore)}.{nameof(OrchardCore.Users)}") ||
+                !routeValues["Controller"].EqualsOrdinalIgnoreCase(typeof(RegistrationController).ControllerName()) ||
                 !routeValues["Action"].EqualsOrdinalIgnoreCase(nameof(RegistrationController.Register)))
             {
                 await next();

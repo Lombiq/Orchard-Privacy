@@ -56,7 +56,7 @@ namespace Lombiq.Privacy
             {
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
-                options.ConsentCookie.Expiration = new TimeSpan(30, 0, 0, 0);
+                options.ConsentCookie.Expiration = new TimeSpan(365, 0, 0, 0);
             });
 
             services.Configure<MvcOptions>((options) =>
@@ -74,7 +74,7 @@ namespace Lombiq.Privacy
             {
                 options.CheckConsentNeeded = context => IsConsentNeeded(context);
                 options.MinimumSameSitePolicy = SameSiteMode.None;
-                options.ConsentCookie.Expiration = new TimeSpan(30, 0, 0, 0);
+                options.ConsentCookie.Expiration = new TimeSpan(365, 0, 0, 0);
             });
 
             services.Configure<MvcOptions>((options) =>

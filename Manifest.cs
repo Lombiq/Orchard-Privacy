@@ -2,7 +2,7 @@ using OrchardCore.Modules.Manifest;
 using static Lombiq.Privacy.Constants.FeatureNames;
 
 [assembly: Module(
-    Name = "Tenant Admin",
+    Name = "Lombiq Privacy",
     Author = "Lombiq Technologies",
     Website = "https://lombiq.com",
     Version = "1.0.0"
@@ -34,7 +34,7 @@ using static Lombiq.Privacy.Constants.FeatureNames;
 [assembly: Feature(
     Id = FormConsent,
     Name = "Lombiq Privacy - Form consent",
-    Description = "An attachable part that displays a privacy consent checkbox.",
+    Description = "Provides Consent Checkbox widget that can attach to any form.",
     Category = "Privacy",
     Dependencies = new[] { Module, "OrchardCore.Forms" }
 )]

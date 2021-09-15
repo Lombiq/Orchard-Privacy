@@ -22,8 +22,8 @@ namespace Lombiq.Privacy.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        // This action store the user consent in the case
-        // if the user exists before the Registration consent feature was enabled.
+        // This action stores the user consent in case if the user existed before the Registration consent feature was
+        // enabled.
         public async Task<IActionResult> AcceptanceOfConsent()
         {
             var user = (User)await _userService.GetAuthenticatedUserAsync(ControllerContext.HttpContext.User);
