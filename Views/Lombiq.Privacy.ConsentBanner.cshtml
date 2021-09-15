@@ -1,5 +1,6 @@
 @inject OrchardCore.Environment.Shell.IShellFeaturesManager shellFeaturesManager
-@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Http.Features;
+@using Lombiq.Privacy.Controllers;
 
 <style asp-name="@ResourceNames.ConsentBanner"></style>
 <script asp-name="jQuery"></script>
@@ -50,38 +51,34 @@
 @if (!isAuthenticatedHasNoConsent)
 {
     <script depends-on="jQuery" at="Foot">
-        $('#@acceptButtonId').click(function () {
-            document.cookie = $('#@acceptButtonId').data('cookie-string');
-            $('#@bannerId').remove();
-        });
+        jQuery(($) => {
+            $('#@acceptButtonId').click(function () {
+                document.cookie = $('#@acceptButtonId').data('cookie-string');
+                $('#@bannerId').remove();
+            });
 
-        $('#@deniedButtonId').click(function () {
-            document.cookie = $('#@deniedButtonId').data('cookie-string');
-            $('#@bannerId').remove();
+            $('#@deniedButtonId').click(function () {
+                document.cookie = $('#@deniedButtonId').data('cookie-string');
+                $('#@bannerId').remove();
+            });
         });
     </script>
 }
 else
 {
-    var request = Context.Request;
-
-    var acceptanceOfConsentURL = new UriBuilder
-    {
-        Scheme = request.Scheme,
-        Host = request.Host.Host,
-        Port = request.Host.Port ?? 80,
-        Path = request.PathBase.HasValue
-            ? $"{request.PathBase.Value}/Lombiq.Privacy/Consent/AcceptanceOfConsent"
-            : "Lombiq.Privacy/Consent/AcceptanceOfConsent"
-    }.ToString();
+    var acceptanceOfConsentURL = Url.Action(
+        nameof(ConsentController.AcceptanceOfConsent),
+        typeof(ConsentController).ControllerName(),
+        new { area = $"{nameof(Lombiq)}.{nameof(Lombiq.Privacy)}" });
 
     <script depends-on="jQuery" at="Foot">
-        $('#@acceptButtonId').click(function () {
+        jQuery(($) => {
+            $('#@acceptButtonId').click(function () {
             var antiforgerytoken = $("[name='__RequestVerificationToken']").val();
 
             $.post('@acceptanceOfConsentURL', { '__RequestVerificationToken': antiforgerytoken })
                 .done(function () { $('#@bannerId').remove(); });
+            });
         });
     </script>
 }
-
