@@ -1,4 +1,4 @@
-# Lombiq Privacy Orchard module
+# Lombiq Privacy for Orchard Core
 
 
 
@@ -10,17 +10,22 @@ Do not forget to create a privacy policy page that you need to link to from the 
 
 **Important!** Using this module will not make your site GDPR-compliant alone.
 
+Do you want to quickly try out this project and see it in action? Check it out in our [Open-Source Orchard Core Extensions](https://github.com/Lombiq/Open-Source-Orchard-Core-Extensions) full Orchard Core solution and also see our other useful Orchard Core-related open-source projects!
+
 The module is also available for [DotNest](https://dotnest.com/) sites.
 
 **NOTE:** This module has an Orchard 1 version in the [dev-orchard-1 branch](https://github.com/Lombiq/Orchard-Privacy/tree/dev-orchard-1).
+
 
 ## Features
 
 The module consists of the following independent features:
 
+
 ### Consent Banner Feature
 
 Shows a banner where unauthenticated users can accept the privacy policy. 
+
 
 ### Registration Consent Feature
 
@@ -28,12 +33,20 @@ Shows a privacy consent checkbox on the registration form that needs to be check
 
 **NOTE:** If the user registered before this feature was enabled then they can accept the consent with the consent banner (if it's enabled). The consent will be stored in this case as well. 
 
+
 ### Form Consent Feature
 
-Adds a new `ConsentCheckbox` content type that can be attached to Dynamic Forms. In this case the users must accept the privacy policy before they can post content to the site. You can validate the consent wiht `Validate Consent Checkbox` workflow activity on the following way:
+Adds a new Consent Checkbox widget content type that can be added to forms with the Forms module. In this case, users must accept the privacy policy before they can post content to the site. You can validate the consent with the `Validate Consent Checkbox` workflow activity in the following way:
 
-![Consent Checkbox Workflow](Docs/ConsentCheckboxWorkflow.png)
- 
+![Consent Checkbox Workflow](Docs/Attachments/ConsentCheckboxWorkflow.png)
+
+
+## Dependencies 
+
+This module has the following dependencies:
+
+- [Lombiq Helpful Libraries for Orchard Core](https://github.com/Lombiq/Helpful-Libraries)
+
 
 ## Contributing and support
 
