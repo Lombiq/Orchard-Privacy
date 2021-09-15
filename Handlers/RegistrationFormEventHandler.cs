@@ -1,10 +1,9 @@
-using Lombiq.Privacy.Constants;
 using Lombiq.Privacy.Models;
 using Lombiq.Privacy.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
-using Newtonsoft.Json.Linq;
+using OrchardCore.Entities;
 using OrchardCore.Users;
 using OrchardCore.Users.Events;
 using OrchardCore.Users.Models;
@@ -34,7 +33,7 @@ namespace Lombiq.Privacy.Handlers
         {
             if (user is User orchardUser)
             {
-                orchardUser.Properties[CustomProperties.Privacy] = JObject.FromObject(new PrivacyConsent { Accepted = true });
+                orchardUser.Put(new PrivacyConsent { Accepted = true });
                 await _userManager.UpdateAsync(orchardUser);
             }
         }

@@ -17,6 +17,7 @@ using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.Data.Migration;
 using OrchardCore.DisplayManagement.Handlers;
+using OrchardCore.Entities;
 using OrchardCore.Modules;
 using OrchardCore.Navigation;
 using OrchardCore.ResourceManagement;
@@ -89,8 +90,7 @@ namespace Lombiq.Privacy
             {
                 var userService = context.RequestServices.GetService<IUserService>();
                 var orchardUser = (User)userService.GetAuthenticatedUserAsync(context.User).GetAwaiter().GetResult();
-                var privacyConsent = orchardUser.Properties[CustomProperties.Privacy]?.ToObject<PrivacyConsent>();
-                return privacyConsent == null || !privacyConsent.Accepted;
+                return !orchardUser.Has<PrivacyConsent>() || !orchardUser.As<PrivacyConsent>().Accepted;
             }
 
             return true;
