@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="OrchardCore.CustomSettings" Version="1.0.0" />
     <PackageReference Include="OrchardCore.Forms" Version="1.0.0" />
+    <PackageReference Include="OrchardCore.Liquid" Version="1.0.0" />
     <PackageReference Include="OrchardCore.Module.Targets" Version="1.0.0" />
     <PackageReference Include="OrchardCore.ContentManagement" Version="1.0.0" />
     <PackageReference Include="OrchardCore.ContentTypes.Abstractions" Version="1.0.0" />

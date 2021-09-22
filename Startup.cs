@@ -5,8 +5,6 @@ using Lombiq.Privacy.Filters;
 using Lombiq.Privacy.Handlers;
 using Lombiq.Privacy.Migrations;
 using Lombiq.Privacy.Models;
-using Lombiq.Privacy.Navigation;
-using Lombiq.Privacy.Permissions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,13 +14,9 @@ using Microsoft.Extensions.Options;
 using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.Data.Migration;
-using OrchardCore.DisplayManagement.Handlers;
 using OrchardCore.Entities;
 using OrchardCore.Modules;
-using OrchardCore.Navigation;
 using OrchardCore.ResourceManagement;
-using OrchardCore.Security.Permissions;
-using OrchardCore.Settings;
 using OrchardCore.Users.Events;
 using OrchardCore.Users.Models;
 using OrchardCore.Users.Services;
@@ -31,17 +25,6 @@ using System;
 
 namespace Lombiq.Privacy
 {
-    [Feature(FeatureNames.Module)]
-    public class Startup : StartupBase
-    {
-        public override void ConfigureServices(IServiceCollection services)
-        {
-            services.AddScoped<IPermissionProvider, PrivacyConsentPermissions>();
-            services.AddScoped<INavigationProvider, AdminMenu>();
-            services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
-        }
-    }
-
     [Feature(FeatureNames.ConsentBanner)]
     public class ConsentBannerStartup : StartupBase
     {
@@ -60,9 +43,10 @@ namespace Lombiq.Privacy
                 options.ConsentCookie.Expiration = new TimeSpan(365, 0, 0, 0);
             });
 
+            services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
             services.Configure<MvcOptions>((options) =>
                 options.Filters.Add(typeof(ConsentBannerInjectionFilter)));
-            services.AddScoped<IDisplayDriver<ISite>, ConsentBannerSettingsDisplayDriver>();
+            services.AddScoped<IDataMigration, ConsentBannerSettingsMigrations>();
         }
     }
 
@@ -81,7 +65,7 @@ namespace Lombiq.Privacy
             services.Configure<MvcOptions>((options) =>
                 options.Filters.Add(typeof(RegistrationCheckboxInjectionFilter)));
             services.AddScoped<IRegistrationFormEvents, RegistrationFormEventHandler>();
-            services.AddScoped<IDisplayDriver<ISite>, RegistrationConsentSettingsDisplayDriver>();
+            services.AddScoped<IDataMigration, RegistrationConsentSettingsMigrations>();
         }
 
         private static bool IsConsentNeeded(HttpContext context)
@@ -102,10 +86,10 @@ namespace Lombiq.Privacy
     {
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IDisplayDriver<ISite>, ConsentCheckboxSettingsDisplayDriver>();
             services.AddContentPart<ConsentCheckboxPart>()
                 .UseDisplayDriver<ConsentCheckboxPartDisplayDriver>();
             services.AddScoped<IDataMigration, ConsentCheckboxMigrations>();
+            services.AddScoped<IDataMigration, ConsentCheckboxSettingsMigrations>();
             services.AddActivity<ValidateConsentCheckboxTask, ValidateConsentCheckboxTaskDisplayDriver>();
         }
     }

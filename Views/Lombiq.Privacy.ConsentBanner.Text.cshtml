@@ -2,7 +2,8 @@
 
 @{
     var consentBannerText = (await _siteService.GetSiteSettingsAsync())
-        .As<ConsentBannerSettings>().ConsentBannerSettingsText;
+        .As<ContentItem>(TypeNames.ConsentBannerSettings).As<LiquidPart>()?.Liquid;
 }
 
-@Html.Raw(consentBannerText)
+@await Orchard.LiquidToHtmlAsync(consentBannerText)
+
