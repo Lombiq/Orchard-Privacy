@@ -1,4 +1,3 @@
-@inject OrchardCore.Environment.Shell.IShellFeaturesManager shellFeaturesManager
 @using Microsoft.AspNetCore.Http.Features;
 @using Lombiq.Privacy.Controllers;
 
@@ -13,13 +12,6 @@
     var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
     var acceptCookie = consentFeature?.CreateConsentCookie();
     var deniedCookie = acceptCookie.Replace("yes", "no");
-
-    var isRegistrationConsentFeatureEnabled = (await shellFeaturesManager.GetEnabledFeaturesAsync())
-        .Any(feature => feature.Id == FeatureNames.RegistrationConsent);
-
-    // This represents the case when a user registered before the Registration consent feature was enabled
-    // so they need to accept the consent now.
-    var isAuthenticatedHasNoConsent = isRegistrationConsentFeatureEnabled && User.Identity.IsAuthenticated;
 }
 
 <shape Type="Lombiq_Privacy_ConsentBanner_Resources" />
@@ -37,7 +29,7 @@
                 <button id="@acceptButtonId" type="button" class="btn btn-success" data-cookie-string="@acceptCookie">
                     @T["I agree, do not show me this anymore"]
                 </button>
-                @if (!isAuthenticatedHasNoConsent)
+                @if (!User.Identity.IsAuthenticated)
                 {
                     <button id="@deniedButtonId" type="button" class="btn btn-secondary" data-cookie-string="@deniedCookie">
                         @T["I don't agree, do not show me this anymore"]
@@ -48,7 +40,7 @@
     </div>
 </div>
 
-@if (!isAuthenticatedHasNoConsent)
+@if (!User.Identity.IsAuthenticated)
 {
     <script depends-on="jQuery" at="Foot">
         jQuery(($) => {

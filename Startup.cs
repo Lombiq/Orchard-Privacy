@@ -5,6 +5,7 @@ using Lombiq.Privacy.Filters;
 using Lombiq.Privacy.Handlers;
 using Lombiq.Privacy.Migrations;
 using Lombiq.Privacy.Models;
+using Lombiq.Privacy.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,19 +15,16 @@ using Microsoft.Extensions.Options;
 using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.Data.Migration;
-using OrchardCore.Entities;
 using OrchardCore.Modules;
 using OrchardCore.ResourceManagement;
 using OrchardCore.Users.Events;
-using OrchardCore.Users.Models;
-using OrchardCore.Users.Services;
 using OrchardCore.Workflows.Helpers;
 using System;
+using System.Threading.Tasks;
 
 namespace Lombiq.Privacy
 {
-    [Feature(FeatureNames.ConsentBanner)]
-    public class ConsentBannerStartup : StartupBase
+    public class Startup : StartupBase
     {
         public override void Configure(
             IApplicationBuilder app,
@@ -36,13 +34,28 @@ namespace Lombiq.Privacy
 
         public override void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IConsentService, ConsentService>();
             services.Configure<CookiePolicyOptions>(options =>
             {
-                options.CheckConsentNeeded = context => true;
+                options.CheckConsentNeeded = context => IsConsentNeededAsync(context).GetAwaiter().GetResult();
                 options.MinimumSameSitePolicy = SameSiteMode.None;
                 options.ConsentCookie.Expiration = new TimeSpan(365, 0, 0, 0);
             });
+        }
 
+        // This is necessary because IConsentService is not yet available with Dependency Injection at this point.
+        private static Task<bool> IsConsentNeededAsync(HttpContext httpContext)
+        {
+            var consentService = httpContext.RequestServices.GetService<IConsentService>();
+            return consentService.IsConsentNeededAsync(httpContext);
+        }
+    }
+
+    [Feature(FeatureNames.ConsentBanner)]
+    public class ConsentBannerStartup : StartupBase
+    {
+        public override void ConfigureServices(IServiceCollection services)
+        {
             services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
             services.Configure<MvcOptions>((options) =>
                 options.Filters.Add(typeof(ConsentBannerInjectionFilter)));
@@ -55,29 +68,10 @@ namespace Lombiq.Privacy
     {
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.CheckConsentNeeded = context => IsConsentNeeded(context);
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-                options.ConsentCookie.Expiration = new TimeSpan(365, 0, 0, 0);
-            });
-
             services.Configure<MvcOptions>((options) =>
                 options.Filters.Add(typeof(RegistrationCheckboxInjectionFilter)));
             services.AddScoped<IRegistrationFormEvents, RegistrationFormEventHandler>();
             services.AddScoped<IDataMigration, RegistrationConsentSettingsMigrations>();
-        }
-
-        private static bool IsConsentNeeded(HttpContext context)
-        {
-            if (context.User.Identity.IsAuthenticated)
-            {
-                var userService = context.RequestServices.GetService<IUserService>();
-                var orchardUser = (User)userService.GetAuthenticatedUserAsync(context.User).GetAwaiter().GetResult();
-                return !orchardUser.Has<PrivacyConsent>() || !orchardUser.As<PrivacyConsent>().Accepted;
-            }
-
-            return true;
         }
     }
 

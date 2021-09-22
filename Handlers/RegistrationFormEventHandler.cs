@@ -1,9 +1,7 @@
-using Lombiq.Privacy.Models;
+using Lombiq.Privacy.Services;
 using Lombiq.Privacy.ViewModels;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
-using OrchardCore.Entities;
 using OrchardCore.Users;
 using OrchardCore.Users.Events;
 using OrchardCore.Users.Models;
@@ -17,24 +15,23 @@ namespace Lombiq.Privacy.Handlers
     {
         private readonly IHttpContextAccessor _hca;
         private readonly IStringLocalizer T;
-        private readonly UserManager<IUser> _userManager;
+        private readonly IConsentService _consentService;
 
         public RegistrationFormEventHandler(
             IHttpContextAccessor hca,
             IStringLocalizer<RegistrationFormEventHandler> stringLocalizer,
-            UserManager<IUser> userManager)
+            IConsentService consentService)
         {
             _hca = hca;
-            _userManager = userManager;
             T = stringLocalizer;
+            _consentService = consentService;
         }
 
         public async Task RegisteredAsync(IUser user)
         {
             if (user is User orchardUser)
             {
-                orchardUser.Put(new PrivacyConsent { Accepted = true });
-                await _userManager.UpdateAsync(orchardUser);
+                await _consentService.StoreUserConsentAsync(orchardUser);
             }
         }
 

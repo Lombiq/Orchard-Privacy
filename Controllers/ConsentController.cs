@@ -1,8 +1,5 @@
-using Lombiq.Privacy.Models;
-using Microsoft.AspNetCore.Identity;
+using Lombiq.Privacy.Services;
 using Microsoft.AspNetCore.Mvc;
-using OrchardCore.Entities;
-using OrchardCore.Users;
 using OrchardCore.Users.Models;
 using OrchardCore.Users.Services;
 using System.Threading.Tasks;
@@ -12,25 +9,22 @@ namespace Lombiq.Privacy.Controllers
     public class ConsentController : Controller
     {
         private readonly IUserService _userService;
-        private readonly UserManager<IUser> _userManager;
+        private readonly IConsentService _consentService;
 
-        public ConsentController(IUserService userService, UserManager<IUser> userManager)
+        public ConsentController(IUserService userService, IConsentService consentService)
         {
             _userService = userService;
-            _userManager = userManager;
+            _consentService = consentService;
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        // This action stores the user consent in case if the user existed before the Registration consent feature was
-        // enabled.
         public async Task<IActionResult> AcceptanceOfConsent()
         {
             var user = (User)await _userService.GetAuthenticatedUserAsync(ControllerContext.HttpContext.User);
-            if (user != null && !user.Has<PrivacyConsent>())
+            if (user != null && !_consentService.IsUserAcceptedConsent(user))
             {
-                user.Put(new PrivacyConsent { Accepted = true });
-                await _userManager.UpdateAsync(user);
+                await _consentService.StoreUserConsentAsync(user);
             }
 
             return Ok();

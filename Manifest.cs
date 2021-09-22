@@ -9,6 +9,13 @@ using static Lombiq.Privacy.Constants.FeatureNames;
 )]
 
 [assembly: Feature(
+    Id = Module,
+    Name = "Lombiq Privacy",
+    Description = "Various data protection/privacy-related, GDPR-ready features.",
+    Category = "Privacy"
+)]
+
+[assembly: Feature(
     Id = ConsentBanner,
     Name = "Lombiq Privacy - Consent banner",
     Description = "Adds the ability to show a privacy consent banner.",
