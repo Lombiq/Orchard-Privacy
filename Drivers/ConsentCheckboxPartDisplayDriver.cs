@@ -21,6 +21,7 @@ namespace Lombiq.Privacy.Drivers
         }
 
         public override async Task<IDisplayResult> DisplayAsync(ConsentCheckboxPart part, BuildPartDisplayContext context) =>
+            // If the user has already accepted the privacy statement, it does not need to be display the checkbox.
             !await _consentService.IsUserAcceptedConsentAsync(_hca.HttpContext)
                 ? Initialize<ConsentCheckboxPartViewModel>(
                     GetDisplayShapeType(context),
