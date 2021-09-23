@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
 using OrchardCore.Users;
 using OrchardCore.Users.Events;
-using OrchardCore.Users.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,13 +26,7 @@ namespace Lombiq.Privacy.Handlers
             _consentService = consentService;
         }
 
-        public async Task RegisteredAsync(IUser user)
-        {
-            if (user is User orchardUser)
-            {
-                await _consentService.StoreUserConsentAsync(orchardUser);
-            }
-        }
+        public Task RegisteredAsync(IUser user) => _consentService.StoreUserConsentAsync(user);
 
         public Task RegistrationValidationAsync(Action<string, string> reportError)
         {

@@ -1,4 +1,5 @@
 using Lombiq.Privacy.Models;
+using Lombiq.Privacy.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
 using OrchardCore.DisplayManagement.ModelBinding;
@@ -8,6 +9,7 @@ using OrchardCore.Workflows.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Lombiq.Privacy.Activities
 {
@@ -16,14 +18,17 @@ namespace Lombiq.Privacy.Activities
         private readonly IUpdateModelAccessor _updateModelAccessor;
         private readonly IStringLocalizer T;
         private readonly IHttpContextAccessor _hca;
+        private readonly IConsentService _consentService;
 
         public ValidateConsentCheckboxTask(
             IUpdateModelAccessor updateModelAccessor,
             IStringLocalizer<ValidateConsentCheckboxTask> stringLocalizer,
-            IHttpContextAccessor hca)
+            IHttpContextAccessor hca,
+            IConsentService consentService)
         {
             _updateModelAccessor = updateModelAccessor;
             _hca = hca;
+            _consentService = consentService;
             T = stringLocalizer;
         }
 
@@ -40,10 +45,14 @@ namespace Lombiq.Privacy.Activities
             ActivityContext activityContext) =>
             Outcomes(T["Done"], T["Valid"], T["Invalid"]);
 
-        public override ActivityExecutionResult Execute(
+        public override async Task<ActivityExecutionResult> ExecuteAsync(
             WorkflowExecutionContext workflowContext,
             ActivityContext activityContext)
         {
+            // If the user has already accepted the privacy statement, it dose not need to validate that form again.
+            if (await _consentService.IsUserAcceptedConsentAsync(_hca.HttpContext))
+                return Outcomes("Done", "Valid");
+
             var consentCheckboxName = $"{nameof(ConsentCheckboxPart)}.{nameof(ConsentCheckboxPart.ConsentCheckbox)}";
             var form = _hca.HttpContext.Request.Form;
             var consentCheckboxValue = form[consentCheckboxName].Select(value => bool.Parse(value));
