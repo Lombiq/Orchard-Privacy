@@ -24,12 +24,16 @@ The module consists of the following independent features:
 
 ### Consent Banner Feature
 
-Shows a banner where unauthenticated users can accept the privacy policy. 
+Shows a banner where users can accept the privacy policy. 
+
+If the user is unauthenticated, they can use the banner to accept or reject the privacy statement, their decision will be stored in a cookie by the browser. 
+
+If the user is authenticated, they must accept the privacy policy via the banner. The fact of acceptance will be stored in the `PrivacyConsent` section of the user's properties. 
 
 
 ### Registration Consent Feature
 
-Shows a privacy consent checkbox on the registration form that needs to be checked by the users to be able to register. After registration, the user's consent is stored in the Privacy section of the user's properties.
+Shows a privacy consent checkbox on the registration form that needs to be checked by the users to be able to register. After registration, the user's consent is stored in the `PrivacyConsent` section of the user's properties.
 
 **NOTE:** If the user registered before this feature was enabled then they can accept the consent with the consent banner (if it's enabled). The consent will be stored in this case as well. 
 
@@ -39,6 +43,8 @@ Shows a privacy consent checkbox on the registration form that needs to be check
 Adds a new Consent Checkbox widget content type that can be added to forms with the Forms module. In this case, users must accept the privacy policy before they can post content to the site. You can validate the consent with the `Validate Consent Checkbox` workflow activity in the following way:
 
 ![Consent Checkbox Workflow](Docs/Attachments/ConsentCheckboxWorkflow.png)
+
+**NOTE:** If the user already accepted the privacy policy then the widget won't be displayed on the form and the Validate Consent Checkbox activity will return "Valid" value.
 
 
 ## Dependencies 
