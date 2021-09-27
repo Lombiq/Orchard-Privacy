@@ -12,7 +12,7 @@ Do not forget to create a privacy policy page that you need to link to from the 
 
 The module is also available for [DotNest](https://dotnest.com/) sites.
 
-**NOTE:** This module has an Orchard 1 version in the [dev branch](https://github.com/Lombiq/Orchard-Privacy/tree/dev).
+**NOTE:** This module has an Orchard Core version in the [dev branch](https://github.com/Lombiq/Orchard-Privacy/tree/dev).
 
 
 ## Features
