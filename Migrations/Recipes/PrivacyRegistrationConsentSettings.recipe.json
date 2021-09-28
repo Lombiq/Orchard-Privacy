@@ -1,20 +1,11 @@
 {
-  "name": "",
-  "displayName": "",
-  "description": "",
-  "author": "",
-  "website": "",
-  "version": "",
-  "issetuprecipe": false,
-  "categories": [],
-  "tags": [],
   "steps": [
     {
       "name": "custom-settings",
-      "RegistrationConsentSettings": {
+      "PrivacyRegistrationConsentSettings": {
         "ContentItemId": "486zx8dygnyg7svw7193cwg842",
         "ContentItemVersionId": null,
-        "ContentType": "RegistrationConsentSettings",
+        "ContentType": "PrivacyRegistrationConsentSettings",
         "DisplayText": "",
         "Latest": false,
         "Published": false,
@@ -24,7 +15,7 @@
         "Owner": "",
         "Author": "admin",
         "LiquidPart": {
-          "Liquid": "<div>I've read and agree to the site's <a href='/privacy-policy' target='_blank'>privacy policy</a >.</div>"
+          "Liquid": "<div>I've read and agree to the site's <a href='/privacy-policy' target='_blank'>privacy policy</a>.</div>"
         }
       }
     }

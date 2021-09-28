@@ -1,20 +1,11 @@
 {
-  "name": "",
-  "displayName": "",
-  "description": "",
-  "author": "",
-  "website": "",
-  "version": "",
-  "issetuprecipe": false,
-  "categories": [],
-  "tags": [],
   "steps": [
     {
       "name": "custom-settings",
-      "ConsentBannerSettings": {
+      "PrivacyConsentBannerSettings": {
         "ContentItemId": "48ja8aths4xdc7eenvvev10xmn",
         "ContentItemVersionId": null,
-        "ContentType": "ConsentBannerSettings",
+        "ContentType": "PrivacyConsentBannerSettings",
         "DisplayText": "",
         "Latest": false,
         "Published": false,

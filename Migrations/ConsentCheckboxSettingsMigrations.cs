@@ -23,11 +23,11 @@ namespace Lombiq.Privacy.Migrations
 
         public async Task<int> CreateAsync()
         {
-            _contentDefinitionManager.AlterTypeDefinition(ConsentCheckboxSettings, type => type
+            _contentDefinitionManager.AlterTypeDefinition(PrivacyConsentCheckboxSettings, type => type
                 .WithPart(nameof(LiquidPart))
                 .Stereotype("CustomSettings"));
 
-            await _recipeMigrator.ExecuteAsync("Recipes/consent-checkbox-settings.recipe.json", this);
+            await _recipeMigrator.ExecuteAsync("Recipes/PrivacyConsentCheckboxSettings.recipe.json", this);
 
             return 1;
         }

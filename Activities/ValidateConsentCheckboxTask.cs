@@ -49,7 +49,7 @@ namespace Lombiq.Privacy.Activities
             WorkflowExecutionContext workflowContext,
             ActivityContext activityContext)
         {
-            // If the user has already accepted the privacy statement, it dose not need to validate that form again.
+            // If the user has already accepted the privacy statement, it doesn't need to validate that form again.
             if (await _consentService.IsUserAcceptedConsentAsync(_hca.HttpContext))
                 return Outcomes("Done", "Valid");
 

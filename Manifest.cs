@@ -34,7 +34,7 @@ using static Lombiq.Privacy.Constants.FeatureNames;
 [assembly: Feature(
     Id = FormConsent,
     Name = "Lombiq Privacy - Form consent",
-    Description = "Provides Consent Checkbox widget that can attach to any form.",
+    Description = "Provides the Consent Checkbox widget that be used on any form.",
     Category = "Privacy",
     Dependencies = new[] { Module, "OrchardCore.CustomSettings", "OrchardCore.Forms" }
 )]

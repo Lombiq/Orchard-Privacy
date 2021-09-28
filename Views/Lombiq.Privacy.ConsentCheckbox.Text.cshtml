@@ -2,7 +2,7 @@
 
 @{
     var consentCheckboxText = (await _siteService.GetSiteSettingsAsync())
-        .As<ContentItem>(TypeNames.ConsentCheckboxSettings).As<LiquidPart>()?.Liquid;
+        .As<ContentItem>(TypeNames.PrivacyConsentCheckboxSettings).As<LiquidPart>()?.Liquid;
 }
 
 @await Orchard.LiquidToHtmlAsync(consentCheckboxText)

@@ -12,7 +12,7 @@ Do not forget to create a privacy policy page that you need to link to from the 
 
 Do you want to quickly try out this project and see it in action? Check it out in our [Open-Source Orchard Core Extensions](https://github.com/Lombiq/Open-Source-Orchard-Core-Extensions) full Orchard Core solution and also see our other useful Orchard Core-related open-source projects!
 
-The module is also available for [DotNest](https://dotnest.com/) sites.
+It's also available on all sites of [DotNest, the Orchard SaaS](https://dotnest.com/).
 
 **NOTE:** This module has an Orchard 1 version in the [dev-orchard-1 branch](https://github.com/Lombiq/Orchard-Privacy/tree/dev-orchard-1).
 

@@ -23,11 +23,11 @@ namespace Lombiq.Privacy.Migrations
 
         public async Task<int> CreateAsync()
         {
-            _contentDefinitionManager.AlterTypeDefinition(ConsentBannerSettings, type => type
+            _contentDefinitionManager.AlterTypeDefinition(PrivacyConsentBannerSettings, type => type
                .WithPart(nameof(LiquidPart))
                .Stereotype("CustomSettings"));
 
-            await _recipeMigrator.ExecuteAsync("Recipes/consent-banner-settings.recipe.json", this);
+            await _recipeMigrator.ExecuteAsync("Recipes/PrivacyConsentBannerSettings.recipe.json", this);
 
             return 1;
         }

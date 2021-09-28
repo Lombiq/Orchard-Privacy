@@ -6,4 +6,4 @@ bin/
 node_modules/
 
 # Exclude wwwroot
-**/wwwroot/*
+wwwroot/*
