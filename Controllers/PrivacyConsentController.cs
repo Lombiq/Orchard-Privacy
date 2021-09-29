@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 
 namespace Lombiq.Privacy.Controllers
 {
-    public class ConsentController : Controller
+    public class PrivacyConsentController : Controller
     {
-        private readonly IConsentService _consentService;
+        private readonly IPrivacyConsentService _consentService;
 
-        public ConsentController(IConsentService consentService) => _consentService = consentService;
+        public PrivacyConsentController(IPrivacyConsentService consentService) => _consentService = consentService;
 
         [HttpPost]
         [ValidateAntiForgeryToken]

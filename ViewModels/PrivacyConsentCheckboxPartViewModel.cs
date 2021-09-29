@@ -1,6 +1,6 @@
 namespace Lombiq.Privacy.ViewModels
 {
-    public class ConsentCheckboxPartViewModel
+    public class PrivacyConsentCheckboxPartViewModel
     {
         public bool ConsentCheckbox { get; set; }
     }

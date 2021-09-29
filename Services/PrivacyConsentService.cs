@@ -13,14 +13,14 @@ using System.Threading.Tasks;
 
 namespace Lombiq.Privacy.Services
 {
-    public class ConsentService : IConsentService
+    public class PrivacyConsentService : IPrivacyConsentService
     {
         private readonly UserManager<IUser> _userManager;
         private readonly IUserService _userService;
 
         private readonly IOptions<CookiePolicyOptions> _cookiePolicyOptions;
 
-        public ConsentService(UserManager<IUser> userManager, IOptions<CookiePolicyOptions> cookiePolicyOptions, IUserService userService)
+        public PrivacyConsentService(UserManager<IUser> userManager, IOptions<CookiePolicyOptions> cookiePolicyOptions, IUserService userService)
         {
             _userManager = userManager;
             _cookiePolicyOptions = cookiePolicyOptions;

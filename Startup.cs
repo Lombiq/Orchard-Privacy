@@ -34,7 +34,7 @@ namespace Lombiq.Privacy
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IConsentService, ConsentService>();
+            services.AddScoped<IPrivacyConsentService, PrivacyConsentService>();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => IsConsentNeededAsync(context).GetAwaiter().GetResult();
@@ -47,7 +47,7 @@ namespace Lombiq.Privacy
         // This is necessary because IConsentService is not yet available with Dependency Injection at this point.
         private static Task<bool> IsConsentNeededAsync(HttpContext httpContext)
         {
-            var consentService = httpContext.RequestServices.GetService<IConsentService>();
+            var consentService = httpContext.RequestServices.GetService<IPrivacyConsentService>();
             return consentService.IsConsentNeededAsync(httpContext);
         }
     }
@@ -59,8 +59,8 @@ namespace Lombiq.Privacy
         {
             services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
             services.Configure<MvcOptions>((options) =>
-                options.Filters.Add(typeof(ConsentBannerInjectionFilter)));
-            services.AddScoped<IDataMigration, ConsentBannerSettingsMigrations>();
+                options.Filters.Add(typeof(PrivacyConsentBannerInjectionFilter)));
+            services.AddScoped<IDataMigration, PrivacyConsentBannerSettingsMigrations>();
         }
     }
 
@@ -72,7 +72,7 @@ namespace Lombiq.Privacy
             services.Configure<MvcOptions>((options) =>
                 options.Filters.Add(typeof(RegistrationCheckboxInjectionFilter)));
             services.AddScoped<IRegistrationFormEvents, RegistrationFormEventHandler>();
-            services.AddScoped<IDataMigration, RegistrationConsentSettingsMigrations>();
+            services.AddScoped<IDataMigration, PrivacyRegistrationConsentSettingsMigrations>();
         }
     }
 
@@ -81,11 +81,11 @@ namespace Lombiq.Privacy
     {
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddContentPart<ConsentCheckboxPart>()
-                .UseDisplayDriver<ConsentCheckboxPartDisplayDriver>();
-            services.AddScoped<IDataMigration, ConsentCheckboxMigrations>();
-            services.AddScoped<IDataMigration, ConsentCheckboxSettingsMigrations>();
-            services.AddActivity<ValidateConsentCheckboxTask, ValidateConsentCheckboxTaskDisplayDriver>();
+            services.AddContentPart<PrivacyConsentCheckboxPart>()
+                .UseDisplayDriver<PrivacyConsentCheckboxPartDisplayDriver>();
+            services.AddScoped<IDataMigration, PrivacyConsentCheckboxMigrations>();
+            services.AddScoped<IDataMigration, PrivacyConsentCheckboxSettingsMigrations>();
+            services.AddActivity<ValidatePrivacyConsentCheckboxTask, ValidatePrivacyConsentCheckboxTaskDisplayDriver>();
         }
     }
 }

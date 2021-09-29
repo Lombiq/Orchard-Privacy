@@ -8,12 +8,12 @@ using static Lombiq.Privacy.Constants.TypeNames;
 
 namespace Lombiq.Privacy.Migrations
 {
-    public class ConsentBannerSettingsMigrations : DataMigration
+    public class PrivacyRegistrationConsentSettingsMigrations : DataMigration
     {
         private readonly IContentDefinitionManager _contentDefinitionManager;
         private readonly IRecipeMigrator _recipeMigrator;
 
-        public ConsentBannerSettingsMigrations(
+        public PrivacyRegistrationConsentSettingsMigrations(
             IContentDefinitionManager contentDefinitionManager,
             IRecipeMigrator recipeMigrator)
         {
@@ -23,11 +23,11 @@ namespace Lombiq.Privacy.Migrations
 
         public async Task<int> CreateAsync()
         {
-            _contentDefinitionManager.AlterTypeDefinition(PrivacyConsentBannerSettings, type => type
-               .WithPart(nameof(LiquidPart))
-               .Stereotype("CustomSettings"));
+            _contentDefinitionManager.AlterTypeDefinition(PrivacyRegistrationConsentSettings, type => type
+                .WithPart(nameof(LiquidPart))
+                .Stereotype("CustomSettings"));
 
-            await _recipeMigrator.ExecuteAsync("Recipes/PrivacyConsentBannerSettings.recipe.json", this);
+            await _recipeMigrator.ExecuteAsync("Recipes/PrivacyRegistrationConsentSettings.recipe.json", this);
 
             return 1;
         }

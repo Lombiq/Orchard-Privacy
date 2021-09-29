@@ -8,12 +8,12 @@ using static Lombiq.Privacy.Constants.TypeNames;
 
 namespace Lombiq.Privacy.Migrations
 {
-    public class ConsentCheckboxSettingsMigrations : DataMigration
+    public class PrivacyConsentCheckboxSettingsMigrations : DataMigration
     {
         private readonly IContentDefinitionManager _contentDefinitionManager;
         private readonly IRecipeMigrator _recipeMigrator;
 
-        public ConsentCheckboxSettingsMigrations(
+        public PrivacyConsentCheckboxSettingsMigrations(
             IContentDefinitionManager contentDefinitionManager,
             IRecipeMigrator recipeMigrator)
         {

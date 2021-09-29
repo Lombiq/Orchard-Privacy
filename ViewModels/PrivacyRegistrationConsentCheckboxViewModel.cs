@@ -1,6 +1,6 @@
 namespace Lombiq.Privacy.ViewModels
 {
-    public class RegistrationConsentCheckboxViewModel
+    public class PrivacyRegistrationConsentCheckboxViewModel
     {
         public bool RegistrationCheckbox { get; set; }
     }

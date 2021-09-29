@@ -9,7 +9,7 @@ namespace Lombiq.Privacy.Services
     /// <summary>
     /// Service to manage user privacy consent.
     /// </summary>
-    public interface IConsentService
+    public interface IPrivacyConsentService
     {
         /// <summary>
         /// Decides whether the consent banner should be displayed based on the configuration of the

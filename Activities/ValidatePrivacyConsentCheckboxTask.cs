@@ -13,18 +13,18 @@ using System.Threading.Tasks;
 
 namespace Lombiq.Privacy.Activities
 {
-    public class ValidateConsentCheckboxTask : TaskActivity
+    public class ValidatePrivacyConsentCheckboxTask : TaskActivity
     {
         private readonly IUpdateModelAccessor _updateModelAccessor;
         private readonly IStringLocalizer T;
         private readonly IHttpContextAccessor _hca;
-        private readonly IConsentService _consentService;
+        private readonly IPrivacyConsentService _consentService;
 
-        public ValidateConsentCheckboxTask(
+        public ValidatePrivacyConsentCheckboxTask(
             IUpdateModelAccessor updateModelAccessor,
-            IStringLocalizer<ValidateConsentCheckboxTask> stringLocalizer,
+            IStringLocalizer<ValidatePrivacyConsentCheckboxTask> stringLocalizer,
             IHttpContextAccessor hca,
-            IConsentService consentService)
+            IPrivacyConsentService consentService)
         {
             _updateModelAccessor = updateModelAccessor;
             _hca = hca;
@@ -32,7 +32,7 @@ namespace Lombiq.Privacy.Activities
             T = stringLocalizer;
         }
 
-        public override string Name => nameof(ValidateConsentCheckboxTask);
+        public override string Name => nameof(ValidatePrivacyConsentCheckboxTask);
 
         public override LocalizedString DisplayText => T["Validate Consent Checkbox Task"];
 
@@ -53,7 +53,7 @@ namespace Lombiq.Privacy.Activities
             if (await _consentService.IsUserAcceptedConsentAsync(_hca.HttpContext))
                 return Outcomes("Done", "Valid");
 
-            var consentCheckboxName = $"{nameof(ConsentCheckboxPart)}.{nameof(ConsentCheckboxPart.ConsentCheckbox)}";
+            var consentCheckboxName = $"{nameof(PrivacyConsentCheckboxPart)}.{nameof(PrivacyConsentCheckboxPart.ConsentCheckbox)}";
             var form = _hca.HttpContext.Request.Form;
             var consentCheckboxValue = form[consentCheckboxName].Select(value => bool.Parse(value));
             var isValid = consentCheckboxValue != null && consentCheckboxValue.Contains(true);

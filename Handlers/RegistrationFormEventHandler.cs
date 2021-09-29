@@ -14,12 +14,12 @@ namespace Lombiq.Privacy.Handlers
     {
         private readonly IHttpContextAccessor _hca;
         private readonly IStringLocalizer T;
-        private readonly IConsentService _consentService;
+        private readonly IPrivacyConsentService _consentService;
 
         public RegistrationFormEventHandler(
             IHttpContextAccessor hca,
             IStringLocalizer<RegistrationFormEventHandler> stringLocalizer,
-            IConsentService consentService)
+            IPrivacyConsentService consentService)
         {
             _hca = hca;
             T = stringLocalizer;
@@ -30,13 +30,13 @@ namespace Lombiq.Privacy.Handlers
 
         public Task RegistrationValidationAsync(Action<string, string> reportError)
         {
-            var registrationCheckbox = _hca.HttpContext?.Request?.Form?[nameof(RegistrationConsentCheckboxViewModel.RegistrationCheckbox)]
+            var registrationCheckbox = _hca.HttpContext?.Request?.Form?[nameof(PrivacyRegistrationConsentCheckboxViewModel.RegistrationCheckbox)]
                 .Select(value => bool.Parse(value));
 
             if (registrationCheckbox == null || !registrationCheckbox.Contains(true))
             {
                 reportError(
-                    nameof(RegistrationConsentCheckboxViewModel.RegistrationCheckbox),
+                    nameof(PrivacyRegistrationConsentCheckboxViewModel.RegistrationCheckbox),
                     T["You have to accept the privacy policy."]);
             }
 

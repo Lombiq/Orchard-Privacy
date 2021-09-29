@@ -59,8 +59,8 @@
 else
 {
     var acceptanceOfConsentURL = Url.Action(
-        nameof(ConsentController.AcceptanceOfConsent),
-        typeof(ConsentController).ControllerName(),
+        nameof(PrivacyConsentController.AcceptanceOfConsent),
+        typeof(PrivacyConsentController).ControllerName(),
         new { area = $"{nameof(Lombiq)}.{nameof(Lombiq.Privacy)}" });
 
     <script depends-on="jQuery" at="Foot">
