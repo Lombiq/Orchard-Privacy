@@ -28,7 +28,7 @@ Shows a banner where users can accept the privacy policy.
 
 If the user is unauthenticated, they can use the banner to accept or reject the privacy statement, their decision will be stored in a cookie by the browser. 
 
-If the user is authenticated, they must accept the privacy policy via the banner. The fact of acceptance will be stored in the `PrivacyConsent` section of the user's properties. 
+If the user is authenticated, their only option is to accept the privacy policy via the banner. This is so because it is assumed that during registration they already accepted a suitable privacy policy, it's just that the Lombiq.Privacy or something similar wasn't used at the time.
 
 
 ### Registration Consent Feature
