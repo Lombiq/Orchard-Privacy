@@ -40,7 +40,7 @@ Shows a privacy consent checkbox on the registration form that needs to be check
 
 ### Form Consent Feature
 
-Adds a new Consent Checkbox widget content type that can be added to forms with the Forms module. In this case, users must accept the privacy policy before they can post content to the site. You can validate the consent with the `Validate Consent Checkbox` workflow activity in the following way:
+Adds a new Consent Checkbox widget content type that can be added to forms with the Forms module. In this case, users must accept the privacy policy before they can post content to the site. You can validate the consent with the `Validate Privacy Consent Checkbox` workflow activity in the following way:
 
 ![Consent Checkbox Workflow](Docs/Attachments/ConsentCheckboxWorkflow.png)
 
