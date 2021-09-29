@@ -5,6 +5,7 @@ using Lombiq.Privacy.Filters;
 using Lombiq.Privacy.Handlers;
 using Lombiq.Privacy.Migrations;
 using Lombiq.Privacy.Models;
+using Lombiq.Privacy.Navigation;
 using Lombiq.Privacy.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -16,6 +17,7 @@ using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.Data.Migration;
 using OrchardCore.Modules;
+using OrchardCore.Navigation;
 using OrchardCore.ResourceManagement;
 using OrchardCore.Users.Events;
 using OrchardCore.Workflows.Helpers;
@@ -55,30 +57,41 @@ namespace Lombiq.Privacy
     [Feature(FeatureNames.ConsentBanner)]
     public class ConsentBannerStartup : StartupBase
     {
+        // This is important because the custom settings menu item override only runs correctly this way.
+        public override int Order => -1;
+
         public override void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
             services.Configure<MvcOptions>((options) =>
                 options.Filters.Add(typeof(PrivacyConsentBannerInjectionFilter)));
             services.AddScoped<IDataMigration, PrivacyConsentBannerSettingsMigrations>();
+            services.AddScoped<INavigationProvider, PrivacyConsentBannerSettingsMenu>();
         }
     }
 
     [Feature(FeatureNames.RegistrationConsent)]
     public class RegistrationConsentStartup : StartupBase
     {
+        // This is important because the custom settings menu item override only runs correctly this way.
+        public override int Order => -1;
+
         public override void ConfigureServices(IServiceCollection services)
         {
             services.Configure<MvcOptions>((options) =>
                 options.Filters.Add(typeof(RegistrationCheckboxInjectionFilter)));
             services.AddScoped<IRegistrationFormEvents, RegistrationFormEventHandler>();
             services.AddScoped<IDataMigration, PrivacyRegistrationConsentSettingsMigrations>();
+            services.AddScoped<INavigationProvider, PrivacyRegistrationConsentSettingsMenu>();
         }
     }
 
     [Feature(FeatureNames.FormConsent)]
     public class FormConsentStartup : StartupBase
     {
+        // This is important because the custom settings menu item override only runs correctly this way.
+        public override int Order => -1;
+
         public override void ConfigureServices(IServiceCollection services)
         {
             services.AddContentPart<PrivacyConsentCheckboxPart>()
@@ -86,6 +99,7 @@ namespace Lombiq.Privacy
             services.AddScoped<IDataMigration, PrivacyConsentCheckboxMigrations>();
             services.AddScoped<IDataMigration, PrivacyConsentCheckboxSettingsMigrations>();
             services.AddActivity<ValidatePrivacyConsentCheckboxTask, ValidatePrivacyConsentCheckboxTaskDisplayDriver>();
+            services.AddScoped<INavigationProvider, PrivacyConsentCheckboxSettingsMenu>();
         }
     }
 }
