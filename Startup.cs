@@ -38,7 +38,8 @@ namespace Lombiq.Privacy
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => IsConsentNeededAsync(context).GetAwaiter().GetResult();
-                options.MinimumSameSitePolicy = SameSiteMode.None;
+                options.MinimumSameSitePolicy = SameSiteMode.Strict;
+                options.Secure = CookieSecurePolicy.Always;
                 options.ConsentCookie.Expiration = new TimeSpan(365, 0, 0, 0);
             });
         }
