@@ -26,7 +26,8 @@ namespace Lombiq.Privacy.Services
         /// </summary>
         /// <param name="httpContext">The current HTTP context.</param>
         /// <returns>
-        /// <see langword="true"/> if the consent must be accepted in the current context, <see langword="false"/> otherwise.
+        /// <see langword="true"/> if the consent must be accepted in the current context, <see langword="false"/>
+        /// otherwise.
         /// </returns>
         Task<bool> IsConsentNeededAsync(HttpContext httpContext);
 
