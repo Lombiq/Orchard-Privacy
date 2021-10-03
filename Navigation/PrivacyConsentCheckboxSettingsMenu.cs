@@ -44,8 +44,6 @@ namespace Lombiq.Privacy.Navigation
                                 .LocalNav())));
             }
 
-
-
             return Task.CompletedTask;
         }
     }
