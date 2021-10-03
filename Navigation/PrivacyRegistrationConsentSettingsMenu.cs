@@ -30,17 +30,19 @@ namespace Lombiq.Privacy.Navigation
 
             var type = _customSettingsService.GetSettingsType(PrivacyRegistrationConsentSettings);
 
-            builder
-                .Add(T["Configuration"], configuration => configuration
-                    .Add(T["Settings"], settings => settings
-                        .Add(new LocalizedString(type.DisplayName, type.DisplayName), type.DisplayName.PrefixPosition(), layers => layers
-                            .Action("Index", "Admin", new { area = "OrchardCore.Settings", groupId = type.Name })
-                            .Permission(Permissions.CreatePermissionForType(type))
-                            .Resource(type.Name)
-                            .AddClass(type.Name)
-                            .Id(type.Name)
-                            .LocalNav()
-                        )));
+            if (type != null)
+            {
+                builder
+                    .Add(T["Configuration"], configuration => configuration
+                        .Add(T["Settings"], settings => settings
+                            .Add(new LocalizedString(type.DisplayName, type.DisplayName), type.DisplayName.PrefixPosition(), layers => layers
+                                .Action("Index", "Admin", new { area = "OrchardCore.Settings", groupId = type.Name })
+                                .Permission(Permissions.CreatePermissionForType(type))
+                                .Resource(type.Name)
+                                .AddClass(type.Name)
+                                .Id(type.Name)
+                                .LocalNav())));
+            }
 
             return Task.CompletedTask;
         }
