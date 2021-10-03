@@ -22,7 +22,7 @@ namespace Lombiq.Privacy.Services
         Task<bool> IsConsentBannerNeededAsync(HttpContext httpContext);
 
         /// <summary>
-        /// Decides whether in the current HTTP context is required to accept this privacy statement.
+        /// Decides whether in the current HTTP context it is required to accept this privacy statement.
         /// </summary>
         /// <param name="httpContext">The current HTTP context.</param>
         /// <returns>
