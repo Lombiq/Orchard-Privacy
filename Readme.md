@@ -1,4 +1,4 @@
-# Lombiq Privacy Orchard module
+# Lombiq Privacy for Orchard Core
 
 
 
@@ -10,26 +10,48 @@ Do not forget to create a privacy policy page that you need to link to from the 
 
 **Important!** Using this module will not make your site GDPR-compliant alone.
 
-The module is also available for [DotNest](https://dotnest.com/) sites.
+Do you want to quickly try out this project and see it in action? Check it out in our [Open-Source Orchard Core Extensions](https://github.com/Lombiq/Open-Source-Orchard-Core-Extensions) full Orchard Core solution and also see our other useful Orchard Core-related open-source projects!
+
+It's also available on all sites of [DotNest, the Orchard SaaS](https://dotnest.com/).
+
+**NOTE:** This module has an Orchard 1 version in the [dev-orchard-1 branch](https://github.com/Lombiq/Orchard-Privacy/tree/dev-orchard-1).
 
 
 ## Features
 
 The module consists of the following independent features:
 
+
 ### Consent Banner Feature
 
-Shows a banner where unauthenticated users can accept the privacy policy.
+Shows a banner where users can accept the privacy policy. 
+
+If the user is unauthenticated, they can use the banner to accept or reject the privacy statement, their decision will be stored in a cookie by the browser. 
+
+If the user is authenticated, their only option is to accept the privacy policy via the banner. This is so because it is assumed that during registration they already accepted a suitable privacy policy, it's just that the Lombiq.Privacy module or something similar wasn't used at the time.
+
 
 ### Registration Consent Feature
 
-Shows a privacy consent checkbox on the registration form that needs to be checked by the users to be able to register.
+Shows a privacy consent checkbox on the registration form that needs to be checked by the users to be able to register. After registration, the user's consent is stored in the `PrivacyConsent` section of the user's properties.
+
+**NOTE:** If the user registered before this feature was enabled then they can accept the consent with the consent banner (if it's enabled). The consent will be stored in this case as well. 
+
 
 ### Form Consent Feature
 
-Adds a new `ConsentCheckboxPart` content part that can be attached to any content type (for instance comment boxes, contact forms). In this case the users must accept the privacy policy before they can post content to the site (if they haven't accepted it already via the banner).
+Adds a new Privacy Consent Checkbox widget content type that can be added to forms with the Forms module. In this case, users must accept the privacy policy before they can post content to the site. You can validate the consent with the `Validate Privacy Consent Checkbox` workflow activity in the following way:
 
-This feature also adds a similar form element that you can use in Dynamic Forms.
+![Consent Checkbox Workflow](Docs/Attachments/ConsentCheckboxWorkflow.png)
+
+**NOTE:** If the user already accepted the privacy policy then the widget won't be displayed on the form and the Validate Consent Checkbox activity will return "Valid" value.
+
+
+## Dependencies 
+
+This module has the following dependencies:
+
+- [Lombiq Helpful Libraries for Orchard Core](https://github.com/Lombiq/Helpful-Libraries)
 
 
 ## Contributing and support

@@ -1,67 +1,76 @@
-﻿@using Lombiq.Privacy.Constants
+@using Microsoft.AspNetCore.Http.Features;
+@using Lombiq.Privacy.Controllers;
 
+<style asp-name="@ResourceNames.ConsentBanner"></style>
+<script asp-name="jQuery"></script>
 
 @{
-    // Needed in the head so analytics scripts can check for it.
-    Script.Require(ResourceNames.JsConsentService).AtHead();
+    var bannerId = "privacy-consent-banner";
+    var acceptButtonId = "privacy-consent-accept-button";
+    var deniedButtonId = "privacy-consent-denied-button";
 
-    // Setting the authenticated flag for authenticated users and not executing the rest of the template because it's
-    // not needed.
-    if (WorkContext.CurrentUser != null)
-    {
-        Script.Include("authenticated-flag-setter.js").AtHead();
-        return;
-    }
-
-    Script.Require("jQueryUI");
-    Style.Require("jQueryUI");
-
-    Style.Require(ResourceNames.ConsentBanner);
-
-    const string ConsentBannerId = "consent-banner";
+    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+    var acceptCookie = consentFeature?.CreateConsentCookie();
+    var deniedCookie = acceptCookie.Replace("yes", "no");
 }
 
+<shape Type="Lombiq_Privacy_ConsentBanner_Resources" />
 
-@Display.Lombiq_Privacy_ConsentBanner_Resources()
-
-<div id="@ConsentBannerId" class="consentBanner" title="@T("Privacy consent")" hidden>
-    <span>
-        @Display.Lombiq_Privacy_ConsentBanner_Text()
-    </span>
+<div id="@bannerId" class="privacy-consent-banner">
+    <div class="modal-content">
+        <div class="modal-header bg-secondary">
+            <h5 class="modal-title" id="exampleModalLabel">@T["Privacy consent"]</h5>
+        </div>
+        <div class="modal-body">
+            <shape Type="Lombiq_Privacy_ConsentBanner_Text" />
+        </div>
+        <div class="modal-footer justify-content-center">
+            <div class="btn-group btn-group-lg" role="group">
+                <button id="@acceptButtonId" type="button" class="btn btn-success" data-cookie-string="@acceptCookie">
+                    @T["I agree, do not show me this anymore"]
+                </button>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <button id="@deniedButtonId" type="button" class="btn btn-secondary" data-cookie-string="@deniedCookie">
+                        @T["I don't agree, do not show me this anymore"]
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
 </div>
 
-
-@using (Script.Foot())
+@if (!User.Identity.IsAuthenticated)
 {
-    <script type="text/javascript">
-        ; (function ($) {
-            $(function () {
-                if (!ConsentCookie.HasConsentCookie()) {
-                    $("#@ConsentBannerId").dialog({
-                        closeOnEscape: false,
-                        resizable: false,
-                        draggable: false,
-                        position: {
-                            my: "right-10% top+10",
-                            at: "right top+50",
-                            of: "html"
-                        },
-                        open: function (event, ui) {
-                            jQuery('.ui-dialog-titlebar-close').hide();
-                        },
-                        buttons: {
-                            "@T("I agree, do not show me this any more").Text": function () {
-                                ConsentCookie.Set();
-                                $(this).dialog("close");
-                            },
-                            "@T("I agree, but continue to show me this each time I visit the site").Text": function () {
-                                ConsentCookie.Set("true");
-                                $(this).dialog("close");
-                            }
-                        }
-                    });
-                }
+    <script depends-on="jQuery" at="Foot">
+        jQuery(($) => {
+            $('#@acceptButtonId').click(function () {
+                document.cookie = $('#@acceptButtonId').data('cookie-string');
+                $('#@bannerId').remove();
             });
-        })(jQuery);
+
+            $('#@deniedButtonId').click(function () {
+                document.cookie = $('#@deniedButtonId').data('cookie-string');
+                $('#@bannerId').remove();
+            });
+        });
+    </script>
+}
+else
+{
+    var acceptanceOfConsentURL = Url.Action(
+        nameof(PrivacyConsentController.AcceptanceOfConsent),
+        typeof(PrivacyConsentController).ControllerName(),
+        new { area = $"{nameof(Lombiq)}.{nameof(Lombiq.Privacy)}" });
+
+    <script depends-on="jQuery" at="Foot">
+        jQuery(($) => {
+            $('#@acceptButtonId').click(function () {
+                var antiforgerytoken = $('[name="__RequestVerificationToken"]').val();
+
+                $.post('@acceptanceOfConsentURL', { '__RequestVerificationToken': antiforgerytoken })
+                    .done(function () { $('#@bannerId').remove(); });
+            });
+        });
     </script>
 }

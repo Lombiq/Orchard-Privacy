@@ -1,11 +1,9 @@
-﻿@using Lombiq.Privacy.Models
-@using Orchard.ContentManagement
-@using Orchard.Settings
-
+@inject OrchardCore.Settings.ISiteService _siteService
 
 @{
-    var consentBannerText = WorkContext.Resolve<ISiteService>().GetSiteSettings().As<ConsentBannerSettingsPart>().ConsentBannerTextField.Value;
+    var consentBannerText = (await _siteService.GetSiteSettingsAsync())
+        .As<ContentItem>(TypeNames.PrivacyConsentBannerSettings).As<LiquidPart>()?.Liquid;
 }
 
+@await Orchard.LiquidToHtmlAsync(consentBannerText)
 
-@Html.Raw(consentBannerText)

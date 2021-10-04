@@ -1,0 +1,23 @@
+{
+  "steps": [
+    {
+      "name": "custom-settings",
+      "PrivacyRegistrationConsentSettings": {
+        "ContentItemId": "486zx8dygnyg7svw7193cwg842",
+        "ContentItemVersionId": null,
+        "ContentType": "PrivacyRegistrationConsentSettings",
+        "DisplayText": "",
+        "Latest": false,
+        "Published": false,
+        "ModifiedUtc": null,
+        "PublishedUtc": null,
+        "CreatedUtc": null,
+        "Owner": "",
+        "Author": "admin",
+        "LiquidPart": {
+          "Liquid": "<div>I've read and agree to the site's <a href='/privacy-policy' target='_blank'>privacy policy</a>.</div>"
+        }
+      }
+    }
+  ]
+}

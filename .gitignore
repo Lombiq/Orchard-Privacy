@@ -1,3 +1,9 @@
 obj/
 bin/
 *.user
+
+# Exclude node modules
+node_modules/
+
+# Exclude wwwroot
+wwwroot/*
