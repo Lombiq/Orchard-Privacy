@@ -33,7 +33,7 @@ namespace Lombiq.Privacy.Handlers
             var registrationCheckbox = _hca.HttpContext?.Request?.Form?[nameof(PrivacyRegistrationConsentCheckboxViewModel.RegistrationCheckbox)]
                 .Select(value => bool.Parse(value));
 
-            if (registrationCheckbox == null || !registrationCheckbox.Contains(true))
+            if (registrationCheckbox == null || !registrationCheckbox.Contains(value: true))
             {
                 reportError(
                     nameof(PrivacyRegistrationConsentCheckboxViewModel.RegistrationCheckbox),

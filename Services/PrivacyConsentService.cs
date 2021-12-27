@@ -39,15 +39,11 @@ namespace Lombiq.Privacy.Services
             if (httpContext.User.Identity.IsAuthenticated)
             {
                 var user = await _userService.GetAuthenticatedUserAsync(httpContext.User);
-
                 return user is not User orchardUser || !orchardUser.Has<PrivacyConsent>();
             }
-            else
-            {
-                var cookieConsent = httpContext.Request.Cookies[_cookiePolicyOptions.Value.ConsentCookie.Name];
 
-                return cookieConsent is null;
-            }
+            var cookieConsent = httpContext.Request.Cookies[_cookiePolicyOptions.Value.ConsentCookie.Name];
+            return cookieConsent is null;
         }
 
         public async Task<bool> IsConsentNeededAsync(HttpContext httpContext)
@@ -60,10 +56,8 @@ namespace Lombiq.Privacy.Services
                     user is not User orchardUser ||
                     !(orchardUser.Has<PrivacyConsent>() && orchardUser.As<PrivacyConsent>().Accepted);
             }
-            else
-            {
-                return true;
-            }
+
+            return true;
         }
 
         public async Task<bool> IsUserAcceptedConsentAsync(HttpContext httpContext)
@@ -76,12 +70,9 @@ namespace Lombiq.Privacy.Services
                     user is User orchardUser &&
                     orchardUser.Has<PrivacyConsent>() && orchardUser.As<PrivacyConsent>().Accepted;
             }
-            else
-            {
-                var cookieConsent = httpContext.Request.Cookies[_cookiePolicyOptions.Value.ConsentCookie.Name];
 
-                return !string.IsNullOrEmpty(cookieConsent) && cookieConsent.EqualsOrdinalIgnoreCase("yes");
-            }
+            var cookieConsent = httpContext.Request.Cookies[_cookiePolicyOptions.Value.ConsentCookie.Name];
+            return !string.IsNullOrEmpty(cookieConsent) && cookieConsent.EqualsOrdinalIgnoreCase("yes");
         }
 
         public async Task StoreUserConsentAsync(ClaimsPrincipal user) =>
