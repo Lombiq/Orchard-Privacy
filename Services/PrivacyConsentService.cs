@@ -8,6 +8,7 @@ using OrchardCore.Entities;
 using OrchardCore.Users;
 using OrchardCore.Users.Models;
 using OrchardCore.Users.Services;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -79,7 +80,7 @@ namespace Lombiq.Privacy.Services
             {
                 var cookieConsent = httpContext.Request.Cookies[_cookiePolicyOptions.Value.ConsentCookie.Name];
 
-                return cookieConsent is not null and "yes";
+                return !string.IsNullOrEmpty(cookieConsent) && cookieConsent.EqualsOrdinalIgnoreCase("yes");
             }
         }
 
