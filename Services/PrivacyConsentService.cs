@@ -43,7 +43,7 @@ namespace Lombiq.Privacy.Services
             }
 
             var cookieConsent = httpContext.Request.Cookies[_cookiePolicyOptions.Value.ConsentCookie.Name];
-            return cookieConsent is null;
+            return cookieConsent == null;
         }
 
         public async Task<bool> IsConsentNeededAsync(HttpContext httpContext)
