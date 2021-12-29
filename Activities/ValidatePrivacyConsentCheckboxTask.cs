@@ -56,7 +56,7 @@ namespace Lombiq.Privacy.Activities
             var consentCheckboxName = $"{nameof(PrivacyConsentCheckboxPart)}.{nameof(PrivacyConsentCheckboxPart.ConsentCheckbox)}";
             var form = _hca.HttpContext.Request.Form;
             var consentCheckboxValue = form[consentCheckboxName].Select(value => bool.Parse(value));
-            var isValid = consentCheckboxValue != null && consentCheckboxValue.Contains(true);
+            var isValid = consentCheckboxValue != null && consentCheckboxValue.Contains(value: true);
             var outcome = isValid ? "Valid" : "Invalid";
 
             if (!isValid)
