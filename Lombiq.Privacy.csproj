@@ -196,9 +196,9 @@
   <ItemGroup>
     <Content Include="Licence.md" />
     <Content Include="compilerconfig.json" />
-    <None Include="compilerconfig.json.defaults">
+    <Content Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
-    </None>
+    </Content>
     <None Include="packages.config" />
     <Content Include="placement.info" />
     <Content Include="Views\Lombiq.Privacy.ConsentBanner.Text.cshtml" />
