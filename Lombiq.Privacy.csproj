@@ -11,15 +11,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="OrchardCore.CustomSettings" Version="1.1.0" />
-    <PackageReference Include="OrchardCore.Forms" Version="1.1.0" />
-    <PackageReference Include="OrchardCore.Liquid" Version="1.1.0" />
-    <PackageReference Include="OrchardCore.Module.Targets" Version="1.1.0" />
-    <PackageReference Include="OrchardCore.ContentManagement" Version="1.1.0" />
-    <PackageReference Include="OrchardCore.ContentTypes.Abstractions" Version="1.1.0" />
-    <PackageReference Include="OrchardCore.DisplayManagement" Version="1.1.0" />
-    <PackageReference Include="OrchardCore.Navigation" Version="1.1.0" />
-    <PackageReference Include="OrchardCore.Users" Version="1.1.0" />
+    <PackageReference Include="OrchardCore.CustomSettings" Version="1.2.1" />
+    <PackageReference Include="OrchardCore.Forms" Version="1.2.1" />
+    <PackageReference Include="OrchardCore.Liquid" Version="1.2.1" />
+    <PackageReference Include="OrchardCore.Module.Targets" Version="1.2.1" />
+    <PackageReference Include="OrchardCore.ContentManagement" Version="1.2.1" />
+    <PackageReference Include="OrchardCore.ContentTypes.Abstractions" Version="1.2.1" />
+    <PackageReference Include="OrchardCore.DisplayManagement" Version="1.2.1" />
+    <PackageReference Include="OrchardCore.Navigation" Version="1.2.1" />
+    <PackageReference Include="OrchardCore.Users" Version="1.2.1" />
   </ItemGroup>
 
   <Import Project="..\..\Utilities\Lombiq.Npm.Targets\Lombiq.Npm.Targets.props" />
