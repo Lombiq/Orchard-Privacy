@@ -66,9 +66,9 @@ else
     <script depends-on="jQuery" at="Foot">
         jQuery(($) => {
             $('#@acceptButtonId').click(function () {
-                var antiforgerytoken = $('[name="__RequestVerificationToken"]').val();
+                var antiForgeryToken = $('[name="__RequestVerificationToken"]').val();
 
-                $.post('@acceptanceOfConsentURL', { '__RequestVerificationToken': antiforgerytoken })
+                $.post('@acceptanceOfConsentURL', { '__RequestVerificationToken': antiForgeryToken })
                     .done(function () { $('#@bannerId').remove(); });
             });
         });
