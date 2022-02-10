@@ -1,9 +1,7 @@
+.vs/
 obj/
 bin/
-*.user
-
-# Exclude node modules
+artifacts/
 node_modules/
-
-# Exclude wwwroot
-wwwroot/*
+*.user
+.pnpm-debug.log
