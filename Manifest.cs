@@ -5,7 +5,7 @@ using static Lombiq.Privacy.Constants.FeatureNames;
     Name = "Lombiq Privacy",
     Author = "Lombiq Technologies",
     Website = "https://lombiq.com",
-    Version = "1.0.0"
+    Version = "2.0.0"
 )]
 
 [assembly: Feature(
