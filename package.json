@@ -1,7 +1,11 @@
 {
   "private": true,
+  "devDependencies": {
+    "nodejs-extensions": "file:../../Utilities/Lombiq.NodeJs.Extensions"
+  },
   "scripts": {
-    "dotnet-prebuild": "gulp",
-    "dotnet-postclean": "gulp clean"
+    "variables": "", 
+    "demo": "npm explore nodejs-extensions -- npm run scss-dev --source=Assets/Styles --target=wwwroot/css",
+    "dotnet-prebuild": "npm explore nodejs-extensions -- npm run sass-dev"
   }
 }
