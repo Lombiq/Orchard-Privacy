@@ -3,13 +3,11 @@
   "devDependencies": {
     "nodejs-extensions": "link:..\\..\\Utilities\\Lombiq.NodeJs.Extensions"
   },
-  "config": {
-    "scss_source_": "Assets/Styles",
-    "scss_target": "wwwroot/css"
-  },
   "scripts": {
-    "build": "npm run build:styles",
+    "build": "npm run clean:styles && npm run build:styles",
     "build:styles": "npm explore nodejs-extensions -- npm run build:styles --source=Assets/Styles --target=wwwroot/css",
+    "clean:styles": "npm explore nodejs-extensions -- npm run clean:styles --target=wwwroot/css",
+    "lint:styles": "npm explore nodejs-extensions -- npm run lint:styles --source=Assets/Styles",
     "dotnet-prebuild": "npm run build"
   }
 }
