@@ -3,9 +3,13 @@
   "devDependencies": {
     "nodejs-extensions": "link:..\\..\\Utilities\\Lombiq.NodeJs.Extensions"
   },
+  "config": {
+    "scss_source_": "Assets/Styles",
+    "scss_target": "wwwroot/css"
+  },
   "scripts": {
-    "variables": "", 
-    "demo": "npm explore nodejs-extensions -- npm run scss-dev --source=Assets/Styles --target=wwwroot/css",
-    "dotnet-prebuild": "npm explore nodejs-extensions -- npm run sass-dev"
+    "build": "npm run build:styles",
+    "build:styles": "npm explore nodejs-extensions -- npm run build:styles --source=Assets/Styles --target=wwwroot/css",
+    "dotnet-prebuild": "npm run build"
   }
 }
