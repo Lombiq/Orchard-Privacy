@@ -1,7 +1,7 @@
 {
   "private": true,
   "devDependencies": {
-    "nodejs-extensions": "link:..\\..\\Utilities\\Lombiq.NodeJs.Extensions"
+    "nodejs-extensions": "link:..\\..\\Utilities\\Lombiq.NodeJs.Extensions\\Lombiq.NodeJs.Extensions"
   },
   "scripts": {
     "dotnet-prebuild": "pnpm build",
