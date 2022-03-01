@@ -7,16 +7,9 @@
     "dotnet-prebuild": "pnpm build",
     "dotnet-postclean": "pnpm clean",
 
-    "build": "pnpm build:styles",
-    "build:styles": "npm explore nodejs-extensions -- pnpm build:styles",
-
-    "clean": "pnpm clean:styles",
-    "clean:styles": "npm explore nodejs-extensions -- pnpm clean:styles",
-
-    "watch": "pnpm watch:styles",
-    "watch:styles": "npm explore nodejs-extensions -- pnpm watch:styles",
-
-    "lint": "pnpm lint:styles",
-    "lint:styles": "npm explore nodejs-extensions -- pnpm lint:styles"
+    "clean": "npm explore nodejs-extensions -- pnpm clean:styles",
+    "lint": "npm explore nodejs-extensions -- pnpm lint:styles",
+    "build": "npm explore nodejs-extensions -- pnpm build:styles",
+    "watch": "npm explore nodejs-extensions -- pnpm watch:styles"
   }
 }
