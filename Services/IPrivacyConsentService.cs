@@ -12,13 +12,11 @@ namespace Lombiq.Privacy.Services;
 public interface IPrivacyConsentService
 {
     /// <summary>
-    /// Decides whether the consent banner should be displayed based on the configuration of the
-    /// <see cref="ITrackingConsentFeature"/> and whether the user has already accepted the privacy statement.
+    /// Decides whether the consent banner should be displayed based on the configuration of the <see
+    /// cref="ITrackingConsentFeature"/> and whether the user has already accepted the privacy statement.
     /// </summary>
     /// <param name="httpContext">The current HTTP context.</param>
-    /// <returns>
-    /// <see langword="true"/> if it needs to display the banner, <see langword="false"/> otherwise.
-    /// </returns>
+    /// <returns><see langword="true"/> if it needs to display the banner, <see langword="false"/> otherwise.</returns>
     Task<bool> IsConsentBannerNeededAsync(HttpContext httpContext);
 
     /// <summary>
@@ -51,7 +49,6 @@ public interface IPrivacyConsentService
     /// Stores the user's acceptance of a privacy statement.
     /// </summary>
     /// <param name="user">The current user.</param>
-    /// <returns>A task that represents the asynchronous
-    /// operation.</returns>
+    /// <returns>A task that represents the asynchronous operation.</returns>
     Task StoreUserConsentAsync(IUser user);
 }
