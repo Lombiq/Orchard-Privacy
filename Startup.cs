@@ -24,82 +24,81 @@ using OrchardCore.Workflows.Helpers;
 using System;
 using System.Threading.Tasks;
 
-namespace Lombiq.Privacy
+namespace Lombiq.Privacy;
+
+public class Startup : StartupBase
 {
-    public class Startup : StartupBase
+    public override void Configure(
+        IApplicationBuilder app,
+        IEndpointRouteBuilder routes,
+        IServiceProvider serviceProvider) =>
+            app.UseCookiePolicy();
+
+    public override void ConfigureServices(IServiceCollection services)
     {
-        public override void Configure(
-            IApplicationBuilder app,
-            IEndpointRouteBuilder routes,
-            IServiceProvider serviceProvider) =>
-                app.UseCookiePolicy();
-
-        public override void ConfigureServices(IServiceCollection services)
+        services.AddScoped<IPrivacyConsentService, PrivacyConsentService>();
+        services.Configure<CookiePolicyOptions>(options =>
         {
-            services.AddScoped<IPrivacyConsentService, PrivacyConsentService>();
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.CheckConsentNeeded = context => IsConsentNeededAsync(context).GetAwaiter().GetResult();
-                options.MinimumSameSitePolicy = SameSiteMode.Strict;
-                options.Secure = CookieSecurePolicy.Always;
-                options.ConsentCookie.Expiration = new TimeSpan(365, 0, 0, 0);
-            });
-        }
-
-        // This is necessary because IConsentService is not yet available with Dependency Injection at this point.
-        private static Task<bool> IsConsentNeededAsync(HttpContext httpContext)
-        {
-            var consentService = httpContext.RequestServices.GetService<IPrivacyConsentService>();
-            return consentService.IsConsentNeededAsync(httpContext);
-        }
+            options.CheckConsentNeeded = context => IsConsentNeededAsync(context).GetAwaiter().GetResult();
+            options.MinimumSameSitePolicy = SameSiteMode.Strict;
+            options.Secure = CookieSecurePolicy.Always;
+            options.ConsentCookie.Expiration = new TimeSpan(365, 0, 0, 0);
+        });
     }
 
-    [Feature(FeatureNames.ConsentBanner)]
-    public class ConsentBannerStartup : StartupBase
+    // This is necessary because IConsentService is not yet available with Dependency Injection at this point.
+    private static Task<bool> IsConsentNeededAsync(HttpContext httpContext)
     {
-        // This is important because the custom settings menu item override only runs correctly this way.
-        public override int Order => -1;
-
-        public override void ConfigureServices(IServiceCollection services)
-        {
-            services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
-            services.Configure<MvcOptions>((options) =>
-                options.Filters.Add(typeof(PrivacyConsentBannerInjectionFilter)));
-            services.AddScoped<IDataMigration, PrivacyConsentBannerSettingsMigrations>();
-            services.AddScoped<INavigationProvider, PrivacyConsentBannerSettingsMenu>();
-        }
+        var consentService = httpContext.RequestServices.GetService<IPrivacyConsentService>();
+        return consentService.IsConsentNeededAsync(httpContext);
     }
+}
 
-    [Feature(FeatureNames.RegistrationConsent)]
-    public class RegistrationConsentStartup : StartupBase
+[Feature(FeatureNames.ConsentBanner)]
+public class ConsentBannerStartup : StartupBase
+{
+    // This is important because the custom settings menu item override only runs correctly this way.
+    public override int Order => -1;
+
+    public override void ConfigureServices(IServiceCollection services)
     {
-        // This is important because the custom settings menu item override only runs correctly this way.
-        public override int Order => -1;
-
-        public override void ConfigureServices(IServiceCollection services)
-        {
-            services.Configure<MvcOptions>((options) =>
-                options.Filters.Add(typeof(RegistrationCheckboxInjectionFilter)));
-            services.AddScoped<IRegistrationFormEvents, RegistrationFormEventHandler>();
-            services.AddScoped<IDataMigration, PrivacyRegistrationConsentSettingsMigrations>();
-            services.AddScoped<INavigationProvider, PrivacyRegistrationConsentSettingsMenu>();
-        }
+        services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
+        services.Configure<MvcOptions>((options) =>
+            options.Filters.Add(typeof(PrivacyConsentBannerInjectionFilter)));
+        services.AddScoped<IDataMigration, PrivacyConsentBannerSettingsMigrations>();
+        services.AddScoped<INavigationProvider, PrivacyConsentBannerSettingsMenu>();
     }
+}
 
-    [Feature(FeatureNames.FormConsent)]
-    public class FormConsentStartup : StartupBase
+[Feature(FeatureNames.RegistrationConsent)]
+public class RegistrationConsentStartup : StartupBase
+{
+    // This is important because the custom settings menu item override only runs correctly this way.
+    public override int Order => -1;
+
+    public override void ConfigureServices(IServiceCollection services)
     {
-        // This is important because the custom settings menu item override only runs correctly this way.
-        public override int Order => -1;
+        services.Configure<MvcOptions>((options) =>
+            options.Filters.Add(typeof(RegistrationCheckboxInjectionFilter)));
+        services.AddScoped<IRegistrationFormEvents, RegistrationFormEventHandler>();
+        services.AddScoped<IDataMigration, PrivacyRegistrationConsentSettingsMigrations>();
+        services.AddScoped<INavigationProvider, PrivacyRegistrationConsentSettingsMenu>();
+    }
+}
 
-        public override void ConfigureServices(IServiceCollection services)
-        {
-            services.AddContentPart<PrivacyConsentCheckboxPart>()
-                .UseDisplayDriver<PrivacyConsentCheckboxPartDisplayDriver>();
-            services.AddScoped<IDataMigration, PrivacyConsentCheckboxMigrations>();
-            services.AddScoped<IDataMigration, PrivacyConsentCheckboxSettingsMigrations>();
-            services.AddActivity<ValidatePrivacyConsentCheckboxTask, ValidatePrivacyConsentCheckboxTaskDisplayDriver>();
-            services.AddScoped<INavigationProvider, PrivacyConsentCheckboxSettingsMenu>();
-        }
+[Feature(FeatureNames.FormConsent)]
+public class FormConsentStartup : StartupBase
+{
+    // This is important because the custom settings menu item override only runs correctly this way.
+    public override int Order => -1;
+
+    public override void ConfigureServices(IServiceCollection services)
+    {
+        services.AddContentPart<PrivacyConsentCheckboxPart>()
+            .UseDisplayDriver<PrivacyConsentCheckboxPartDisplayDriver>();
+        services.AddScoped<IDataMigration, PrivacyConsentCheckboxMigrations>();
+        services.AddScoped<IDataMigration, PrivacyConsentCheckboxSettingsMigrations>();
+        services.AddActivity<ValidatePrivacyConsentCheckboxTask, ValidatePrivacyConsentCheckboxTaskDisplayDriver>();
+        services.AddScoped<INavigationProvider, PrivacyConsentCheckboxSettingsMenu>();
     }
 }

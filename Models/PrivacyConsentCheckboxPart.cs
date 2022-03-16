@@ -1,9 +1,8 @@
 using OrchardCore.ContentManagement;
 
-namespace Lombiq.Privacy.Models
+namespace Lombiq.Privacy.Models;
+
+public class PrivacyConsentCheckboxPart : ContentPart
 {
-    public class PrivacyConsentCheckboxPart : ContentPart
-    {
-        public bool ConsentCheckbox { get; set; }
-    }
+    public bool ConsentCheckbox { get; set; }
 }
