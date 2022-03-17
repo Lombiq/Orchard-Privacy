@@ -1,7 +1,6 @@
-namespace Lombiq.Privacy.Constants
+namespace Lombiq.Privacy.Constants;
+
+public static class GroupIds
 {
-    public static class GroupIds
-    {
-        public const string PrivacySettings = nameof(PrivacySettings);
-    }
+    public const string PrivacySettings = nameof(PrivacySettings);
 }

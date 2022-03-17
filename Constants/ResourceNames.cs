@@ -1,9 +1,8 @@
-namespace Lombiq.Privacy.Constants
-{
-    public static class ResourceNames
-    {
-        private const string Prefix = "Lombiq.Privacy";
+namespace Lombiq.Privacy.Constants;
 
-        public const string ConsentBanner = Prefix + "." + nameof(ConsentBanner);
-    }
+public static class ResourceNames
+{
+    private const string Prefix = "Lombiq.Privacy";
+
+    public const string ConsentBanner = Prefix + "." + nameof(ConsentBanner);
 }
