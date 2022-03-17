@@ -1,7 +1,6 @@
-namespace Lombiq.Privacy.Models
+namespace Lombiq.Privacy.Models;
+
+public class PrivacyConsent
 {
-    public class PrivacyConsent
-    {
-        public bool Accepted { get; set; }
-    }
+    public bool Accepted { get; set; }
 }
