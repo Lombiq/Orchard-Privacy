@@ -45,8 +45,7 @@
     <None Remove="Tests\**" />
   </ItemGroup>
 
-  <Import Condition="'$(NuGetBuild)' != 'true'" Project="..\..\Utilities\Lombiq.Npm.Targets\Lombiq.Npm.Targets.props" />
-  <Import Condition="'$(NuGetBuild)' != 'true'" Project="..\..\Utilities\Lombiq.Npm.Targets\Lombiq.Npm.Targets.targets" />
+  <Import Condition="'$(NuGetBuild)' != 'true'" Project="..\..\Utilities\Lombiq.NodeJs.Extensions\Lombiq.NodeJs.Extensions\Lombiq.NodeJs.Extensions.props" />
   <Import Condition="'$(NuGetBuild)' != 'true'" Project="..\..\Utilities\Lombiq.NodeJs.Extensions\Lombiq.NodeJs.Extensions\Lombiq.NodeJs.Extensions.targets" />
 
   <ItemGroup Condition="'$(NuGetBuild)' != 'true'">
