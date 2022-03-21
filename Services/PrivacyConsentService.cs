@@ -12,79 +12,78 @@ using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Lombiq.Privacy.Services
+namespace Lombiq.Privacy.Services;
+
+public class PrivacyConsentService : IPrivacyConsentService
 {
-    public class PrivacyConsentService : IPrivacyConsentService
+    private readonly UserManager<IUser> _userManager;
+    private readonly IUserService _userService;
+
+    private readonly IOptions<CookiePolicyOptions> _cookiePolicyOptions;
+
+    public PrivacyConsentService(UserManager<IUser> userManager, IOptions<CookiePolicyOptions> cookiePolicyOptions, IUserService userService)
     {
-        private readonly UserManager<IUser> _userManager;
-        private readonly IUserService _userService;
+        _userManager = userManager;
+        _cookiePolicyOptions = cookiePolicyOptions;
+        _userService = userService;
+    }
 
-        private readonly IOptions<CookiePolicyOptions> _cookiePolicyOptions;
-
-        public PrivacyConsentService(UserManager<IUser> userManager, IOptions<CookiePolicyOptions> cookiePolicyOptions, IUserService userService)
+    public async Task<bool> IsConsentBannerNeededAsync(HttpContext httpContext)
+    {
+        var consentFeature = httpContext.Features.Get<ITrackingConsentFeature>();
+        if (!consentFeature.IsConsentNeeded)
         {
-            _userManager = userManager;
-            _cookiePolicyOptions = cookiePolicyOptions;
-            _userService = userService;
+            return false;
         }
 
-        public async Task<bool> IsConsentBannerNeededAsync(HttpContext httpContext)
+        if (httpContext.User.Identity.IsAuthenticated)
         {
-            var consentFeature = httpContext.Features.Get<ITrackingConsentFeature>();
-            if (!consentFeature.IsConsentNeeded)
-            {
-                return false;
-            }
-
-            if (httpContext.User.Identity.IsAuthenticated)
-            {
-                var user = await _userService.GetAuthenticatedUserAsync(httpContext.User);
-                return user is not User orchardUser || !orchardUser.Has<PrivacyConsent>();
-            }
-
-            var cookieConsent = httpContext.Request.Cookies[_cookiePolicyOptions.Value.ConsentCookie.Name];
-            return cookieConsent == null;
+            var user = await _userService.GetAuthenticatedUserAsync(httpContext.User);
+            return user is not User orchardUser || !orchardUser.Has<PrivacyConsent>();
         }
 
-        public async Task<bool> IsConsentNeededAsync(HttpContext httpContext)
+        var cookieConsent = httpContext.Request.Cookies[_cookiePolicyOptions.Value.ConsentCookie.Name];
+        return cookieConsent == null;
+    }
+
+    public async Task<bool> IsConsentNeededAsync(HttpContext httpContext)
+    {
+        if (httpContext.User.Identity.IsAuthenticated)
         {
-            if (httpContext.User.Identity.IsAuthenticated)
-            {
-                var user = await _userService.GetAuthenticatedUserAsync(httpContext.User);
+            var user = await _userService.GetAuthenticatedUserAsync(httpContext.User);
 
-                return
-                    user is not User orchardUser ||
-                    !(orchardUser.Has<PrivacyConsent>() && orchardUser.As<PrivacyConsent>().Accepted);
-            }
-
-            return true;
+            return
+                user is not User orchardUser ||
+                !(orchardUser.Has<PrivacyConsent>() && orchardUser.As<PrivacyConsent>().Accepted);
         }
 
-        public async Task<bool> IsUserAcceptedConsentAsync(HttpContext httpContext)
+        return true;
+    }
+
+    public async Task<bool> IsUserAcceptedConsentAsync(HttpContext httpContext)
+    {
+        if (httpContext.User.Identity.IsAuthenticated)
         {
-            if (httpContext.User.Identity.IsAuthenticated)
-            {
-                var user = await _userService.GetAuthenticatedUserAsync(httpContext.User);
+            var user = await _userService.GetAuthenticatedUserAsync(httpContext.User);
 
-                return
-                    user is User orchardUser &&
-                    orchardUser.Has<PrivacyConsent>() && orchardUser.As<PrivacyConsent>().Accepted;
-            }
-
-            var cookieConsent = httpContext.Request.Cookies[_cookiePolicyOptions.Value.ConsentCookie.Name];
-            return !string.IsNullOrEmpty(cookieConsent) && cookieConsent.EqualsOrdinalIgnoreCase("yes");
+            return
+                user is User orchardUser &&
+                orchardUser.Has<PrivacyConsent>() && orchardUser.As<PrivacyConsent>().Accepted;
         }
 
-        public async Task StoreUserConsentAsync(ClaimsPrincipal user) =>
-            await StoreUserConsentAsync(await _userService.GetAuthenticatedUserAsync(user));
+        var cookieConsent = httpContext.Request.Cookies[_cookiePolicyOptions.Value.ConsentCookie.Name];
+        return !string.IsNullOrEmpty(cookieConsent) && cookieConsent.EqualsOrdinalIgnoreCase("yes");
+    }
 
-        public async Task StoreUserConsentAsync(IUser user)
+    public async Task StoreUserConsentAsync(ClaimsPrincipal user) =>
+        await StoreUserConsentAsync(await _userService.GetAuthenticatedUserAsync(user));
+
+    public async Task StoreUserConsentAsync(IUser user)
+    {
+        if (user is User orchardUser)
         {
-            if (user is User orchardUser)
-            {
-                orchardUser.Put(new PrivacyConsent { Accepted = true });
-                await _userManager.UpdateAsync(orchardUser);
-            }
+            orchardUser.Put(new PrivacyConsent { Accepted = true });
+            await _userManager.UpdateAsync(orchardUser);
         }
     }
 }
