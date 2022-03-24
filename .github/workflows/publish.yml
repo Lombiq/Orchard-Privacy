@@ -7,6 +7,6 @@ on:
 
 jobs:
   call-publish-workflow:
-    uses: publish-verbose.yml
+    uses: publish-verbose.yml@OSOE-83
     secrets:
       API_KEY: ${{ secrets.DEFAULT_NUGET_PUBLISH_API_KEY }}
