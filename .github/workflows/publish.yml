@@ -7,6 +7,6 @@ on:
 
 jobs:
   call-publish-workflow:
-    uses: Lombiq/Orchard-Privacy/.github/workflows/publish-verbose.yml@dev
+    uses: publish-verbose.yml
     secrets:
       API_KEY: ${{ secrets.DEFAULT_NUGET_PUBLISH_API_KEY }}
