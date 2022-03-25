@@ -58,4 +58,10 @@
     <PackageReference Include="Lombiq.NodeJs.Extensions" Version="0.0.10" />
   </ItemGroup>
 
+  <Target Name="PrintMSBuildVariables" BeforeTargets="Clean;CoreCompile">
+    <Exec Command="dir $(NuGetPackageRoot)/lombiq.npm.targets" ContinueOnError="true" />
+    <Exec Command="dir $(NuGetPackageRoot)/lombiq.npm.targets/1.0.1-alpha.2" ContinueOnError="true" />
+    <Exec Command="dir $(NuGetPackageRoot)/Lombiq.Npm.Targets" ContinueOnError="true" />
+  </Target>
+
 </Project>
