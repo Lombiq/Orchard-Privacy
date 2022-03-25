@@ -55,7 +55,7 @@
 
   <ItemGroup Condition="'$(NuGetBuild)' == 'true'">
     <PackageReference Include="Lombiq.HelpfulLibraries" Version="3.0.0" />
-    <PackageReference Include="Lombiq.NodeJs.Extensions" Version="0.0.11" />
+    <PackageReference Include="Lombiq.NodeJs.Extensions" Version="0.0.12" />
   </ItemGroup>
 
 </Project>
