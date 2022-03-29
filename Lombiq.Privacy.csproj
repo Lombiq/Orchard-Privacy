@@ -55,7 +55,7 @@
 
   <ItemGroup Condition="'$(NuGetBuild)' == 'true'">
     <PackageReference Include="Lombiq.HelpfulLibraries.OrchardCore" Version="4.0.0" />
-    <PackageReference Include="Lombiq.NodeJs.Extensions" Version="0.0.26" />
+    <PackageReference Include="Lombiq.NodeJs.Extensions" Version="0.0.27" />
   </ItemGroup>
 
 </Project>
