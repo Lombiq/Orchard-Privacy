@@ -53,7 +53,7 @@ public class ValidatePrivacyConsentCheckboxTask : TaskActivity
         if (await _consentService.IsUserAcceptedConsentAsync(_hca.HttpContext))
             return Outcomes("Done", "Valid");
 
-        var consentCheckboxName = $"{nameof(PrivacyConsentCheckboxPart)}.{nameof(PrivacyConsentCheckboxPart.ConsentCheckbox)}";
+        const string consentCheckboxName = $"{nameof(PrivacyConsentCheckboxPart)}.{nameof(PrivacyConsentCheckboxPart.ConsentCheckbox)}";
         var form = _hca.HttpContext.Request.Form;
         var consentCheckboxValue = form[consentCheckboxName].Select(value => bool.Parse(value));
         var isValid = consentCheckboxValue != null && consentCheckboxValue.Contains(value: true);
