@@ -9,6 +9,6 @@ jobs:
   call-publish-workflow:
     uses: Lombiq/GitHub-Actions/.github/workflows/publish.yml@issue/OSOE-83
     with:
-      verbosity: 'normal'
+      verbosity: normal
     secrets:
       API_KEY: ${{ secrets.DEFAULT_NUGET_PUBLISH_API_KEY }}
