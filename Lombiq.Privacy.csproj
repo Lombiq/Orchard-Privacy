@@ -15,11 +15,11 @@
     <PackageTags>OrchardCore;Lombiq;AspNetCore;GDPR;Privacy</PackageTags>
     <RepositoryUrl>https://github.com/Lombiq/Orchard-Privacy</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Lombiq/Orchard-Privacy</PackageProjectUrl>
-    <PackageLicenseFile>Licence.md</PackageLicenseFile>
+    <PackageLicenseFile>License.md</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Licence.md" Pack="true" PackagePath="" />
+    <None Include="License.md" Pack="true" PackagePath="" />
     <None Include="Readme.md" />
     <None Include="NuGetIcon.png" Pack="true" PackagePath="" />
   </ItemGroup>
