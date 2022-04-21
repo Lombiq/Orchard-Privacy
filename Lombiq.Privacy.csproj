@@ -6,7 +6,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <DefaultItemExcludes>$(DefaultItemExcludes);.git*;node_modules\**;Tests\**</DefaultItemExcludes>
-    <NodeJsExtensionsCreateStylelintConfigurationFile Condition="'$(NuGetBuild)' != 'true'">false</NodeJsExtensionsCreateStylelintConfigurationFile>
+    <NodeJsExtensionsCreateStylelintConfigurationFile>false</NodeJsExtensionsCreateStylelintConfigurationFile>
   </PropertyGroup>
 
   <PropertyGroup>
