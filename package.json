@@ -1,15 +1,11 @@
 {
   "private": true,
   "devDependencies": {
-    "nodejs-extensions": "link:..\\..\\Utilities\\Lombiq.NodeJs.Extensions\\Lombiq.NodeJs.Extensions"
+    "nodejs-extensions": "link:node_modules\\.nx"
   },
   "scripts": {
-    "dotnet-prebuild": "pnpm build",
-    "dotnet-postclean": "pnpm clean",
-
-    "clean": "npm explore nodejs-extensions -- pnpm clean:styles",
-    "lint": "npm explore nodejs-extensions -- pnpm lint:styles",
     "build": "npm explore nodejs-extensions -- pnpm build:styles",
+    "clean": "npm explore nodejs-extensions -- pnpm clean:styles",
     "watch": "npm explore nodejs-extensions -- pnpm watch:styles"
   }
 }
