@@ -1,6 +1,8 @@
 @using Microsoft.AspNetCore.Http.Features;
 @using Lombiq.Privacy.Controllers;
 
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery antiForgery
+
 <style asp-name="@ResourceNames.ConsentBanner"></style>
 <script asp-name="jQuery"></script>
 
@@ -12,6 +14,7 @@
     var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
     var acceptCookie = consentFeature?.CreateConsentCookie();
     var deniedCookie = acceptCookie.Replace("yes", "no");
+    var requestToken = antiForgery.GetAndStoreTokens(Context).RequestToken;
 }
 
 <shape Type="Lombiq_Privacy_ConsentBanner_Resources" />
@@ -66,7 +69,7 @@ else
     <script depends-on="jQuery" at="Foot">
         jQuery(($) => {
             $('#@acceptButtonId').click(function () {
-                var antiForgeryToken = $('[name="__RequestVerificationToken"]').val();
+                var antiForgeryToken = '@requestToken';
 
                 $.post('@acceptanceOfConsentURL', { '__RequestVerificationToken': antiForgeryToken })
                     .done(function () { $('#@bannerId').remove(); });
