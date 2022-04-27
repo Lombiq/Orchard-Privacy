@@ -1,40 +1,40 @@
 @using Microsoft.AspNetCore.Http.Features;
 @using Lombiq.Privacy.Controllers;
 
-@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery antiForgery
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery AntiForgery
 
 <style asp-name="@ResourceNames.ConsentBanner"></style>
 <script asp-name="jQuery"></script>
 
 @{
-    var bannerId = "privacy-consent-banner";
-    var acceptButtonId = "privacy-consent-accept-button";
-    var deniedButtonId = "privacy-consent-denied-button";
+    const string BannerId = "privacy-consent-banner";
+    const string AcceptButtonId = "privacy-consent-accept-button";
+    const string DeniedButtonId = "privacy-consent-denied-button";
 
     var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
     var acceptCookie = consentFeature?.CreateConsentCookie();
     var deniedCookie = acceptCookie.Replace("yes", "no");
-    var requestToken = antiForgery.GetAndStoreTokens(Context).RequestToken;
+    var requestToken = AntiForgery.GetAndStoreTokens(Context).RequestToken;
 }
 
 <shape Type="Lombiq_Privacy_ConsentBanner_Resources" />
 
-<div id="@bannerId" class="privacy-consent-banner">
+<div id="@BannerId" class="privacy-consent-banner">
     <div class="modal-content">
         <div class="modal-header bg-secondary">
-            <h5 class="modal-title text-white" id="exampleModalLabel">@T["Privacy consent"]</h5>
+            <h5 class="modal-title text-white">@T["Privacy consent"]</h5>
         </div>
         <div class="modal-body">
             <shape Type="Lombiq_Privacy_ConsentBanner_Text" />
         </div>
         <div class="modal-footer justify-content-center">
             <div class="btn-group btn-group-lg" role="group">
-                <button id="@acceptButtonId" type="button" class="btn btn-success" data-cookie-string="@acceptCookie">
+                <button id="@AcceptButtonId" type="button" class="btn btn-success" data-cookie-string="@acceptCookie">
                     @T["I agree, do not show me this anymore"]
                 </button>
                 @if (!User.Identity.IsAuthenticated)
                 {
-                    <button id="@deniedButtonId" type="button" class="btn btn-secondary" data-cookie-string="@deniedCookie">
+                    <button id="@DeniedButtonId" type="button" class="btn btn-secondary" data-cookie-string="@deniedCookie">
                         @T["I don't agree, do not show me this anymore"]
                     </button>
                 }
@@ -47,14 +47,14 @@
 {
     <script depends-on="jQuery" at="Foot">
         jQuery(($) => {
-            $('#@acceptButtonId').click(function () {
-                document.cookie = $('#@acceptButtonId').data('cookie-string');
-                $('#@bannerId').remove();
+            $('#@AcceptButtonId').click(function () {
+                document.cookie = $('#@AcceptButtonId').data('cookie-string');
+                $('#@BannerId').remove();
             });
 
-            $('#@deniedButtonId').click(function () {
-                document.cookie = $('#@deniedButtonId').data('cookie-string');
-                $('#@bannerId').remove();
+            $('#@DeniedButtonId').click(function () {
+                document.cookie = $('#@DeniedButtonId').data('cookie-string');
+                $('#@BannerId').remove();
             });
         });
     </script>
@@ -68,11 +68,11 @@ else
 
     <script depends-on="jQuery" at="Foot">
         jQuery(($) => {
-            $('#@acceptButtonId').click(function () {
-                var antiForgeryToken = '@requestToken';
-
-                $.post('@acceptanceOfConsentURL', { '__RequestVerificationToken': antiForgeryToken })
-                    .done(function () { $('#@bannerId').remove(); });
+            $('#@AcceptButtonId').click(function () {
+                $.post(
+                    @acceptanceOfConsentURL.JsonHtmlContent(),
+                    @Json.Serialize(new { __RequestVerificationToken = requestToken }))
+                    .done(function () { $('#@BannerId').remove(); });
             });
         });
     </script>
