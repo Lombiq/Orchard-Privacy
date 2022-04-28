@@ -1,17 +1,20 @@
 @using Microsoft.AspNetCore.Http.Features;
 @using Lombiq.Privacy.Controllers;
 
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery AntiForgery
+
 <style asp-name="@ResourceNames.ConsentBanner"></style>
 <script asp-name="jQuery"></script>
 
 @{
-    var bannerId = "privacy-consent-banner";
-    var acceptButtonId = "privacy-consent-accept-button";
-    var deniedButtonId = "privacy-consent-denied-button";
+    const string bannerId = "privacy-consent-banner";
+    const string acceptButtonId = "privacy-consent-accept-button";
+    const string deniedButtonId = "privacy-consent-denied-button";
 
     var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
     var acceptCookie = consentFeature?.CreateConsentCookie();
     var deniedCookie = acceptCookie.Replace("yes", "no");
+    var requestToken = AntiForgery.GetAndStoreTokens(Context).RequestToken;
 }
 
 <shape Type="Lombiq_Privacy_ConsentBanner_Resources" />
@@ -19,7 +22,7 @@
 <div id="@bannerId" class="privacy-consent-banner">
     <div class="modal-content">
         <div class="modal-header bg-secondary">
-            <h5 class="modal-title text-white" id="exampleModalLabel">@T["Privacy consent"]</h5>
+            <h5 class="modal-title text-white">@T["Privacy consent"]</h5>
         </div>
         <div class="modal-body">
             <shape Type="Lombiq_Privacy_ConsentBanner_Text" />
@@ -66,9 +69,9 @@ else
     <script depends-on="jQuery" at="Foot">
         jQuery(($) => {
             $('#@acceptButtonId').click(function () {
-                var antiForgeryToken = $('[name="__RequestVerificationToken"]').val();
-
-                $.post('@acceptanceOfConsentURL', { '__RequestVerificationToken': antiForgeryToken })
+                $.post(
+                    @acceptanceOfConsentURL.JsonHtmlContent(),
+                    @Json.Serialize(new { __RequestVerificationToken = requestToken }))
                     .done(function () { $('#@bannerId').remove(); });
             });
         });
