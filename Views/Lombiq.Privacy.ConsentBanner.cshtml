@@ -7,9 +7,9 @@
 <script asp-name="jQuery"></script>
 
 @{
-    const string BannerId = "privacy-consent-banner";
-    const string AcceptButtonId = "privacy-consent-accept-button";
-    const string DeniedButtonId = "privacy-consent-denied-button";
+    const string bannerId = "privacy-consent-banner";
+    const string acceptButtonId = "privacy-consent-accept-button";
+    const string deniedButtonId = "privacy-consent-denied-button";
 
     var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
     var acceptCookie = consentFeature?.CreateConsentCookie();
@@ -19,7 +19,7 @@
 
 <shape Type="Lombiq_Privacy_ConsentBanner_Resources" />
 
-<div id="@BannerId" class="privacy-consent-banner">
+<div id="@bannerId" class="privacy-consent-banner">
     <div class="modal-content">
         <div class="modal-header bg-secondary">
             <h5 class="modal-title text-white">@T["Privacy consent"]</h5>
@@ -29,12 +29,12 @@
         </div>
         <div class="modal-footer justify-content-center">
             <div class="btn-group btn-group-lg" role="group">
-                <button id="@AcceptButtonId" type="button" class="btn btn-success" data-cookie-string="@acceptCookie">
+                <button id="@acceptButtonId" type="button" class="btn btn-success" data-cookie-string="@acceptCookie">
                     @T["I agree, do not show me this anymore"]
                 </button>
                 @if (!User.Identity.IsAuthenticated)
                 {
-                    <button id="@DeniedButtonId" type="button" class="btn btn-secondary" data-cookie-string="@deniedCookie">
+                    <button id="@deniedButtonId" type="button" class="btn btn-secondary" data-cookie-string="@deniedCookie">
                         @T["I don't agree, do not show me this anymore"]
                     </button>
                 }
@@ -47,14 +47,14 @@
 {
     <script depends-on="jQuery" at="Foot">
         jQuery(($) => {
-            $('#@AcceptButtonId').click(function () {
-                document.cookie = $('#@AcceptButtonId').data('cookie-string');
-                $('#@BannerId').remove();
+            $('#@acceptButtonId').click(function () {
+                document.cookie = $('#@acceptButtonId').data('cookie-string');
+                $('#@bannerId').remove();
             });
 
-            $('#@DeniedButtonId').click(function () {
-                document.cookie = $('#@DeniedButtonId').data('cookie-string');
-                $('#@BannerId').remove();
+            $('#@deniedButtonId').click(function () {
+                document.cookie = $('#@deniedButtonId').data('cookie-string');
+                $('#@bannerId').remove();
             });
         });
     </script>
@@ -68,11 +68,11 @@ else
 
     <script depends-on="jQuery" at="Foot">
         jQuery(($) => {
-            $('#@AcceptButtonId').click(function () {
+            $('#@acceptButtonId').click(function () {
                 $.post(
                     @acceptanceOfConsentURL.JsonHtmlContent(),
                     @Json.Serialize(new { __RequestVerificationToken = requestToken }))
-                    .done(function () { $('#@BannerId').remove(); });
+                    .done(function () { $('#@bannerId').remove(); });
             });
         });
     </script>
