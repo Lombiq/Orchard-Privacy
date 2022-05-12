@@ -4,6 +4,7 @@ using Lombiq.Privacy.ViewModels;
 using Microsoft.AspNetCore.Http;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentManagement.Display.Models;
+using OrchardCore.DisplayManagement.ModelBinding;
 using OrchardCore.DisplayManagement.Views;
 using System.Threading.Tasks;
 
@@ -22,12 +23,28 @@ public class PrivacyConsentCheckboxPartDisplayDriver : ContentPartDisplayDriver<
 
     public override async Task<IDisplayResult> DisplayAsync(PrivacyConsentCheckboxPart part, BuildPartDisplayContext context) =>
         // If the user has already accepted the privacy statement, it doesn't need to display the checkbox.
-        !await _consentService.IsUserAcceptedConsentAsync(_hca.HttpContext)
+        (part.ShowAlways ?? false) || !await _consentService.IsUserAcceptedConsentAsync(_hca.HttpContext)
             ? Initialize<PrivacyConsentCheckboxPartViewModel>(
                 GetDisplayShapeType(context),
                 viewModel => viewModel.ConsentCheckbox = part.ConsentCheckbox).Location("Detail", "Content")
             : null;
 
     public override IDisplayResult Edit(PrivacyConsentCheckboxPart part, BuildPartEditorContext context) =>
-        View(GetEditorShapeType(context), part);
+        Initialize<PrivacyConsentCheckboxPartEditViewModel>(GetEditorShapeType(context), m =>
+            m.ShowAlways = part.ShowAlways ?? false);
+
+    public override async Task<IDisplayResult> UpdateAsync(
+        PrivacyConsentCheckboxPart part,
+        IUpdateModel updater,
+        UpdatePartEditorContext context)
+    {
+        var viewModel = new PrivacyConsentCheckboxPartEditViewModel();
+
+        if (await updater.TryUpdateModelAsync(viewModel, Prefix))
+        {
+            part.ShowAlways = viewModel.ShowAlways;
+        }
+
+        return await EditAsync(part, context);
+    }
 }
