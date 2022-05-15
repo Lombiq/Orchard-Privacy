@@ -29,7 +29,4 @@
     <ProjectReference Include="..\Lombiq.Privacy\Lombiq.Privacy.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Recepes\" />
-  </ItemGroup>
 </Project>
