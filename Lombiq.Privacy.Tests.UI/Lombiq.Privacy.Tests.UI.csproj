@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Title>Lombiq Privacy for Orchard Core - UI Test Extensions</Title>
+    <Authors>Lombiq Technologies</Authors>
+    <Copyright>Copyright © 2022, Lombiq Technologies Ltd.</Copyright>
+    <Description>Lombiq Privacy for Orchard Core - UI Test Extensions: Extensions to aid in UI testing Lombiq Privacy for Orchard Core.</Description>
+    <PackageIcon>NuGetIcon.png</PackageIcon>
+    <PackageTags>OrchardCore;Lombiq;AspNetCore;Privacy</PackageTags>
+    <RepositoryUrl>https://github.com/Lombiq/Orchard-Privacy</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Lombiq/Orchard-Privacy/Lombiq.Privacy.Tests.UI/Readme.md</PackageProjectUrl>
+    <PackageLicenseFile>License.md</PackageLicenseFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\test\Lombiq.UITestingToolbox\Lombiq.Tests.UI\Lombiq.Tests.UI.csproj" />
+    <ProjectReference Include="..\Lombiq.Privacy.Samples\Lombiq.Privacy.Samples.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="License.md" Pack="true" PackagePath="" />
+    <None Include="NuGetIcon.png" Pack="true" PackagePath="" />
+    <EmbeddedResource Include="Readme.md">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
