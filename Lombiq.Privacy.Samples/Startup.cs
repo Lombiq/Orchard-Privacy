@@ -7,8 +7,6 @@ namespace Lombiq.Privacy.Samples;
 
 public class Startup : StartupBase
 {
-    public override void ConfigureServices(IServiceCollection services)
-    {
+    public override void ConfigureServices(IServiceCollection services) =>
         services.AddSingleton<IGlobalMethodProvider, WorkflowHelperMethodProvider>();
-    }
 }

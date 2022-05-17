@@ -30,7 +30,7 @@ public class WorkflowHelperMethodProvider : IGlobalMethodProvider
                     new WorkflowPayload(workflowType.WorkflowTypeId, activityId),
                     TimeSpan.FromDays(
                         tokenLifeSpan == 0 ? HttpWorkflowController.NoExpiryTokenLifespan : tokenLifeSpan));
-                // TODO: Check why LinkGenerator not generates link to HttpWorkflowController.Invoke
+
                 return $"/workflows/Invoke?token={token}";
             }),
         };
