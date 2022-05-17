@@ -15,10 +15,4 @@ public static class UITestContextExtensions
 
     public static Task EnablePrivacyRegistrationConsentFeatureAsync(this UITestContext context) =>
         context.EnableFeatureDirectlyAsync(FeatureNames.RegistrationConsent);
-
-    public static Task DisablePrivacyConsentBannerFeatureAsync(this UITestContext context) =>
-        context.DisableFeatureDirectlyAsync(FeatureNames.ConsentBanner);
-
-    public static Task DisablePrivacyRegistrationConsentFeatureAsync(this UITestContext context) =>
-        context.DisableFeatureDirectlyAsync(FeatureNames.RegistrationConsent);
 }

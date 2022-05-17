@@ -10,31 +10,44 @@ namespace Lombiq.Privacy.Tests.UI.Extensions;
 
 public static class TestCaseUITestContextExtensions
 {
-    private const string ExpectedConsentBannerContent = "Our site uses browser cookies to personalize your experience. "
-        + "Regarding this issue, please find our information on data control and processing here and our information on "
-        + "server logging and usage of so-called 'cookies' here. "
-        + "By clicking here You confirm your approval of the data processing activities mentioned in these documents. "
-        + "Please note that You may only use this website efficiently if you agree to these conditions.";
-    private const string ExpectedRegistrationConsentCheckboxContent = "I've read and agree to the site's privacy policy.";
-    private const string ExpectedFormConsentCheckboxContent = "I've read and agree to the site's privacy policy.";
-
     public static async Task TestPrivacySampleBehaviorAsync(this UITestContext context)
     {
-        await context.SelectThemeAsync("TheTheme");
         await context.ExecutePrivacySampleRecipeDirectlyAsync();
-        await context.DisablePrivacyConsentBannerFeatureAsync();
 
-        await context.GoToRelativeUrlAsync("/competitor-registration");
+        await context.TestFormConsentCheckboxContentAsync();
+
+        await context.GoToRelativeUrlAsync(AbsolutePaths.CompetitorRegistration);
+
+        // Here we fill up the competitor form.
+        await context.FillInWithRetriesAsync(By.Id("full-name"), TestCompetitor.FullName);
+        await context.FillInWithRetriesAsync(By.Id("age"), TestCompetitor.Age);
+        await context.FillInWithRetriesAsync(By.Id("e-mail"), TestCompetitor.Email);
+        await context.ClickReliablyOnSubmitAsync();
+
+        // Consent checkbox left unchecked, so after clicking on submit navigation should not happens.
+        var currentUri = context.GetCurrentUri();
+        currentUri.AbsolutePath
+            .ShouldBe(AbsolutePaths.CompetitorRegistration);
+
+        // Now we set consent checkbox to checked
+        await context.SetCheckboxValueAsync(By.Id("PrivacyConsentCheckboxPart_ConsentCheckbox"), isChecked: true);
+        await context.ClickReliablyOnSubmitAsync();
+
+        // After submit, it navigates to the new content items view
+        currentUri = context.GetCurrentUri();
+        currentUri.AbsolutePath
+            .ShouldNotBe(AbsolutePaths.ErrorPage);
+        currentUri.AbsolutePath
+            .ShouldNotBe(AbsolutePaths.CompetitorRegistration);
+    }
+
+    public static async Task TestFormConsentCheckboxContentAsync(this UITestContext context)
+    {
+        await context.GoToRelativeUrlAsync(AbsolutePaths.CompetitorRegistration);
 
         context.VerifyElementTexts(
-            By.CssSelector("div.form-check > label"),
-            new[] { ExpectedFormConsentCheckboxContent });
-
-        await context.FillInWithRetriesAsync(By.Id("full-name"), TestCompetitor.FullName);
-        await context.FillInWithRetriesAsync(By.Id("age"), TestCompetitor.FullName);
-        await context.FillInWithRetriesAsync(By.Id("e-mail"), TestCompetitor.FullName);
-
-        await context.ClickReliablyOnSubmitAsync();
+            By.CssSelector(ElementSelectors.PrivacyConsentCheckboxLabel),
+            new[] { ExpectedContents.FormConsentCheckboxContent });
     }
 
     public static async Task TestConsentBannerAsync(this UITestContext context)
@@ -50,7 +63,7 @@ public static class TestCaseUITestContextExtensions
 
         context.VerifyElementTexts(
             By.CssSelector("#privacy-consent-banner > .modal-content > .modal-body"),
-            new[] { ExpectedConsentBannerContent });
+            new[] { ExpectedContents.ConsentBannerContent });
     }
 
     public static async Task TestConsentBannerAcceptButtonAsync(this UITestContext context)
@@ -101,7 +114,7 @@ public static class TestCaseUITestContextExtensions
         await context.GoToRegistrationPageAsync();
 
         context.VerifyElementTexts(
-            By.CssSelector("div.form-check > label"),
-            new[] { ExpectedRegistrationConsentCheckboxContent });
+            By.CssSelector(ElementSelectors.PrivacyConsentCheckboxLabel),
+            new[] { ExpectedContents.RegistrationConsentCheckboxContent });
     }
 }
