@@ -1,7 +1,7 @@
-@inject OrchardCore.Settings.ISiteService _siteService
+@inject OrchardCore.Settings.ISiteService SiteService
 
 @{
-    var registrationConsentText = (await _siteService.GetSiteSettingsAsync())
+    var registrationConsentText = (await SiteService.GetSiteSettingsAsync())
         .As<ContentItem>(TypeNames.PrivacyRegistrationConsentSettings).As<LiquidPart>()?.Liquid;
 }
 
