@@ -30,5 +30,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Lombiq.Privacy\Lombiq.Privacy.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="License.md" Pack="true" PackagePath="" />
+    <None Include="Readme.md" />
+    <None Include="NuGetIcon.png" Pack="true" PackagePath="" />
+  </ItemGroup>
 
 </Project>
