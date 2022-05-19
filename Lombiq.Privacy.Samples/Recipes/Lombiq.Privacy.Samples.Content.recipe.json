@@ -252,229 +252,253 @@
       ]
     },
     {
-          "name": "content",
-          "data": [
-            {
-              "ContentItemId": "4ftg1gchvpstvt5zz4hhnr84w0",
-              "ContentItemVersionId": "491rv1zfbdvbxxzcbvgbks4mn4",
-              "ContentType": "Page",
-              "DisplayText": "Error",
-              "Latest": true,
-              "Published": true,
-              "ModifiedUtc": "2022-05-09T05:40:00.9337574Z",
-              "PublishedUtc": "2022-05-09T05:40:00.941585Z",
-              "CreatedUtc": "2022-05-09T05:40:00.9337574Z",
-              "Owner": "40akky0fbrrjjtsmzqz562n1xe",
-              "Author": "admin",
-              "TitlePart": {
-                "Title": "Error"
-              },
-              "AutoroutePart": {
-                "Path": "error",
-                "SetHomepage": false,
-                "Disabled": false,
-                "RouteContainedItems": false,
-                "Absolute": false
-              },
-              "FlowPart": {
-                "Widgets": []
-              }
-            },
-            {
-              "ContentItemId": "4fxbwpz7p0gqntyxxd31zmqk4p",
-              "ContentItemVersionId": "42hmg7ap15t4g101afwvap9vd4",
-              "ContentType": "Page",
-              "DisplayText": "Competitor registration",
-              "Latest": true,
-              "Published": true,
-              "ModifiedUtc": "2022-05-12T19:00:59.7671735Z",
-              "PublishedUtc": "2022-05-12T19:00:59.8288533Z",
-              "CreatedUtc": "2022-05-08T13:16:34.4486345Z",
-              "Owner": "40akky0fbrrjjtsmzqz562n1xe",
-              "Author": "admin",
-              "TitlePart": {
-                "Title": "Competitor registration"
-              },
-              "AutoroutePart": {
-                "Path": "competitor-registration",
-                "SetHomepage": false,
-                "Disabled": false,
-                "RouteContainedItems": false,
-                "Absolute": false
-              },
-              "FlowPart": {
-                "Widgets": [
-                  {
-                    "ContentItemId": "46cjbawtdp6xd217ej85kb0emt",
-                    "ContentItemVersionId": null,
-                    "ContentType": "Form",
-                    "DisplayText": null,
-                    "Latest": false,
-                    "Published": false,
-                    "ModifiedUtc": "2022-05-12T19:00:59.783023Z",
-                    "PublishedUtc": null,
-                    "CreatedUtc": null,
-                    "Owner": "",
-                    "Author": "admin",
-                    "TitlePart": {
-                      "Title": null
+      "name": "content",
+      "data": [
+        {
+          "ContentItemId": "4ftg1gchvpstvt5zz4hhnr84w0",
+          "ContentItemVersionId": "491rv1zfbdvbxxzcbvgbks4mn4",
+          "ContentType": "Page",
+          "DisplayText": "Error",
+          "Latest": true,
+          "Published": true,
+          "ModifiedUtc": "2022-05-09T05:40:00.9337574Z",
+          "PublishedUtc": "2022-05-09T05:40:00.941585Z",
+          "CreatedUtc": "2022-05-09T05:40:00.9337574Z",
+          "Owner": "40akky0fbrrjjtsmzqz562n1xe",
+          "Author": "admin",
+          "TitlePart": {
+            "Title": "Error"
+          },
+          "AutoroutePart": {
+            "Path": "error",
+            "SetHomepage": false,
+            "Disabled": false,
+            "RouteContainedItems": false,
+            "Absolute": false
+          },
+          "FlowPart": {
+            "Widgets": []
+          }
+        },
+        {
+          "ContentItemId": "4fxbwpz7p0gqntyxxd31zmqk4p",
+          "ContentItemVersionId": "42hmg7ap15t4g101afwvap9vd4",
+          "ContentType": "Page",
+          "DisplayText": "Competitor registration",
+          "Latest": true,
+          "Published": true,
+          "ModifiedUtc": "2022-05-12T19:00:59.7671735Z",
+          "PublishedUtc": "2022-05-12T19:00:59.8288533Z",
+          "CreatedUtc": "2022-05-08T13:16:34.4486345Z",
+          "Owner": "40akky0fbrrjjtsmzqz562n1xe",
+          "Author": "admin",
+          "TitlePart": {
+            "Title": "Competitor registration"
+          },
+          "AutoroutePart": {
+            "Path": "competitor-registration",
+            "SetHomepage": false,
+            "Disabled": false,
+            "RouteContainedItems": false,
+            "Absolute": false
+          },
+          "FlowPart": {
+            "Widgets": [
+              {
+                "ContentItemId": "46cjbawtdp6xd217ej85kb0emt",
+                "ContentItemVersionId": null,
+                "ContentType": "Form",
+                "DisplayText": null,
+                "Latest": false,
+                "Published": false,
+                "ModifiedUtc": "2022-05-12T19:00:59.783023Z",
+                "PublishedUtc": null,
+                "CreatedUtc": null,
+                "Owner": "",
+                "Author": "admin",
+                "TitlePart": {
+                  "Title": null
+                },
+                "FormElementPart": {
+                  "Id": null
+                },
+                "FormPart": {
+                  "Action": "[js: workflowHttpEventUrlResolve('4adav53rhwvjkrvh48aesz3zxt', '45g5pkc6tpy86v71mdxq4685d8', 0)]",
+                  "Method": "POST",
+                  "WorkflowTypeId": null,
+                  "EncType": "application/x-www-form-urlencoded",
+                  "EnableAntiForgeryToken": true
+                },
+                "FlowPart": {
+                  "Widgets": [
+                    {
+                      "ContentItemId": "4n21mfghtebrfr0vtaktywrh40",
+                      "ContentItemVersionId": null,
+                      "ContentType": "Input",
+                      "DisplayText": "full-name",
+                      "Latest": false,
+                      "Published": false,
+                      "ModifiedUtc": "2022-05-12T19:00:59.7896619Z",
+                      "PublishedUtc": null,
+                      "CreatedUtc": null,
+                      "Owner": "",
+                      "Author": "admin",
+                      "FormInputElementPart": {
+                        "Name": "full-name"
+                      },
+                      "FormElementPart": {
+                        "Id": "full-name"
+                      },
+                      "InputPart": {
+                        "Type": "text",
+                        "DefaultValue": null,
+                        "Placeholder": "Please enter your full name"
+                      },
+                      "FlowMetadata": {
+                        "Alignment": 3,
+                        "Size": 100
+                      }
                     },
-                    "FormElementPart": {
-                      "Id": null
+                    {
+                      "ContentItemId": "4j35ef2w8eszt7f5j8fnnnraxx",
+                      "ContentItemVersionId": null,
+                      "ContentType": "Input",
+                      "DisplayText": "age",
+                      "Latest": false,
+                      "Published": false,
+                      "ModifiedUtc": "2022-05-12T19:00:59.8015325Z",
+                      "PublishedUtc": null,
+                      "CreatedUtc": null,
+                      "Owner": "",
+                      "Author": "admin",
+                      "FormInputElementPart": {
+                        "Name": "age"
+                      },
+                      "FormElementPart": {
+                        "Id": "age"
+                      },
+                      "InputPart": {
+                        "Type": "number",
+                        "DefaultValue": null,
+                        "Placeholder": "Your age"
+                      },
+                      "FlowMetadata": {
+                        "Alignment": 3,
+                        "Size": 100
+                      }
                     },
-                    "FormPart": {
-                      "Action": "[js: workflowHttpEventUrlResolve('4adav53rhwvjkrvh48aesz3zxt', '45g5pkc6tpy86v71mdxq4685d8', 0)]",
-                      "Method": "POST",
-                      "WorkflowTypeId": null,
-                      "EncType": "application/x-www-form-urlencoded",
-                      "EnableAntiForgeryToken": true
+                    {
+                      "ContentItemId": "4pm88ww3ap3te20mhmxmadvwwm",
+                      "ContentItemVersionId": null,
+                      "ContentType": "Input",
+                      "DisplayText": "e-mail",
+                      "Latest": false,
+                      "Published": false,
+                      "ModifiedUtc": "2022-05-12T19:00:59.8071423Z",
+                      "PublishedUtc": null,
+                      "CreatedUtc": null,
+                      "Owner": "",
+                      "Author": "admin",
+                      "FormInputElementPart": {
+                        "Name": "e-mail"
+                      },
+                      "FormElementPart": {
+                        "Id": "e-mail"
+                      },
+                      "InputPart": {
+                        "Type": "email",
+                        "DefaultValue": null,
+                        "Placeholder": "Your e-mail address"
+                      },
+                      "FlowMetadata": {
+                        "Alignment": 3,
+                        "Size": 100
+                      }
                     },
-                    "FlowPart": {
-                      "Widgets": [
-                        {
-                          "ContentItemId": "4n21mfghtebrfr0vtaktywrh40",
-                          "ContentItemVersionId": null,
-                          "ContentType": "Input",
-                          "DisplayText": "full-name",
-                          "Latest": false,
-                          "Published": false,
-                          "ModifiedUtc": "2022-05-12T19:00:59.7896619Z",
-                          "PublishedUtc": null,
-                          "CreatedUtc": null,
-                          "Owner": "",
-                          "Author": "admin",
-                          "FormInputElementPart": {
-                            "Name": "full-name"
-                          },
-                          "FormElementPart": {
-                            "Id": "full-name"
-                          },
-                          "InputPart": {
-                            "Type": "text",
-                            "DefaultValue": null,
-                            "Placeholder": "Please enter your full name"
-                          },
-                          "FlowMetadata": {
-                            "Alignment": 3,
-                            "Size": 100
-                          }
-                        },
-                        {
-                          "ContentItemId": "4j35ef2w8eszt7f5j8fnnnraxx",
-                          "ContentItemVersionId": null,
-                          "ContentType": "Input",
-                          "DisplayText": "age",
-                          "Latest": false,
-                          "Published": false,
-                          "ModifiedUtc": "2022-05-12T19:00:59.8015325Z",
-                          "PublishedUtc": null,
-                          "CreatedUtc": null,
-                          "Owner": "",
-                          "Author": "admin",
-                          "FormInputElementPart": {
-                            "Name": "age"
-                          },
-                          "FormElementPart": {
-                            "Id": "age"
-                          },
-                          "InputPart": {
-                            "Type": "number",
-                            "DefaultValue": null,
-                            "Placeholder": "Your age"
-                          },
-                          "FlowMetadata": {
-                            "Alignment": 3,
-                            "Size": 100
-                          }
-                        },
-                        {
-                          "ContentItemId": "4pm88ww3ap3te20mhmxmadvwwm",
-                          "ContentItemVersionId": null,
-                          "ContentType": "Input",
-                          "DisplayText": "e-mail",
-                          "Latest": false,
-                          "Published": false,
-                          "ModifiedUtc": "2022-05-12T19:00:59.8071423Z",
-                          "PublishedUtc": null,
-                          "CreatedUtc": null,
-                          "Owner": "",
-                          "Author": "admin",
-                          "FormInputElementPart": {
-                            "Name": "e-mail"
-                          },
-                          "FormElementPart": {
-                            "Id": "e-mail"
-                          },
-                          "InputPart": {
-                            "Type": "email",
-                            "DefaultValue": null,
-                            "Placeholder": "Your e-mail address"
-                          },
-                          "FlowMetadata": {
-                            "Alignment": 3,
-                            "Size": 100
-                          }
-                        },
-                        {
-                          "ContentItemId": "4pmfedtx6376bw44qbk063rqx8",
-                          "ContentItemVersionId": null,
-                          "ContentType": "PrivacyConsentCheckbox",
-                          "DisplayText": "",
-                          "Latest": false,
-                          "Published": false,
-                          "ModifiedUtc": "2022-05-12T19:00:59.8117192Z",
-                          "PublishedUtc": null,
-                          "CreatedUtc": null,
-                          "Owner": "",
-                          "Author": "admin",
-                          "PrivacyConsentCheckboxPart": {
-                            "ConsentCheckbox": false,
-                            "ShowAlways": true
-                          },
-                          "FlowMetadata": {
-                            "Alignment": 3,
-                            "Size": 100
-                          }
-                        },
-                        {
-                          "ContentItemId": "4qn4t1wngqc5j4vvggk1ngae5e",
-                          "ContentItemVersionId": null,
-                          "ContentType": "Button",
-                          "DisplayText": null,
-                          "Latest": false,
-                          "Published": false,
-                          "ModifiedUtc": "2022-05-12T19:00:59.8155113Z",
-                          "PublishedUtc": null,
-                          "CreatedUtc": null,
-                          "Owner": "",
-                          "Author": "admin",
-                          "FormInputElementPart": {
-                            "Name": null
-                          },
-                          "FormElementPart": {
-                            "Id": null
-                          },
-                          "ButtonPart": {
-                            "Text": "Register",
-                            "Type": "submit"
-                          },
-                          "FlowMetadata": {
-                            "Alignment": 3,
-                            "Size": 100
-                          }
-                        }
-                      ]
+                    {
+                      "ContentItemId": "4pmfedtx6376bw44qbk063rqx8",
+                      "ContentItemVersionId": null,
+                      "ContentType": "PrivacyConsentCheckbox",
+                      "DisplayText": "",
+                      "Latest": false,
+                      "Published": false,
+                      "ModifiedUtc": "2022-05-12T19:00:59.8117192Z",
+                      "PublishedUtc": null,
+                      "CreatedUtc": null,
+                      "Owner": "",
+                      "Author": "admin",
+                      "PrivacyConsentCheckboxPart": {
+                        "ConsentCheckbox": false,
+                        "ShowAlways": true
+                      },
+                      "FlowMetadata": {
+                        "Alignment": 3,
+                        "Size": 100
+                      }
                     },
-                    "FlowMetadata": {
-                      "Alignment": 3,
-                      "Size": 100
+                    {
+                      "ContentItemId": "4qn4t1wngqc5j4vvggk1ngae5e",
+                      "ContentItemVersionId": null,
+                      "ContentType": "Button",
+                      "DisplayText": null,
+                      "Latest": false,
+                      "Published": false,
+                      "ModifiedUtc": "2022-05-12T19:00:59.8155113Z",
+                      "PublishedUtc": null,
+                      "CreatedUtc": null,
+                      "Owner": "",
+                      "Author": "admin",
+                      "FormInputElementPart": {
+                        "Name": null
+                      },
+                      "FormElementPart": {
+                        "Id": null
+                      },
+                      "ButtonPart": {
+                        "Text": "Register",
+                        "Type": "submit"
+                      },
+                      "FlowMetadata": {
+                        "Alignment": 3,
+                        "Size": 100
+                      }
                     }
-                  }
-                ]
+                  ]
+                },
+                "FlowMetadata": {
+                  "Alignment": 3,
+                  "Size": 100
+                }
               }
-            }
-          ]
+            ]
+          }
+        }
+      ]
 
+    },
+    {
+      "name": "Settings",
+      "RegistrationSettings": {
+        "UsersCanRegister": 1,
+        "UsersMustValidateEmail": false,
+        "UsersAreModerated": false,
+        "UseSiteTheme": false,
+        "NoPasswordForExternalUsers": false,
+        "NoUsernameForExternalUsers": false,
+        "NoEmailForExternalUsers": false,
+        "UseScriptToGenerateUsername": false,
+        "GenerateUsernameScript": "/* Uncomment to map AzureAD\r\n// Uncomment to output the context variable in the logs\r\n// log(\"warning\", JSON.stringify(context));\r\nswitch (context.loginProvider) {\r\n    case \"AzureAD\":\r\n        context.userName = \"azad\" + uuid();\r\n        break;\r\n    default:\r\n        log(\"Warning\", \"Provider \" + context.loginProvider + \" was not handled\");\r\n        // Uncomment to generate a username as a uuid\r\n        // context.userName = \"u\" + uuid();\r\n        break;\r\n}\r\n*/\r\n"
+      }
+    },
+    {
+      "name": "Settings",
+      "HomeRoute": {
+        "Action": "Display",
+        "Controller": "Item",
+        "Area": "OrchardCore.Contents",
+        "contentItemId": "4fxbwpz7p0gqntyxxd31zmqk4p",
+        "jsonPath": ""
+      }
     }
   ]
 }
