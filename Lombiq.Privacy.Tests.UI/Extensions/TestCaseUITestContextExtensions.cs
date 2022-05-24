@@ -25,20 +25,15 @@ public static class TestCaseUITestContextExtensions
         await context.ClickReliablyOnSubmitAsync();
 
         // Consent checkbox left unchecked, so after clicking on submit navigation should not happens.
-        var currentUri = context.GetCurrentUri();
-        currentUri.AbsolutePath
-            .ShouldBe(AbsolutePaths.CompetitorRegistration);
+        context.GetCurrentUri().AbsolutePath.ShouldBe(AbsolutePaths.CompetitorRegistration);
 
-        // Now we set consent checkbox to checked
+        // Now we set consent checkbox to checked.
         await context.SetCheckboxValueAsync(By.Id("PrivacyConsentCheckboxPart_ConsentCheckbox"), isChecked: true);
         await context.ClickReliablyOnSubmitAsync();
 
-        // After submit, it navigates to the new content items view
-        currentUri = context.GetCurrentUri();
-        currentUri.AbsolutePath
-            .ShouldNotBe(AbsolutePaths.ErrorPage);
-        currentUri.AbsolutePath
-            .ShouldNotBe(AbsolutePaths.CompetitorRegistration);
+        // After submit, it navigates to the new content items view.
+        context.GetCurrentUri().AbsolutePath
+            .ShouldNotBeOneOf(AbsolutePaths.ErrorPage, AbsolutePaths.CompetitorRegistration);
     }
 
     public static async Task TestFormConsentCheckboxContentAsync(this UITestContext context)
@@ -46,8 +41,15 @@ public static class TestCaseUITestContextExtensions
         await context.GoToRelativeUrlAsync(AbsolutePaths.CompetitorRegistration);
 
         context.VerifyElementTexts(
-            By.CssSelector(ElementSelectors.PrivacyConsentCheckboxLabel),
+            By.CssSelector(ElementSelectors.PrivacyConsentCheckboxLabelCss),
             new[] { ExpectedContents.FormConsentCheckboxContent });
+    }
+
+    public static async Task TestConsentBannerWithThemeAsync(this UITestContext context, string theme)
+    {
+        await context.SelectThemeAsync(theme);
+        await context.SignInDirectlyAsync();
+        await context.TestConsentBannerAsync();
     }
 
     public static async Task TestConsentBannerAsync(this UITestContext context)
@@ -88,7 +90,7 @@ public static class TestCaseUITestContextExtensions
 
         await context.TestRegistrationConsentCheckboxContentAsync();
 
-        // Go to registration and create a new user
+        // Go to registration and create a new user.
         await context.GoToRegistrationPageAsync();
         await context.FillInWithRetriesAsync(By.Id("UserName"), TestUser.Name);
         await context.FillInWithRetriesAsync(By.Id("Email"), TestUser.Email);
@@ -97,14 +99,11 @@ public static class TestCaseUITestContextExtensions
         await context.SetCheckboxValueAsync(By.Id("RegistrationCheckbox"), isChecked: true);
         await context.ClickReliablyOnSubmitAsync();
 
-        // Login with the created user
-        await context.GoToRelativeUrlAsync("/Login");
-        await context.FillInWithRetriesAsync(By.Id("UserName"), TestUser.Name);
-        await context.FillInWithRetriesAsync(By.Id("Password"), TestUser.Password);
-        await context.ClickReliablyOnSubmitAsync();
+        // Login with the created user.
+        await context.SignInDirectlyAsync(TestUser.Name);
         (await context.GetCurrentUserNameAsync()).ShouldBe(TestUser.Name);
 
-        // Check that, the consent banner not comes up after login
+        // Check that, the consent banner doesn't come up after login.
         await context.GoToHomePageAsync();
         context.Missing(By.Id(ElementSelectors.PrivacyConsentAcceptButtonId));
     }
@@ -114,7 +113,7 @@ public static class TestCaseUITestContextExtensions
         await context.GoToRegistrationPageAsync();
 
         context.VerifyElementTexts(
-            By.CssSelector(ElementSelectors.PrivacyConsentCheckboxLabel),
+            By.CssSelector(ElementSelectors.PrivacyConsentCheckboxLabelCss),
             new[] { ExpectedContents.RegistrationConsentCheckboxContent });
     }
 }

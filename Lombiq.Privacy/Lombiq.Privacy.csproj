@@ -9,7 +9,7 @@
   <PropertyGroup>
     <Title>Lombiq Privacy for Orchard Core</Title>
     <Authors>Lombiq Technologies</Authors>
-    <Copyright>Copyright © 2022, Lombiq Technologies Ltd.</Copyright>
+    <Copyright>Copyright © 2018, Lombiq Technologies Ltd.</Copyright>
     <Description>Lombiq Privacy for Orchard Core: Orchard module containing features related to data protection/privacy and the EU law on it, the General Data Protection Regulation (GDPR). See the project website for detailed documentation.</Description>
     <PackageIcon>NuGetIcon.png</PackageIcon>
     <PackageTags>OrchardCore;Lombiq;AspNetCore;GDPR;Privacy</PackageTags>

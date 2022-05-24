@@ -12,7 +12,7 @@
   <PropertyGroup>
     <Title>Lombiq Privacy for Orchard Core - Samples</Title>
     <Authors>Lombiq Technologies</Authors>
-    <Copyright>Copyright © 2022, Lombiq Technologies Ltd.</Copyright>
+    <Copyright>Copyright © 2018, Lombiq Technologies Ltd.</Copyright>
     <Description>Lombiq Privacy for Orchard Core - Samples: Sample content that demonstrates the features of Lombiq Privacy module for Orchard Core.</Description>
     <PackageIcon>NuGetIcon.png</PackageIcon>
     <PackageTags>OrchardCore;Lombiq;AspNetCore;GDPR;Privacy</PackageTags>
@@ -28,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Lombiq.HelpfulExtensions\Lombiq.HelpfulExtensions.csproj" />
     <ProjectReference Include="..\Lombiq.Privacy\Lombiq.Privacy.csproj" />
   </ItemGroup>
   
