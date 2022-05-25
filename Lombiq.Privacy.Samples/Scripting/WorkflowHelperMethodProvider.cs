@@ -29,7 +29,7 @@ public class WorkflowHelperMethodProvider : IGlobalMethodProvider
 
                 // LinkGenerator.GetPathByAction(...) and UrlHelper.Action(...) not resolves url for
                 // HttpWorkflowController.Invoke action.
-                // Any ideas are welcome.
+                // https://github.com/OrchardCMS/OrchardCore/issues/11764.
 
                 return $"/workflows/Invoke?token={Uri.EscapeDataString(token)}";
             }),
