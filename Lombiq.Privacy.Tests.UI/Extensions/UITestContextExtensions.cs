@@ -8,7 +8,7 @@ namespace Lombiq.Privacy.Tests.UI.Extensions;
 public static class UITestContextExtensions
 {
     public static Task ExecutePrivacySampleRecipeDirectlyAsync(this UITestContext context) =>
-        context.ExecuteRecipeDirectlyAsync("Lombiq.Privacy.Samples.Content");
+        context.ExecuteRecipeDirectlyAsync("Lombiq.Privacy.Samples");
 
     public static Task EnablePrivacyConsentBannerFeatureAsync(this UITestContext context) =>
         context.EnableFeatureDirectlyAsync(FeatureNames.ConsentBanner);

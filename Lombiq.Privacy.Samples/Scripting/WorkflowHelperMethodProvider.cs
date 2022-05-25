@@ -15,6 +15,10 @@ public class WorkflowHelperMethodProvider : IGlobalMethodProvider
     public WorkflowHelperMethodProvider() =>
         _workflowHttpEventUrlResolve = new GlobalMethod
         {
+            // This provides workflowHttpEventUrlResolve(workflowTypeId, activityId, tokenLifeSpan) javascript function.
+            // The workflowHttpEventUrlResolve() generates an url to HttpRequestEvent activity given by activityId
+            // inside workflow given by workflowTypeId. The tokenLifeSpan is the number of days to expire the token,
+            // if 0 it never expires.
             Name = "workflowHttpEventUrlResolve",
             Method = serviceProvider => (Func<string, string, int, object>)((workflowTypeId, activityId, tokenLifeSpan) =>
             {
