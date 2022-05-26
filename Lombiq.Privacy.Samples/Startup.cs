@@ -1,4 +1,3 @@
-using Lombiq.Privacy.Navigation;
 using Lombiq.Privacy.Samples.Navigation;
 using Lombiq.Privacy.Samples.Scripting;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +14,5 @@ public class Startup : StartupBase
         services.AddSingleton<IGlobalMethodProvider, WorkflowHelperMethodProvider>();
 
         services.AddScoped<INavigationProvider, PrivacySamplesNavigationProvider>();
-
-        services.AddScoped<INavigationProvider, PrivacyConsentWorkflowSettingsAdminMenu>();
     }
 }
