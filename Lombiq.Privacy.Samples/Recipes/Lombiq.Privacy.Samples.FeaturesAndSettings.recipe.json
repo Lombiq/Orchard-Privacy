@@ -1,0 +1,55 @@
+{
+  "name": "Lombiq.Privacy.Samples.FeaturesAndSettings",
+  "displayName": "Lombiq Privacy - Sample - Privacy, Forms, Workflows",
+  "description": "Sample for testing and demonstration of the Lombiq Privacy module.",
+  "author": "Lombiq Technologies",
+  "website": "https://github.com/Lombiq/Orchard-Privacy",
+  "version": "1.0",
+  "issetuprecipe": false,
+  "categories": [
+    "training"
+  ],
+  "tags": [
+    "hidden"
+  ],
+  "variables": {
+    "registrationContentItemId": "registrationitem0000000000"
+  },
+  "steps": [
+    {
+      "name": "Feature",
+      "enable": [
+        "Lombiq.Privacy.Samples"
+      ]
+    },
+    {
+      "name": "Settings",
+      "RegistrationSettings": {
+        // This is required to show the "Lombiq Privacy - Registration consent" feature in work
+        "UsersCanRegister": "AllowRegistration",
+        // Resets all the sites registration settings to default
+        "UsersMustValidateEmail": false,
+        "UsersAreModerated": false,
+        "UseSiteTheme": false,
+        "NoPasswordForExternalUsers": false,
+        "NoUsernameForExternalUsers": false,
+        "NoEmailForExternalUsers": false,
+        "UseScriptToGenerateUsername": false,
+        "GenerateUsernameScript": "/* Uncomment to map AzureAD\r\n// Uncomment to output the context variable in the logs\r\n// log(\"warning\", JSON.stringify(context));\r\nswitch (context.loginProvider) {\r\n    case \"AzureAD\":\r\n        context.userName = \"azad\" + uuid();\r\n        break;\r\n    default:\r\n        log(\"Warning\", \"Provider \" + context.loginProvider + \" was not handled\");\r\n        // Uncomment to generate a username as a uuid\r\n        // context.userName = \"u\" + uuid();\r\n        break;\r\n}\r\n*/\r\n"
+      }
+    },
+    {
+      "name": "Settings",
+      // To represent the usage of "Lombiq Privacy - Registration consent".
+      // Here is a possible solution for a use case, where competitors can make registration,
+      // and the registration form comes up as home page.
+      "HomeRoute": {
+        "Action": "Display",
+        "Controller": "Item",
+        "Area": "OrchardCore.Contents",
+        "contentItemId": "[js: variables('registrationContentItemId')]",
+        "jsonPath": ""
+      }
+    }
+  ]
+}

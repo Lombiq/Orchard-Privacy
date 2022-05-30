@@ -2,10 +2,10 @@
   "steps": [
     {
       "name": "custom-settings",
-      "PrivacyConsentCheckboxSettings": {
-        "ContentItemId": "49m3m5zmx6g7g5vyj144dh63w6",
+      "PrivacyRegistrationConsentSettings": {
+        "ContentItemId": "486zx8dygnyg7svw7193cwg842",
         "ContentItemVersionId": null,
-        "ContentType": "PrivacyConsentCheckboxSettings",
+        "ContentType": "PrivacyRegistrationConsentSettings",
         "DisplayText": "",
         "Latest": false,
         "Published": false,
@@ -15,7 +15,7 @@
         "Owner": "",
         "Author": "admin",
         "LiquidPart": {
-          "Liquid": "<div>I've read and agree to the site's <a href='/privacy-policy' target='_blank'>privacy policy</a>.</div>"
+          "Liquid": "<span>I've read and agree to the site's <a href='/privacy-policy' target='_blank'>privacy policy</a>.</span>"
         }
       }
     }
