@@ -1,0 +1,40 @@
+{
+  "name": "Lombiq.Privacy.Samples",
+  "displayName": "Lombiq Privacy - Sample - Privacy, Forms, Workflows",
+  "description": "Sample for testing and demonstration of the Lombiq Privacy module.",
+  "author": "Lombiq Technologies",
+  "website": "https://github.com/Lombiq/Orchard-Privacy",
+  "version": "1.0",
+  "issetuprecipe": false,
+  "categories": [
+    "training"
+  ],
+  "tags": [
+    "developer",
+    "training",
+    "sample"
+  ],
+  "steps": [
+    {
+      "name": "Recipes",
+      "Values": [
+        {
+          "executionid": "Lombiq.Privacy.Samples",
+          "name": "Lombiq.Privacy.Samples.FeaturesAndSettings"
+        },
+        {
+          "executionid": "Lombiq.Privacy.Samples",
+          "name": "Lombiq.Privacy.Samples.ContentDefinition"
+        },
+        {
+          "executionid": "Lombiq.Privacy.Samples",
+          "name": "Lombiq.Privacy.Samples.WorkflowType"
+        },
+        {
+          "executionid": "Lombiq.Privacy.Samples",
+          "name": "Lombiq.Privacy.Samples.Content"
+        }
+      ]
+    }
+  ]
+}
