@@ -3,6 +3,8 @@
 
 
 [![Lombiq.Privacy NuGet](https://img.shields.io/nuget/v/Lombiq.Privacy?label=Lombiq.Privacy)](https://www.nuget.org/packages/Lombiq.Privacy/)
+[![Lombiq.Privacy.Samples NuGet](https://img.shields.io/nuget/v/Lombiq.Privacy.Samples?label=Lombiq.Privacy.Samples)](https://www.nuget.org/packages/Lombiq.Privacy.Samples/)
+[![Lombiq.Privacy.Tests.UI NuGet](https://img.shields.io/nuget/v/Lombiq.Privacy.Tests.UI?label=Lombiq.Privacy.Tests.UI)](https://www.nuget.org/packages/Lombiq.Privacy.Tests.UI/)
 
 
 ## About
@@ -44,9 +46,6 @@ Shows a privacy consent checkbox on the registration form that needs to be check
 Adds a new Privacy Consent Checkbox widget content type that can be added to forms with the Forms module. In this case, users must accept the privacy policy before they can post content to the site. You can validate the consent with the `Validate Privacy Consent Checkbox` workflow activity in the following way:
 
 ![Consent Checkbox Workflow](Docs/Attachments/ConsentCheckboxWorkflow.png)
-
-**NOTE:** If the user already accepted the privacy policy then the widget won't be displayed on the form and the Validate Consent Checkbox activity will return "Valid" value.
-
 
 ## Dependencies 
 

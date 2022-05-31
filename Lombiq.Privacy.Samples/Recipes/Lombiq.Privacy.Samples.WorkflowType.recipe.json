@@ -1,0 +1,146 @@
+{
+  "name": "Lombiq.Privacy.Samples.WorkflowType",
+  "displayName": "Lombiq Privacy - Sample - Privacy, Forms, Workflows",
+  "description": "Sample for testing and demonstration of the Lombiq Privacy module.",
+  "author": "Lombiq Technologies",
+  "website": "https://github.com/Lombiq/Orchard-Privacy",
+  "version": "1.0",
+  "issetuprecipe": false,
+  "categories": [
+    "training"
+  ],
+  "tags": [
+    "hidden"
+  ],
+  "variables": {
+    "registrationWorkflowTypeId": "registrationworkflow000000",
+    "registrationHttpRequestActivityId": "registrationhttpevent00000"
+  },
+  "steps": [
+    {
+      "name": "WorkflowType",
+      "data": [
+        {
+          "WorkflowTypeId": "[js: variables('registrationWorkflowTypeId')]",
+          "Name": "Competitor registration",
+          "IsEnabled": true,
+          "IsSingleton": false,
+          "LockTimeout": 0,
+          "LockExpiration": 0,
+          "DeleteFinishedWorkflows": false,
+          "Activities": [
+            {
+              "ActivityId": "[js: variables('registrationHttpRequestActivityId')]",
+              "Name": "HttpRequestEvent",
+              "X": 10,
+              "Y": 30,
+              "IsStart": true,
+              "Properties": {
+                "ActivityMetadata": {
+                  "Title": "Registration request"
+                },
+                "HttpMethod": "POST",
+                "Url": "/workflows/Invoke?token=CfDJ8JvbyiID4YxKuqiC3ETbynFSG2FkM-8b2VB6ZnZJuyIlHw4ra_W4uDAkqn8MvXYq17Lf7nnILNr9O1v1pyX5PvmfX3yYutugyUGuKH-AlEi3u07DH2UfLlYW3CchjeIMHsKVB8H9i-YHT5Vy0GK7OWV6My4ZeeSkIexHrzsF8SmgoxqroCQ04-9KcWEx78-OXu-xdi_OjFnZX5NI-PbPxwRbDs_LRyxXQdNJqqbEgC2-",
+                "ValidateAntiforgeryToken": true,
+                "TokenLifeSpan": 0
+              }
+            },
+            {
+              "ActivityId": "4bnngn8hxa684201xsaq9fm1wh",
+              "Name": "ValidatePrivacyConsentCheckboxTask",
+              "X": 290,
+              "Y": 30,
+              "IsStart": false,
+              "Properties": {
+                "ActivityMetadata": {
+                  "Title": null
+                }
+              }
+            },
+            {
+              "ActivityId": "474fg602kmn9z0xsn389w51mnf",
+              "Name": "CreateContentTask",
+              "X": 720,
+              "Y": 160,
+              "IsStart": false,
+              "Properties": {
+                "ContentType": "Competitor",
+                "Publish": true,
+                "ContentProperties": {
+                  "Expression": "{\r\n  \"DisplayText\": \"{{ Request.Form[\"full-name\"] }}\",\r\n  \"Competitor\": {\r\n    \"Fullname\": {\r\n      \"Text\": \"{{ Request.Form[\"full-name\"] }}\"\r\n    },\r\n    \"Age\": {\r\n      \"Value\": {{ Request.Form[\"age\"] }}\r\n    },\r\n    \"Emailaddress\": {\r\n      \"Text\": \"{{ Request.Form[\"e-mail\"] }}\"\r\n    }\r\n  },\r\n  \"TitlePart\": {\r\n    \"Title\": \"{{ Request.Form[\"full-name\"] }}\"\r\n  }\r\n}"
+                },
+                "ActivityMetadata": {
+                  "Title": "Create competitor item"
+                }
+              }
+            },
+            {
+              "ActivityId": "46bbnrx4k6wbw197vpmdz212dz",
+              "Name": "HttpRedirectTask",
+              "X": 1050,
+              "Y": 160,
+              "IsStart": false,
+              "Properties": {
+                "ActivityMetadata": {
+                  "Title": "Redirect to details"
+                },
+                "Location": {
+                  "Expression": "{{ Workflow.Properties[\"ContentItem\"] | display_url }}"
+                },
+                "Permanent": false
+              }
+            },
+            {
+              "ActivityId": "4n7zznh3ssm9078wyva0rq45d2",
+              "Name": "HttpRedirectTask",
+              "X": 1120,
+              "Y": 30,
+              "IsStart": false,
+              "Properties": {
+                "ActivityMetadata": {
+                  "Title": null
+                },
+                "Location": {
+                  "Expression": "/error"
+                },
+                "Permanent": false
+              }
+            }
+          ],
+          "Transitions": [
+            {
+              "Id": 0,
+              "SourceActivityId": "[js: variables('registrationHttpRequestActivityId')]",
+              "SourceOutcomeName": "Done",
+              "DestinationActivityId": "4bnngn8hxa684201xsaq9fm1wh"
+            },
+            {
+              "Id": 0,
+              "SourceActivityId": "4bnngn8hxa684201xsaq9fm1wh",
+              "SourceOutcomeName": "Valid",
+              "DestinationActivityId": "474fg602kmn9z0xsn389w51mnf"
+            },
+            {
+              "Id": 0,
+              "SourceActivityId": "474fg602kmn9z0xsn389w51mnf",
+              "SourceOutcomeName": "Done",
+              "DestinationActivityId": "46bbnrx4k6wbw197vpmdz212dz"
+            },
+            {
+              "Id": 0,
+              "SourceActivityId": "4bnngn8hxa684201xsaq9fm1wh",
+              "SourceOutcomeName": "Invalid",
+              "DestinationActivityId": "4n7zznh3ssm9078wyva0rq45d2"
+            },
+            {
+              "Id": 0,
+              "SourceActivityId": "474fg602kmn9z0xsn389w51mnf",
+              "SourceOutcomeName": "Failed",
+              "DestinationActivityId": "4n7zznh3ssm9078wyva0rq45d2"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
