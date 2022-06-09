@@ -5,7 +5,7 @@ using static Lombiq.Privacy.Constants.FeatureNames;
     Name = "Lombiq Privacy",
     Author = "Lombiq Technologies",
     Website = "https://lombiq.com",
-    Version = "3.0.2"
+    Version = "0.0.1"
 )]
 
 [assembly: Feature(
@@ -38,3 +38,7 @@ using static Lombiq.Privacy.Constants.FeatureNames;
     Category = "Privacy",
     Dependencies = new[] { Module, "OrchardCore.CustomSettings", "OrchardCore.Forms" }
 )]
+
+
+
+

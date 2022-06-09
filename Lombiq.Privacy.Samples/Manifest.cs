@@ -4,7 +4,7 @@ using OrchardCore.Modules.Manifest;
     Name = "Lombiq Privacy - Samples",
     Author = "Lombiq Technologies",
     Website = "https://github.com/Lombiq/Orchard-Privacy",
-    Version = "3.1.0-alpha",
+    Version = "0.0.1",
     Description = "Samples for Lombiq Privacy.",
     Category = "Privacy",
     Dependencies = new[]
@@ -17,3 +17,7 @@ using OrchardCore.Modules.Manifest;
         "OrchardCore.Workflows.Http",
     }
 )]
+
+
+
+
