@@ -38,7 +38,3 @@ using static Lombiq.Privacy.Constants.FeatureNames;
     Category = "Privacy",
     Dependencies = new[] { Module, "OrchardCore.CustomSettings", "OrchardCore.Forms" }
 )]
-
-
-
-
