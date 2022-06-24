@@ -7,9 +7,10 @@
 <script asp-name="jQuery"></script>
 
 @{
-    const string bannerId = "privacy-consent-banner";
-    const string acceptButtonId = "privacy-consent-accept-button";
-    const string deniedButtonId = "privacy-consent-denied-button";
+    const string privacyConsent = "privacy-consent";
+    const string bannerId = privacyConsent + "-banner";
+    const string acceptButtonId = privacyConsent + "-accept-button";
+    const string deniedButtonId = privacyConsent + "-denied-button";
 
     var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
     var acceptCookie = consentFeature?.CreateConsentCookie();
