@@ -1,8 +1,6 @@
 # Lombiq Privacy for Orchard Core
 
-[![Lombiq.Privacy NuGet](https://img.shields.io/nuget/v/Lombiq.Privacy?label=Lombiq.Privacy)](https://www.nuget.org/packages/Lombiq.Privacy/)
-[![Lombiq.Privacy.Samples NuGet](https://img.shields.io/nuget/v/Lombiq.Privacy.Samples?label=Lombiq.Privacy.Samples)](https://www.nuget.org/packages/Lombiq.Privacy.Samples/)
-[![Lombiq.Privacy.Tests.UI NuGet](https://img.shields.io/nuget/v/Lombiq.Privacy.Tests.UI?label=Lombiq.Privacy.Tests.UI)](https://www.nuget.org/packages/Lombiq.Privacy.Tests.UI/)
+[![Lombiq.Privacy NuGet](https://img.shields.io/nuget/v/Lombiq.Privacy?label=Lombiq.Privacy)](https://www.nuget.org/packages/Lombiq.Privacy/) [![Lombiq.Privacy.Samples NuGet](https://img.shields.io/nuget/v/Lombiq.Privacy.Samples?label=Lombiq.Privacy.Samples)](https://www.nuget.org/packages/Lombiq.Privacy.Samples/) [![Lombiq.Privacy.Tests.UI NuGet](https://img.shields.io/nuget/v/Lombiq.Privacy.Tests.UI?label=Lombiq.Privacy.Tests.UI)](https://www.nuget.org/packages/Lombiq.Privacy.Tests.UI/)
 
 ## About
 
