@@ -1,8 +1,5 @@
 {
   "private": true,
-  "devDependencies": {
-    "nodejs-extensions": "link:node_modules\\.nx"
-  },
   "scripts": {
     "build": "npm explore nodejs-extensions -- pnpm build:styles",
     "clean": "npm explore nodejs-extensions -- pnpm clean:styles",
