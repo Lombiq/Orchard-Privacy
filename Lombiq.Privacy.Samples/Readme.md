@@ -16,11 +16,11 @@ Go to Recipes in the admin dashboard and select "Lombiq Privacy - Sample Content
 - [Registration Consent Feature](../Readme.md#registration-consent-feature): Log out first, then navigate to user registration (/Register), and you can see, the registration consent checkbox at the bottom of registration form.
 - [Form Consent Feature](../Readme.md#form-consent-feature): Navigate to home or to /competitor-registration route, fill up the form, and you can't send the form until you don't accept the privacy policy.
 
-  - [Workflow](Recipes/Lombiq.Privacy.Samples.WorkflowType.recipe.json): In this recipe you can find the workflow definition with `ValidatePrivacyConsentCheckboxTask` wich validates the acceptance of consent in the server side, and creates the competitor content item.
+  - [Workflow](Recipes/Lombiq.Privacy.Samples.WorkflowType.recipe.json): In this recipe you can find the workflow definition with `ValidatePrivacyConsentCheckboxTask` which validates the acceptance of consent in the server side, and creates the competitor content item.
   - [Competitor registration](Recipes/Lombiq.Privacy.Samples.Content.recipe.json): In this recipe you can find the competitor registration form content item.
 
 ## Contributing and support
 
-Bug reports, feature requests, comments, questions, code contributions, and love letters are warmly welcome, please do so via GitHub issues and pull requests. Please adhere to our [open-source guidelines](https://lombiq.com/open-source-guidelines) while doing so.
+Bug reports, feature requests, comments, questions, code contributions and love letters are warmly welcome. You can send them to us via GitHub issues and pull requests. Please adhere to our [open-source guidelines](https://lombiq.com/open-source-guidelines) while doing so.
 
 This project is developed by [Lombiq Technologies](https://lombiq.com/). Commercial-grade support is available through Lombiq.
