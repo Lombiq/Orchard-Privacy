@@ -18,8 +18,12 @@ public static class UITestContextExtensions
     public static Task EnablePrivacyRegistrationConsentFeatureAsync(this UITestContext context) =>
         context.EnableFeatureDirectlyAsync(FeatureNames.RegistrationConsent);
 
+    /// <remarks>
+    /// <para>
+    /// This is necessary for Application Insights tracking, even in offline mode.
+    /// </para>
+    /// </remarks>
     public static Task AcceptPrivacyConsentAsync(this UITestContext context) =>
-        // This is necessary for Application Insights tracking, even in offline mode.
         context.ClickReliablyOnAsync(By.Id(ElementSelectors.PrivacyConsentAcceptButtonId));
 
     public static async Task EnablePrivacyConsentBannerFeatureAndAcceptPrivacyConsentAsync(this UITestContext context)
