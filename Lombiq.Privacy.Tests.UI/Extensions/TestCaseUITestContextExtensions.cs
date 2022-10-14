@@ -55,6 +55,7 @@ public static class TestCaseUITestContextExtensions
     public static async Task TestConsentBannerAsync(this UITestContext context)
     {
         await context.EnablePrivacyConsentBannerFeatureAsync();
+        await context.GoToHomePageAsync(onlyIfNotAlreadyThere: false);
         await context.TestConsentBannerContentAsync();
         await context.TestConsentBannerAcceptButtonAsync();
     }
