@@ -15,10 +15,10 @@ public class WorkflowHelperMethodProvider : IGlobalMethodProvider
     public WorkflowHelperMethodProvider() =>
         _workflowHttpEventUrlResolve = new GlobalMethod
         {
-            // This provides workflowHttpEventUrlResolve(workflowTypeId, activityId, tokenLifeSpan) javascript function.
-            // The workflowHttpEventUrlResolve() generates an url to HttpRequestEvent activity given by activityId
-            // inside workflow given by workflowTypeId. The tokenLifeSpan is the number of days to expire the token,
-            // if 0 it never expires.
+            // This provides the workflowHttpEventUrlResolve(workflowTypeId, activityId, tokenLifeSpan) JavaScript
+            // function. The workflowHttpEventUrlResolve() generates a URL to the HttpRequestEvent activity given by
+            // activityId inside the workflow given by workflowTypeId. The tokenLifeSpan is the number of days to expire
+            // the token, if 0 it never expires.
             Name = "workflowHttpEventUrlResolve",
             Method = serviceProvider => (Func<string, string, int, object>)((workflowTypeId, activityId, tokenLifeSpan) =>
             {
@@ -31,9 +31,8 @@ public class WorkflowHelperMethodProvider : IGlobalMethodProvider
                     TimeSpan.FromDays(
                         tokenLifeSpan == 0 ? HttpWorkflowController.NoExpiryTokenLifespan : tokenLifeSpan));
 
-                // LinkGenerator.GetPathByAction(...) and UrlHelper.Action(...) not resolves url for
-                // HttpWorkflowController.Invoke action.
-                // https://github.com/OrchardCMS/OrchardCore/issues/11764.
+                // LinkGenerator.GetPathByAction(...) and UrlHelper.Action(...) doesn't resolve the URL for the
+                // HttpWorkflowController.Invoke action, see https://github.com/OrchardCMS/OrchardCore/issues/11764.
 
                 return $"/workflows/Invoke?token={Uri.EscapeDataString(token)}";
             }),
