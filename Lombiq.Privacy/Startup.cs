@@ -65,7 +65,7 @@ public class ConsentBannerStartup : StartupBase
         services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
         services.Configure<MvcOptions>((options) =>
             options.Filters.Add(typeof(PrivacyConsentBannerInjectionFilter)));
-        services.AddScoped<IDataMigration, PrivacyConsentBannerSettingsMigrations>();
+        services.AddDataMigration<PrivacyConsentBannerSettingsMigrations>();
         services.AddScoped<INavigationProvider, PrivacyConsentBannerSettingsMenu>();
     }
 }
@@ -81,7 +81,7 @@ public class RegistrationConsentStartup : StartupBase
         services.Configure<MvcOptions>((options) =>
             options.Filters.Add(typeof(RegistrationCheckboxInjectionFilter)));
         services.AddScoped<IRegistrationFormEvents, RegistrationFormEventHandler>();
-        services.AddScoped<IDataMigration, PrivacyRegistrationConsentSettingsMigrations>();
+        services.AddDataMigration<PrivacyRegistrationConsentSettingsMigrations>();
         services.AddScoped<INavigationProvider, PrivacyRegistrationConsentSettingsMenu>();
     }
 }
@@ -96,8 +96,8 @@ public class FormConsentStartup : StartupBase
     {
         services.AddContentPart<PrivacyConsentCheckboxPart>()
             .UseDisplayDriver<PrivacyConsentCheckboxPartDisplayDriver>();
-        services.AddScoped<IDataMigration, PrivacyConsentCheckboxMigrations>();
-        services.AddScoped<IDataMigration, PrivacyConsentCheckboxSettingsMigrations>();
+        services.AddDataMigration<PrivacyConsentCheckboxMigrations>();
+        services.AddDataMigration<PrivacyConsentCheckboxSettingsMigrations>();
         services.AddActivity<ValidatePrivacyConsentCheckboxTask, ValidatePrivacyConsentCheckboxTaskDisplayDriver>();
         services.AddScoped<INavigationProvider, PrivacyConsentCheckboxSettingsMenu>();
     }
