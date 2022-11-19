@@ -43,6 +43,7 @@ Adds a new Privacy Consent Checkbox widget content type that can be added to for
 This module has the following dependencies:
 
 - [Lombiq Helpful Libraries for Orchard Core](https://github.com/Lombiq/Helpful-Libraries)
+- [Lombiq Node.js Extensions](https://gihub.com/Lombiq/NodeJs-Extensions)
 
 ## Contributing and support
 
