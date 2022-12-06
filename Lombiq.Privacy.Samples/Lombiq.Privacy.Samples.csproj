@@ -22,13 +22,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OrchardCore.Forms" Version="1.4.0" />
-    <PackageReference Include="OrchardCore.Module.Targets" Version="1.4.0" />
-    <PackageReference Include="OrchardCore.Workflows" Version="1.4.0" />
+    <PackageReference Include="OrchardCore.Forms" Version="1.5.0" />
+    <PackageReference Include="OrchardCore.Module.Targets" Version="1.5.0" />
+    <PackageReference Include="OrchardCore.Workflows" Version="1.5.0" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' == 'true'">
-    <PackageReference Include="Lombiq.HelpfulExtensions" Version="3.6.2-alpha.0.osoe-412" />
+    <PackageReference Include="Lombiq.HelpfulExtensions" Version="4.0.0" />
   </ItemGroup>
   
   <ItemGroup Condition="'$(NuGetBuild)' != 'true'">
