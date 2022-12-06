@@ -17,7 +17,7 @@
     <PackageIcon>NuGetIcon.png</PackageIcon>
     <PackageTags>OrchardCore;Lombiq;AspNetCore;GDPR;Privacy</PackageTags>
     <RepositoryUrl>https://github.com/Lombiq/Orchard-Privacy</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/Lombiq/Orchard-Privacy/Lombiq.Privacy.Samples/Readme.md</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Lombiq/Orchard-Privacy/blob/dev/Lombiq.Privacy.Samples/Readme.md</PackageProjectUrl>
     <PackageLicenseFile>License.md</PackageLicenseFile>
   </PropertyGroup>
 
