@@ -76,7 +76,17 @@ public static class TestCaseUITestContextExtensions
         await context.GoToHomePageAsync();
 
         await context.ClickReliablyOnAsync(privacyConsentAcceptButton);
-        context.Missing(privacyConsentAcceptButton);
+
+        try
+        {
+            context.Missing(privacyConsentAcceptButton);
+        }
+        catch (StaleElementReferenceException)
+        {
+            // If the banner disappears when we're in the middle of Missing() then unlucky timing can cause it to
+            // get properties of the now vanished element, causing a StaleElementReferenceException. This is not a
+            // problem, so we may continue.
+        }
 
         // Verify persistence.
         context.Refresh();
