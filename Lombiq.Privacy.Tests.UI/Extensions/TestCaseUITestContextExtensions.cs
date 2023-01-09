@@ -71,14 +71,14 @@ public static class TestCaseUITestContextExtensions
 
     public static async Task TestConsentBannerAcceptButtonAsync(this UITestContext context)
     {
-        var privacyConsentAcceptButton = By.Id(ElementSelectors.PrivacyConsentAcceptButtonId);
-
         await context.GoToHomePageAsync();
 
-        await context.ClickReliablyOnAsync(privacyConsentAcceptButton);
+        var privacyConsentAcceptButton = By.Id(ElementSelectors.PrivacyConsentAcceptButtonId);
 
         try
         {
+            await context.ClickReliablyOnAsync(privacyConsentAcceptButton);
+
             context.Missing(privacyConsentAcceptButton);
         }
         catch (StaleElementReferenceException)
