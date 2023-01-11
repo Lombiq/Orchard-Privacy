@@ -42,7 +42,7 @@ public static class TestCaseUITestContextExtensions
 
         context.VerifyElementTexts(
             By.CssSelector(ElementSelectors.PrivacyConsentCheckboxLabelCss),
-            new[] { ExpectedContents.FormConsentCheckboxContent });
+            ExpectedContents.FormConsentCheckboxContent);
     }
 
     public static async Task TestConsentBannerWithThemeAsync(this UITestContext context, string theme)
@@ -66,7 +66,7 @@ public static class TestCaseUITestContextExtensions
 
         context.VerifyElementTexts(
             By.CssSelector("#privacy-consent-banner > .modal-content > .modal-body"),
-            new[] { ExpectedContents.ConsentBannerContent });
+            ExpectedContents.ConsentBannerContent);
     }
 
     public static async Task TestConsentBannerAcceptButtonAsync(this UITestContext context)
@@ -125,6 +125,6 @@ public static class TestCaseUITestContextExtensions
 
         context.VerifyElementTexts(
             By.CssSelector(ElementSelectors.PrivacyConsentCheckboxLabelCss),
-            new[] { ExpectedContents.RegistrationConsentCheckboxContent });
+            ExpectedContents.RegistrationConsentCheckboxContent);
     }
 }
