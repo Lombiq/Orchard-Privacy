@@ -63,12 +63,7 @@ public class ValidatePrivacyConsentCheckboxTask : TaskActivity
         {
             var updater = _updateModelAccessor.ModelUpdater;
 
-            if (updater != null)
-            {
-                updater.ModelState.TryAddModelError(
-                    consentCheckboxName,
-                    T["You have to accept the privacy policy."]);
-            }
+            updater?.ModelState.TryAddModelError(consentCheckboxName, T["You have to accept the privacy policy."]);
         }
 
         return Outcomes("Done", outcome);
