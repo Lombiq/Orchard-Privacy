@@ -15,7 +15,7 @@
         "Owner": "",
         "Author": "admin",
         "LiquidPart": {
-          "Liquid": "<span>I've read and agree to the site's <a href='/privacy-policy' target='_blank'>privacy policy</a>.</span>"
+          "Liquid": "<span>I've read and agree to the site's <a href=\"{{ '~/privacy-policy' | href }}\" target=\"_blank\">privacy policy</a>.</span>"
         }
       }
     }

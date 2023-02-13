@@ -15,7 +15,7 @@
         "Owner": "",
         "Author": "admin",
         "LiquidPart": {
-          "Liquid": "<div>\r\n\tOur site uses browser cookies to personalize your experience.\r\n\tRegarding this issue, please find our information on data control and processing <a href='/privacy-policy' target='_blank'>here</a>\r\n\tand our information on server logging and usage of so-called 'cookies' <a href='/privacy-policy' target='_blank'>here</a>.\r\n\tBy clicking here You confirm your approval of the data processing activities mentioned in these documents.\r\n\tPlease note that You may only use this website efficiently if you agree to these conditions.\r\n</div>"
+          "Liquid": "<div>\r\n\tOur site uses browser cookies to personalize your experience.\r\n\tRegarding this issue, please find our information on data control and processing <a href=\"{{ '~/privacy-policy' | href }}\" target=\"_blank\">here</a>\r\n\tand our information on server logging and usage of so-called 'cookies' <a href=\"{{ '~/privacy-policy' | href }}\" target=\"_blank\">here</a>.\r\n\tBy clicking here You confirm your approval of the data processing activities mentioned in these documents.\r\n\tPlease note that You may only use this website efficiently if you agree to these conditions.\r\n</div>"
         }
       }
     }
