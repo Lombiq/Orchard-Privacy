@@ -1,6 +1,7 @@
 using Lombiq.Privacy.Activities;
 using Lombiq.Privacy.Constants;
 using Lombiq.Privacy.Drivers;
+using Lombiq.Privacy.Extensions;
 using Lombiq.Privacy.Filters;
 using Lombiq.Privacy.Handlers;
 using Lombiq.Privacy.Migrations;
@@ -15,7 +16,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
-using OrchardCore.Data.Migration;
 using OrchardCore.Modules;
 using OrchardCore.Navigation;
 using OrchardCore.ResourceManagement;
