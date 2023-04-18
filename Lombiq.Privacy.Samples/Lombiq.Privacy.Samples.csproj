@@ -21,6 +21,10 @@
     <PackageLicenseFile>License.md</PackageLicenseFile>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <AnalyzeByOSOCE>true</AnalyzeByOSOCE>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="OrchardCore.Forms" Version="1.5.0" />
     <PackageReference Include="OrchardCore.Module.Targets" Version="1.5.0" />
