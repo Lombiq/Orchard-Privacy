@@ -3,9 +3,9 @@
 <fieldset class="form-group" asp-validation-class-for="ConsentCheckbox">
     <div class="form-check">
         <input asp-for="ConsentCheckbox" class="form-check-input" required />
-        <label>
-            <shape Type="Lombiq_Privacy_ConsentCheckbox_Text" />
-        </label><br>
+        <label asp-for="ConsentCheckbox" />
+        <shape Type="Lombiq_Privacy_ConsentCheckbox_Text" />
+        <br>
         <span asp-validation-for="ConsentCheckbox" class="text-danger"></span>
     </div>
 </fieldset>

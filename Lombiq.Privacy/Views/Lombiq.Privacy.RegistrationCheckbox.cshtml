@@ -4,9 +4,8 @@
     <div class="col-md-9">
         <div class="form-check">
             <input asp-for="RegistrationCheckbox" class="form-check-input" required />
-            <label>
-                <shape Type="Lombiq_Privacy_RegistrationCheckbox_Text" />
-            </label>
+            <label asp-for="RegistrationCheckbox" />
+            <shape Type="Lombiq_Privacy_RegistrationCheckbox_Text" />
             <br>
             <span asp-validation-for="RegistrationCheckbox" class="text-danger"></span>
         </div>
