@@ -1,11 +1,30 @@
 @model PrivacyConsentCheckboxPartViewModel
+@using Microsoft.AspNetCore.Http.Features
+@using Lombiq.Privacy.Controllers
+
+<script asp-name="jQuery"></script>
+
+@{
+    const string acceptButtonId = "PrivacyConsentCheckboxPart_ConsentCheckbox";
+
+    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+    var acceptCookie = consentFeature?.CreateConsentCookie();
+}
 
 <fieldset class="form-group" asp-validation-class-for="ConsentCheckbox">
     <div class="form-check">
-        <input asp-for="ConsentCheckbox" class="form-check-input" required />
+        <input asp-for="ConsentCheckbox" class="form-check-input" required data-cookie-string="@acceptCookie" />
         <label asp-for="ConsentCheckbox" />
         <shape Type="Lombiq_Privacy_ConsentCheckbox_Text" />
         <br>
         <span asp-validation-for="ConsentCheckbox" class="text-danger"></span>
     </div>
 </fieldset>
+
+<script depends-on="jQuery" at="Foot">
+    $(document).ready(function () {
+        $('form').on('submit', function () {
+            document.cookie = $('#@acceptButtonId').data('cookie-string');
+        });
+    });
+</script>
