@@ -2,10 +2,8 @@
 @using Microsoft.AspNetCore.Http.Features
 @using Lombiq.Privacy.Controllers
 
-<script asp-name="jQuery"></script>
-
 @{
-    const string acceptButtonId = "PrivacyConsentCheckboxPart_ConsentCheckbox";
+    const string checkboxId = "PrivacyConsentCheckboxPart_ConsentCheckbox";
 
     var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
     var acceptCookie = consentFeature?.CreateConsentCookie();
@@ -22,9 +20,14 @@
 </fieldset>
 
 <script depends-on="jQuery" at="Foot">
-    $(document).ready(function () {
-        $('form').on('submit', function () {
-            document.cookie = $('#@acceptButtonId').data('cookie-string');
+    jQuery(($) => {
+        $(document).ready(function () {
+            $('form').on('submit', function () {
+                const $checkbox = $('#@checkboxId');
+                if ($checkbox.is(':checked')) {
+                    document.cookie = $checkbox.data('cookie-string');
+                }
+            });
         });
     });
 </script>
