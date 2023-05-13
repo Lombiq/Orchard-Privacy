@@ -20,14 +20,12 @@
 </fieldset>
 
 <script depends-on="jQuery" at="Foot">
-    jQuery(($) => {
-        $(document).ready(function () {
-            $('form').on('submit', function () {
-                const $checkbox = $('#@checkboxId');
-                if ($checkbox.is(':checked')) {
-                    document.cookie = $checkbox.data('cookie-string');
-                }
-            });
+    $(function () {
+        $('form').on('submit', function () {
+            const $checkbox = $('#@checkboxId');
+            if ($checkbox.is(':checked')) {
+                document.cookie = $checkbox.data('cookie-string');
+            }
         });
     });
 </script>
