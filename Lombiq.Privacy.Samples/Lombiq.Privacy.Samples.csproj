@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' == 'true'">
-    <PackageReference Include="Lombiq.HelpfulExtensions" Version="5.0.1" />
+    <PackageReference Include="Lombiq.HelpfulExtensions" Version="v5.0.2-alpha.0.osoe-548" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(NuGetBuild)' != 'true'">
