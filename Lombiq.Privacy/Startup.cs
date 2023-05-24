@@ -50,6 +50,12 @@ public class Startup : StartupBase
     private static Task<bool> IsConsentNeededAsync(HttpContext httpContext)
     {
         var consentService = httpContext.RequestServices.GetService<IPrivacyConsentService>();
+
+        if (consentService == null)
+        {
+            return Task.FromResult(true);
+        }
+
         return consentService.IsConsentNeededAsync(httpContext);
     }
 }
