@@ -20,7 +20,7 @@ The module consists of the following independent features:
 
 ### Consent Banner Feature
 
-Shows a banner where users can accept the privacy policy.
+Shows a banner where users can accept the privacy policy. **Note** that certain ad blockers can prevent the banner from showing up; e.g., [AdGuard AdBlocker for Chrome](https://chrome.google.com/webstore/detail/adguard-adblocker/bgnkhhnnamicmpeenaelnjfhikgbkllg) doesn't do this, but [I don't care about cookies](https://chrome.google.com/webstore/detail/i-dont-care-about-cookies/fihnjjcciajhdojfnbdddfaoknhalnja) (not too surprisingly) does.
 
 If the user is unauthenticated, they can use the banner to accept or reject the privacy statement, their decision will be stored in a cookie by the browser.
 
