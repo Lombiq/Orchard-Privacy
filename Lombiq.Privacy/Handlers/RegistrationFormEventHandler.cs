@@ -31,7 +31,7 @@ public class RegistrationFormEventHandler : IRegistrationFormEvents
     public Task RegistrationValidationAsync(Action<string, string> reportError)
     {
         var registrationCheckbox = _hca.HttpContext?.Request?.Form?[nameof(PrivacyRegistrationConsentCheckboxViewModel.RegistrationCheckbox)]
-            .Select(value => bool.Parse(value));
+            .Select(bool.Parse);
 
         if (registrationCheckbox == null || !registrationCheckbox.Contains(value: true))
         {
