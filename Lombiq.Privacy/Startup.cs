@@ -55,6 +55,8 @@ public class Startup : StartupBase
                     // to SameSiteMode.None. Without this the Azure AD authentication will fail with the
                     // "System.Exception: Correlation failed" error.
                     cookieContext.CookieOptions.SameSite = SameSiteMode.None;
+                    cookieContext.CookieOptions.Secure = true;
+                    cookieContext.CookieOptions.Domain = cookieContext.Context.Request.Host.Host;
                 }
             };
         });
