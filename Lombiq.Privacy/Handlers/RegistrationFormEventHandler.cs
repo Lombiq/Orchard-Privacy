@@ -33,7 +33,8 @@ public class RegistrationFormEventHandler : IRegistrationFormEvents
         var registrationCheckbox = _hca.HttpContext?.Request?.Form?[nameof(PrivacyRegistrationConsentCheckboxViewModel.RegistrationCheckbox)]
             .Select(bool.Parse);
 
-        if (registrationCheckbox == null || (registrationCheckbox.Any() && !registrationCheckbox.Contains(value: true)))
+        if (registrationCheckbox == null ||
+            (registrationCheckbox.Any() && !registrationCheckbox.AsEnumerable().Contains(value: true)))
         {
             reportError(
                 nameof(PrivacyRegistrationConsentCheckboxViewModel.RegistrationCheckbox),
