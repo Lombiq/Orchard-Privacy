@@ -43,6 +43,22 @@ public class Startup : StartupBase
             options.MinimumSameSitePolicy = SameSiteMode.Strict;
             options.Secure = CookieSecurePolicy.Always;
             options.ConsentCookie.Expiration = new TimeSpan(365, 0, 0, 0);
+
+            options.OnAppendCookie = cookieContext =>
+            {
+                // Check if the cookie name matches the ones used for Azure AD authentication.
+                if (cookieContext.CookieName.Contains("AspNetCore.OpenIdConnect.Nonce")
+                    || cookieContext.CookieName.Contains("AspNetCore.Correlation")
+                    || cookieContext.CookieName.Contains("Identity.External"))
+                {
+                    // For Azure AD to work with Lombiq.PrivacyPolicy, we need to set the CookieOptions.SameSite value
+                    // to SameSiteMode.None. Without this the Azure AD authentication will fail with the
+                    // "System.Exception: Correlation failed" error.
+                    cookieContext.CookieOptions.SameSite = SameSiteMode.None;
+                    cookieContext.CookieOptions.Secure = true;
+                    cookieContext.CookieOptions.Domain = cookieContext.Context.Request.Host.Host;
+                }
+            };
         });
     }
 
