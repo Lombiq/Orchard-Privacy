@@ -9,6 +9,7 @@
 <fieldset class="form-group" asp-validation-class-for="ConsentCheckbox">
     <div class="form-check">
         <input asp-for="ConsentCheckbox"
+               type="checkbox"
                class="form-check-input privacy-consent-checkbox"
                required
                data-cookie-string="@acceptCookie" />
