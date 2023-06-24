@@ -7,6 +7,10 @@
 @{
     var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
     var acceptCookie = consentFeature?.CreateConsentCookie();
+
+    // The hidden input causes HTML validation problems as it creates two form fields with the same name.
+    var originalRenderMode = ViewContext.CheckBoxHiddenInputRenderMode;
+    ViewContext.CheckBoxHiddenInputRenderMode = CheckBoxHiddenInputRenderMode.None;
     
     var labelShape = await Factory.CreateAsync("Lombiq_Privacy_ConsentCheckbox_Text");
     var labelHtml = (await Orchard.DisplayHelper.ShapeExecuteAsync(labelShape)).Html();
@@ -28,6 +32,10 @@
         <span asp-validation-for="ConsentCheckbox" class="text-danger"></span>
     </div>
 </fieldset>
+
+@{
+    ViewContext.CheckBoxHiddenInputRenderMode = originalRenderMode;
+}
 
 <script asp-name="privacy-consent-checkbox-script" depends-on="jQuery" at="Foot">
     jQuery(function ($) {
