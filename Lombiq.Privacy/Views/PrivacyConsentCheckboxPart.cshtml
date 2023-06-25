@@ -1,31 +1,55 @@
 @model PrivacyConsentCheckboxPartViewModel
 @using Microsoft.AspNetCore.Http.Features
-@using Lombiq.Privacy.Controllers
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using OrchardCore.DisplayManagement
 
 @{
-    const string checkboxId = "PrivacyConsentCheckboxPart_ConsentCheckbox";
-
     var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
     var acceptCookie = consentFeature?.CreateConsentCookie();
+
+    // The hidden input causes HTML validation problems as it creates two form fields with the same name.
+    var originalRenderMode = ViewContext.CheckBoxHiddenInputRenderMode;
+    ViewContext.CheckBoxHiddenInputRenderMode = CheckBoxHiddenInputRenderMode.None;
+    
+    var labelShape = await Factory.CreateAsync("Lombiq_Privacy_ConsentCheckbox_Text");
+    var labelHtml = (await Orchard.DisplayHelper.ShapeExecuteAsync(labelShape)).Html();
 }
 
 <fieldset class="form-group" asp-validation-class-for="ConsentCheckbox">
     <div class="form-check">
-        <input asp-for="ConsentCheckbox" class="form-check-input" required data-cookie-string="@acceptCookie" />
-        <label asp-for="ConsentCheckbox" />
-        <shape Type="Lombiq_Privacy_ConsentCheckbox_Text" />
+        <input asp-for="ConsentCheckbox"
+               type="checkbox"
+               class="form-check-input privacy-consent-checkbox"
+               required
+               data-cookie-string="@acceptCookie" />
+        <label asp-for="ConsentCheckbox">
+            @* This has to be pre-rendered because using the <shape> tag helper inside the label here causes 
+            "System.InvalidOperationException: Buffer has already been rendered" exception. *@
+            @Html.Raw(labelHtml)
+        </label>
         <br>
         <span asp-validation-for="ConsentCheckbox" class="text-danger"></span>
     </div>
 </fieldset>
 
-<script depends-on="jQuery" at="Foot">
-    $(function () {
-        $('form').on('submit', function () {
-            const $checkbox = $('#@checkboxId');
-            if ($checkbox.is(':checked')) {
-                document.cookie = $checkbox.data('cookie-string');
-            }
+@{
+    ViewContext.CheckBoxHiddenInputRenderMode = originalRenderMode;
+}
+
+<script asp-name="privacy-consent-checkbox-script" depends-on="jQuery" at="Foot">
+    jQuery(function ($) {
+        $('.privacy-consent-checkbox').each(function () {
+            if (!this.form) return;
+
+            const $checkbox = $(this);
+            const $form = $(this.form);
+            
+            $form.submit(function () {
+                if ($checkbox.is(':checked')) {
+                    document.cookie = $checkbox.data('cookie-string');
+                }
+            });
         });
     });
 </script>
