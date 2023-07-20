@@ -9,6 +9,7 @@ using Lombiq.Privacy.Navigation;
 using Lombiq.Privacy.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,14 +47,17 @@ public class Startup : StartupBase
 
             options.OnAppendCookie = cookieContext =>
             {
-                // Check if the cookie name matches the ones used for Azure AD authentication.
+                // Check if the cookie name matches the ones used for Azure AD authentication, or the path matches with
+                // the one that Lombiq.Hosting.Tenants.Admin.Login uses.
                 if (cookieContext.CookieName.Contains("AspNetCore.OpenIdConnect.Nonce")
                     || cookieContext.CookieName.Contains("AspNetCore.Correlation")
-                    || cookieContext.CookieName.Contains("Identity.External"))
+                    || cookieContext.CookieName.Contains("Identity.External")
+                    || cookieContext.Context.Features.Get<IHttpRequestFeature>()
+                        .Path.Contains("/Lombiq.Hosting.Tenants.Admin.Login/TenantLogin/Index"))
                 {
-                    // For Azure AD to work with Lombiq.PrivacyPolicy, we need to set the CookieOptions.SameSite value
-                    // to SameSiteMode.None. Without this the Azure AD authentication will fail with the
-                    // "System.Exception: Correlation failed" error.
+                    // For Azure AD and Lombiq.Hosting.Tenants.Admin.Loginto work with Lombiq.PrivacyPolicy, we need to
+                    // set the CookieOptions.SameSite value to SameSiteMode.None. Without this the Azure AD
+                    // authentication will fail with the "System.Exception: Correlation failed" error.
                     cookieContext.CookieOptions.SameSite = SameSiteMode.None;
                     cookieContext.CookieOptions.Secure = true;
                     cookieContext.CookieOptions.Domain = cookieContext.Context.Request.Host.Host;
