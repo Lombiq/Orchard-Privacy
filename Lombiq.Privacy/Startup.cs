@@ -59,8 +59,8 @@ public class Startup : StartupBase
                     cookieContext.CookieOptions.Domain = cookieContext.Context.Request.Host.Host;
                 }
 
-                // We can't set the SameSiteMode to Strict on the orchauth cookie if an external login feature is #spell-check-ignore-line
-                // enabled since it will come from a different site, so we have to use the default value.
+                // We can't set the SameSiteMode to Strict on the Orchard authorization cookie if an external login
+                // feature is enabled since it will come from a different site, so we have to use the default value.
                 else if (cookieContext.CookieName.Contains("orchauth"))
                 {
                     cookieContext.CookieOptions.SameSite = SameSiteMode.Lax;
