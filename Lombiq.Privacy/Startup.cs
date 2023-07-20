@@ -55,7 +55,7 @@ public class Startup : StartupBase
                     || cookieContext.Context.Features.Get<IHttpRequestFeature>()
                         .Path.Contains("/Lombiq.Hosting.Tenants.Admin.Login/TenantLogin/Index"))
                 {
-                    // For Azure AD and Lombiq.Hosting.Tenants.Admin.Loginto work with Lombiq.PrivacyPolicy, we need to
+                    // For Azure AD and Lombiq.Hosting.Tenants.Admin.Login to work with Lombiq.PrivacyPolicy, we need to
                     // set the CookieOptions.SameSite value to SameSiteMode.None. Without this the Azure AD
                     // authentication will fail with the "System.Exception: Correlation failed" error.
                     cookieContext.CookieOptions.SameSite = SameSiteMode.None;
