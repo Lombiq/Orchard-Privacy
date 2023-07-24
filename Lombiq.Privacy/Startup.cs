@@ -58,6 +58,12 @@ public class Startup : StartupBase
                     cookieContext.CookieOptions.Secure = true;
                     cookieContext.CookieOptions.Domain = cookieContext.Context.Request.Host.Host;
                 }
+                else if (cookieContext.CookieName.Contains("orchauth")) //// #spell-check-ignore-line
+                {
+                    // We can't set the SameSiteMode to Strict on the Orchard authorization cookie if an external login
+                    // feature is enabled since it will come from a different site, so we have to use the default value.
+                    cookieContext.CookieOptions.SameSite = SameSiteMode.Lax;
+                }
             };
         });
     }
