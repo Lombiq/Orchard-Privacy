@@ -2,9 +2,9 @@ using Lombiq.Privacy.ViewModels;
 using Microsoft.AspNetCore.Mvc.Filters;
 using OrchardCore.DisplayManagement;
 using OrchardCore.DisplayManagement.Layout;
+using OrchardCore.Modules;
 using OrchardCore.Mvc.Core.Utilities;
 using OrchardCore.Users.Controllers;
-using System;
 using System.Threading.Tasks;
 
 namespace Lombiq.Privacy.Filters;

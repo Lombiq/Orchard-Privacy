@@ -23,7 +23,7 @@ public class PrivacyRegistrationConsentSettingsMigrations : DataMigration
 
     public async Task<int> CreateAsync()
     {
-        _contentDefinitionManager.AlterTypeDefinition(PrivacyRegistrationConsentSettings, type => type
+        await _contentDefinitionManager.AlterTypeDefinitionAsync(PrivacyRegistrationConsentSettings, type => type
             .WithPart(nameof(LiquidPart))
             .Stereotype("CustomSettings"));
 

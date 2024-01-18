@@ -2,8 +2,8 @@ using Lombiq.HelpfulLibraries.OrchardCore.Navigation;
 using Microsoft.Extensions.Localization;
 using OrchardCore.CustomSettings;
 using OrchardCore.CustomSettings.Services;
+using OrchardCore.Modules;
 using OrchardCore.Navigation;
-using System;
 using System.Threading.Tasks;
 using static Lombiq.Privacy.Constants.TypeNames;
 
@@ -22,14 +22,14 @@ public class PrivacyConsentCheckboxSettingsMenu : INavigationProvider
         _customSettingsService = customSettingsService;
     }
 
-    public Task BuildNavigationAsync(string name, NavigationBuilder builder)
+    public async Task BuildNavigationAsync(string name, NavigationBuilder builder)
     {
         if (!name.EqualsOrdinalIgnoreCase("admin"))
         {
-            return Task.CompletedTask;
+            return;
         }
 
-        var type = _customSettingsService.GetSettingsType(PrivacyConsentCheckboxSettings);
+        var type = await _customSettingsService.GetSettingsTypeAsync(PrivacyConsentCheckboxSettings);
 
         if (type != null)
         {
@@ -44,7 +44,5 @@ public class PrivacyConsentCheckboxSettingsMenu : INavigationProvider
                             .Id(type.Name)
                             .LocalNav())));
         }
-
-        return Task.CompletedTask;
     }
 }
