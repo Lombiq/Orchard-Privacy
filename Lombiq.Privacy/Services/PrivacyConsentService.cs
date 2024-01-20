@@ -14,7 +14,8 @@ using System.Threading.Tasks;
 
 namespace Lombiq.Privacy.Services;
 
-public class PrivacyConsentService(UserManager<IUser> userManager, IOptions<CookiePolicyOptions> cookiePolicyOptions, IUserService userService) : IPrivacyConsentService
+public class PrivacyConsentService(UserManager<IUser> userManager, IOptions<CookiePolicyOptions> cookiePolicyOptions, IUserService userService)
+    : IPrivacyConsentService
 {
     public async Task<bool> IsConsentBannerNeededAsync(HttpContext httpContext)
     {

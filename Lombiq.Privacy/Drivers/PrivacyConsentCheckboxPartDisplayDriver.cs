@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace Lombiq.Privacy.Drivers;
 
-public class PrivacyConsentCheckboxPartDisplayDriver(IPrivacyConsentService consentService, IHttpContextAccessor hca) : ContentPartDisplayDriver<PrivacyConsentCheckboxPart>
+public class PrivacyConsentCheckboxPartDisplayDriver(IPrivacyConsentService consentService, IHttpContextAccessor hca)
+    : ContentPartDisplayDriver<PrivacyConsentCheckboxPart>
 {
     public override async Task<IDisplayResult> DisplayAsync(PrivacyConsentCheckboxPart part, BuildPartDisplayContext context) =>
         // If the user has already accepted the privacy statement, it doesn't need to display the checkbox.
