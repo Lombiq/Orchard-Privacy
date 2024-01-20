@@ -12,22 +12,12 @@ using System.Threading.Tasks;
 
 namespace Lombiq.Privacy.Samples.Navigation;
 
-public class PrivacySamplesNavigationProvider : MainMenuNavigationProviderBase
+public class PrivacySamplesNavigationProvider(
+    IHttpContextAccessor hca,
+    IStringLocalizer<PrivacySamplesNavigationProvider> stringLocalizer,
+    IAuthorizationService authorizationService,
+    IWorkflowTypeStore workflowTypeStore) : MainMenuNavigationProviderBase(hca, stringLocalizer)
 {
-    private readonly IAuthorizationService _authorizationService;
-    private readonly IWorkflowTypeStore _workflowTypeStore;
-
-    public PrivacySamplesNavigationProvider(
-        IHttpContextAccessor hca,
-        IStringLocalizer<PrivacySamplesNavigationProvider> stringLocalizer,
-        IAuthorizationService authorizationService,
-        IWorkflowTypeStore workflowTypeStore)
-        : base(hca, stringLocalizer)
-    {
-        _authorizationService = authorizationService;
-        _workflowTypeStore = workflowTypeStore;
-    }
-
     protected override Task BuildAsync(NavigationBuilder builder) => builder
         .AddAsync(T["Privacy Samples"], builder => builder
             .Add(T["Competitor registration"], itemBuilder => itemBuilder.Url("/competitor-registration"))
@@ -37,9 +27,9 @@ public class PrivacySamplesNavigationProvider : MainMenuNavigationProviderBase
                     builder
                         .Permission(Permissions.ManageWorkflows);
 
-                    if (await _authorizationService.AuthorizeAsync(_hca.HttpContext?.User, Permissions.ManageWorkflows))
+                    if (await authorizationService.AuthorizeAsync(_hca.HttpContext?.User, Permissions.ManageWorkflows))
                     {
-                        var workflow = await _workflowTypeStore.GetAsync(Ids.RegistrationWorkflowTypeId);
+                        var workflow = await workflowTypeStore.GetAsync(Ids.RegistrationWorkflowTypeId);
                         if (workflow != null)
                         {
                             builder.Add(T["Competitor registration workflow"], builder => builder

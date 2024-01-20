@@ -9,19 +9,10 @@ using System.Threading.Tasks;
 
 namespace Lombiq.Privacy.Filters;
 
-public class RegistrationCheckboxInjectionFilter : IAsyncResultFilter
+public class RegistrationCheckboxInjectionFilter(
+    ILayoutAccessor layoutAccessor,
+    IShapeFactory shapeFactory) : IAsyncResultFilter
 {
-    private readonly ILayoutAccessor _layoutAccessor;
-    private readonly IShapeFactory _shapeFactory;
-
-    public RegistrationCheckboxInjectionFilter(
-        ILayoutAccessor layoutAccessor,
-        IShapeFactory shapeFactory)
-    {
-        _layoutAccessor = layoutAccessor;
-        _shapeFactory = shapeFactory;
-    }
-
     public async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
     {
         var routeValues = context.ActionDescriptor.RouteValues;
@@ -34,9 +25,9 @@ public class RegistrationCheckboxInjectionFilter : IAsyncResultFilter
             return;
         }
 
-        var layout = await _layoutAccessor.GetLayoutAsync();
+        var layout = await layoutAccessor.GetLayoutAsync();
         var afterRegisterZone = layout.Zones["AfterRegister"];
-        var shape = await _shapeFactory.CreateAsync<PrivacyRegistrationConsentCheckboxViewModel>(
+        var shape = await shapeFactory.CreateAsync<PrivacyRegistrationConsentCheckboxViewModel>(
             "Lombiq_Privacy_RegistrationCheckbox",
             viewModel => viewModel.RegistrationCheckbox = false);
 

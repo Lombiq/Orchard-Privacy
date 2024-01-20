@@ -4,19 +4,15 @@ using System.Threading.Tasks;
 
 namespace Lombiq.Privacy.Controllers;
 
-public class PrivacyConsentController : Controller
+public class PrivacyConsentController(IPrivacyConsentService consentService) : Controller
 {
-    private readonly IPrivacyConsentService _consentService;
-
-    public PrivacyConsentController(IPrivacyConsentService consentService) => _consentService = consentService;
-
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> AcceptanceOfConsent()
     {
-        if (!await _consentService.IsUserAcceptedConsentAsync(ControllerContext.HttpContext))
+        if (!await consentService.IsUserAcceptedConsentAsync(ControllerContext.HttpContext))
         {
-            await _consentService.StoreUserConsentAsync(User);
+            await consentService.StoreUserConsentAsync(User);
         }
 
         return Ok();

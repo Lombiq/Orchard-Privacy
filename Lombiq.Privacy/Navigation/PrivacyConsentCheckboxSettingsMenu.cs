@@ -9,18 +9,11 @@ using static Lombiq.Privacy.Constants.TypeNames;
 
 namespace Lombiq.Privacy.Navigation;
 
-public class PrivacyConsentCheckboxSettingsMenu : INavigationProvider
+public class PrivacyConsentCheckboxSettingsMenu(
+    IStringLocalizer<PrivacyConsentCheckboxSettingsMenu> localizer,
+    CustomSettingsService customSettingsService) : INavigationProvider
 {
-    private readonly CustomSettingsService _customSettingsService;
-    private readonly IStringLocalizer T;
-
-    public PrivacyConsentCheckboxSettingsMenu(
-        IStringLocalizer<PrivacyConsentCheckboxSettingsMenu> localizer,
-        CustomSettingsService customSettingsService)
-    {
-        T = localizer;
-        _customSettingsService = customSettingsService;
-    }
+    private readonly IStringLocalizer T = localizer;
 
     public async Task BuildNavigationAsync(string name, NavigationBuilder builder)
     {
@@ -29,7 +22,7 @@ public class PrivacyConsentCheckboxSettingsMenu : INavigationProvider
             return;
         }
 
-        var type = await _customSettingsService.GetSettingsTypeAsync(PrivacyConsentCheckboxSettings);
+        var type = await customSettingsService.GetSettingsTypeAsync(PrivacyConsentCheckboxSettings);
 
         if (type != null)
         {

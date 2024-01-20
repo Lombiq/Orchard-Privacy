@@ -8,26 +8,17 @@ using static Lombiq.Privacy.Constants.TypeNames;
 
 namespace Lombiq.Privacy.Migrations;
 
-public class PrivacyConsentCheckboxSettingsMigrations : DataMigration
+public class PrivacyConsentCheckboxSettingsMigrations(
+    IContentDefinitionManager contentDefinitionManager,
+    IRecipeMigrator recipeMigrator) : DataMigration
 {
-    private readonly IContentDefinitionManager _contentDefinitionManager;
-    private readonly IRecipeMigrator _recipeMigrator;
-
-    public PrivacyConsentCheckboxSettingsMigrations(
-        IContentDefinitionManager contentDefinitionManager,
-        IRecipeMigrator recipeMigrator)
-    {
-        _contentDefinitionManager = contentDefinitionManager;
-        _recipeMigrator = recipeMigrator;
-    }
-
     public async Task<int> CreateAsync()
     {
-        await _contentDefinitionManager.AlterTypeDefinitionAsync(PrivacyConsentCheckboxSettings, type => type
+        await contentDefinitionManager.AlterTypeDefinitionAsync(PrivacyConsentCheckboxSettings, type => type
             .WithPart(nameof(LiquidPart))
             .Stereotype("CustomSettings"));
 
-        await _recipeMigrator.ExecuteAsync("Recipes/PrivacyConsentCheckboxSettings.recipe.json", this);
+        await recipeMigrator.ExecuteAsync("Recipes/PrivacyConsentCheckboxSettings.recipe.json", this);
 
         return 1;
     }

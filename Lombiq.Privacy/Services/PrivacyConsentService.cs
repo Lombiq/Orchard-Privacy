@@ -14,20 +14,8 @@ using System.Threading.Tasks;
 
 namespace Lombiq.Privacy.Services;
 
-public class PrivacyConsentService : IPrivacyConsentService
+public class PrivacyConsentService(UserManager<IUser> userManager, IOptions<CookiePolicyOptions> cookiePolicyOptions, IUserService userService) : IPrivacyConsentService
 {
-    private readonly UserManager<IUser> _userManager;
-    private readonly IUserService _userService;
-
-    private readonly IOptions<CookiePolicyOptions> _cookiePolicyOptions;
-
-    public PrivacyConsentService(UserManager<IUser> userManager, IOptions<CookiePolicyOptions> cookiePolicyOptions, IUserService userService)
-    {
-        _userManager = userManager;
-        _cookiePolicyOptions = cookiePolicyOptions;
-        _userService = userService;
-    }
-
     public async Task<bool> IsConsentBannerNeededAsync(HttpContext httpContext)
     {
         var consentFeature = httpContext.Features.Get<ITrackingConsentFeature>();
@@ -38,11 +26,11 @@ public class PrivacyConsentService : IPrivacyConsentService
 
         if (httpContext.User.Identity.IsAuthenticated)
         {
-            var user = await _userService.GetAuthenticatedUserAsync(httpContext.User);
+            var user = await userService.GetAuthenticatedUserAsync(httpContext.User);
             return user is not User orchardUser || !orchardUser.Has<PrivacyConsent>();
         }
 
-        var cookieConsent = httpContext.Request.Cookies[_cookiePolicyOptions.Value.ConsentCookie.Name];
+        var cookieConsent = httpContext.Request.Cookies[cookiePolicyOptions.Value.ConsentCookie.Name];
         return cookieConsent == null;
     }
 
@@ -50,7 +38,7 @@ public class PrivacyConsentService : IPrivacyConsentService
     {
         if (httpContext.User.Identity.IsAuthenticated)
         {
-            var user = await _userService.GetAuthenticatedUserAsync(httpContext.User);
+            var user = await userService.GetAuthenticatedUserAsync(httpContext.User);
 
             return
                 user is not User orchardUser ||
@@ -64,26 +52,26 @@ public class PrivacyConsentService : IPrivacyConsentService
     {
         if (httpContext.User.Identity.IsAuthenticated)
         {
-            var user = await _userService.GetAuthenticatedUserAsync(httpContext.User);
+            var user = await userService.GetAuthenticatedUserAsync(httpContext.User);
 
             return
                 user is User orchardUser &&
                 orchardUser.Has<PrivacyConsent>() && orchardUser.As<PrivacyConsent>().Accepted;
         }
 
-        var cookieConsent = httpContext.Request.Cookies[_cookiePolicyOptions.Value.ConsentCookie.Name];
+        var cookieConsent = httpContext.Request.Cookies[cookiePolicyOptions.Value.ConsentCookie.Name];
         return !string.IsNullOrEmpty(cookieConsent) && cookieConsent.EqualsOrdinalIgnoreCase("yes");
     }
 
     public async Task StoreUserConsentAsync(ClaimsPrincipal user) =>
-        await StoreUserConsentAsync(await _userService.GetAuthenticatedUserAsync(user));
+        await StoreUserConsentAsync(await userService.GetAuthenticatedUserAsync(user));
 
     public async Task StoreUserConsentAsync(IUser user)
     {
         if (user is User orchardUser)
         {
             orchardUser.Put(new PrivacyConsent { Accepted = true });
-            await _userManager.UpdateAsync(orchardUser);
+            await userManager.UpdateAsync(orchardUser);
         }
     }
 }
