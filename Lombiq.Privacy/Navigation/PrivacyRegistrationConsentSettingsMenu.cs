@@ -9,11 +9,18 @@ using static Lombiq.Privacy.Constants.TypeNames;
 
 namespace Lombiq.Privacy.Navigation;
 
-public class PrivacyRegistrationConsentSettingsMenu(
-    IStringLocalizer<PrivacyRegistrationConsentSettingsMenu> localizer,
-    CustomSettingsService customSettingsService) : INavigationProvider
+public class PrivacyRegistrationConsentSettingsMenu : INavigationProvider
 {
-    private readonly IStringLocalizer T = localizer;
+    private readonly CustomSettingsService _customSettingsService;
+    private readonly IStringLocalizer T;
+
+    public PrivacyRegistrationConsentSettingsMenu(
+        IStringLocalizer<PrivacyRegistrationConsentSettingsMenu> localizer,
+        CustomSettingsService customSettingsService)
+    {
+        T = localizer;
+        _customSettingsService = customSettingsService;
+    }
 
     public async Task BuildNavigationAsync(string name, NavigationBuilder builder)
     {
@@ -22,7 +29,7 @@ public class PrivacyRegistrationConsentSettingsMenu(
             return;
         }
 
-        var type = await customSettingsService.GetSettingsTypeAsync(PrivacyRegistrationConsentSettings);
+        var type = await _customSettingsService.GetSettingsTypeAsync(PrivacyRegistrationConsentSettings);
 
         if (type != null)
         {

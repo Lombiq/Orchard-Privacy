@@ -8,17 +8,26 @@ using static Lombiq.Privacy.Constants.TypeNames;
 
 namespace Lombiq.Privacy.Migrations;
 
-public class PrivacyConsentBannerSettingsMigrations(
-    IContentDefinitionManager contentDefinitionManager,
-    IRecipeMigrator recipeMigrator) : DataMigration
+public class PrivacyConsentBannerSettingsMigrations : DataMigration
 {
+    private readonly IContentDefinitionManager _contentDefinitionManager;
+    private readonly IRecipeMigrator _recipeMigrator;
+
+    public PrivacyConsentBannerSettingsMigrations(
+        IContentDefinitionManager contentDefinitionManager,
+        IRecipeMigrator recipeMigrator)
+    {
+        _contentDefinitionManager = contentDefinitionManager;
+        _recipeMigrator = recipeMigrator;
+    }
+
     public async Task<int> CreateAsync()
     {
-        await contentDefinitionManager.AlterTypeDefinitionAsync(PrivacyConsentBannerSettings, type => type
+        await _contentDefinitionManager.AlterTypeDefinitionAsync(PrivacyConsentBannerSettings, type => type
            .WithPart(nameof(LiquidPart))
            .Stereotype("CustomSettings"));
 
-        await recipeMigrator.ExecuteAsync("Recipes/PrivacyConsentBannerSettings.recipe.json", this);
+        await _recipeMigrator.ExecuteAsync("Recipes/PrivacyConsentBannerSettings.recipe.json", this);
 
         return 1;
     }

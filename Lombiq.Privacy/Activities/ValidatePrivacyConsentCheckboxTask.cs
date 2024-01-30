@@ -13,13 +13,24 @@ using System.Threading.Tasks;
 
 namespace Lombiq.Privacy.Activities;
 
-public class ValidatePrivacyConsentCheckboxTask(
-    IUpdateModelAccessor updateModelAccessor,
-    IStringLocalizer<ValidatePrivacyConsentCheckboxTask> stringLocalizer,
-    IHttpContextAccessor hca,
-    IPrivacyConsentService consentService) : TaskActivity
+public class ValidatePrivacyConsentCheckboxTask : TaskActivity
 {
-    private readonly IStringLocalizer T = stringLocalizer;
+    private readonly IUpdateModelAccessor _updateModelAccessor;
+    private readonly IStringLocalizer T;
+    private readonly IHttpContextAccessor _hca;
+    private readonly IPrivacyConsentService _consentService;
+
+    public ValidatePrivacyConsentCheckboxTask(
+        IUpdateModelAccessor updateModelAccessor,
+        IStringLocalizer<ValidatePrivacyConsentCheckboxTask> stringLocalizer,
+        IHttpContextAccessor hca,
+        IPrivacyConsentService consentService)
+    {
+        _updateModelAccessor = updateModelAccessor;
+        _hca = hca;
+        _consentService = consentService;
+        T = stringLocalizer;
+    }
 
     public override string Name => nameof(ValidatePrivacyConsentCheckboxTask);
 
@@ -39,18 +50,18 @@ public class ValidatePrivacyConsentCheckboxTask(
         ActivityContext activityContext)
     {
         // If the user has already accepted the privacy statement, it doesn't need to validate that form again.
-        if (await consentService.IsUserAcceptedConsentAsync(hca.HttpContext))
+        if (await _consentService.IsUserAcceptedConsentAsync(_hca.HttpContext))
             return Outcomes("Done", "Valid");
 
         const string consentCheckboxName = $"{nameof(PrivacyConsentCheckboxPart)}.{nameof(PrivacyConsentCheckboxPart.ConsentCheckbox)}";
-        var form = hca.HttpContext.Request.Form;
+        var form = _hca.HttpContext.Request.Form;
         var consentCheckboxValue = form[consentCheckboxName].Select(bool.Parse);
         var isValid = consentCheckboxValue.Contains(value: true);
         var outcome = isValid ? "Valid" : "Invalid";
 
         if (!isValid)
         {
-            var updater = updateModelAccessor.ModelUpdater;
+            var updater = _updateModelAccessor.ModelUpdater;
 
             updater?.ModelState.TryAddModelError(consentCheckboxName, T["You have to accept the privacy policy."]);
         }

@@ -7,14 +7,19 @@ using static Lombiq.Privacy.Constants.TypeNames;
 
 namespace Lombiq.Privacy.Migrations;
 
-public class PrivacyConsentCheckboxMigrations(IContentDefinitionManager contentDefinitionManager) : DataMigration
+public class PrivacyConsentCheckboxMigrations : DataMigration
 {
+    private readonly IContentDefinitionManager _contentDefinitionManager;
+
+    public PrivacyConsentCheckboxMigrations(IContentDefinitionManager contentDefinitionManager) =>
+        _contentDefinitionManager = contentDefinitionManager;
+
     public async Task<int> CreateAsync()
     {
-        await contentDefinitionManager.AlterPartDefinitionAsync(nameof(PrivacyConsentCheckboxPart), part => part
+        await _contentDefinitionManager.AlterPartDefinitionAsync(nameof(PrivacyConsentCheckboxPart), part => part
             .WithDescription("Provides privacy consent checkbox properties."));
 
-        await contentDefinitionManager.AlterTypeDefinitionAsync(PrivacyConsentCheckbox, type => type
+        await _contentDefinitionManager.AlterTypeDefinitionAsync(PrivacyConsentCheckbox, type => type
             .WithPart(nameof(PrivacyConsentCheckboxPart))
             .Stereotype("Widget"));
 
