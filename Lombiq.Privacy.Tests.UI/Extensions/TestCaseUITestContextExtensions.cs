@@ -47,7 +47,7 @@ public static class TestCaseUITestContextExtensions
 
     public static async Task TestConsentBannerWithThemeAsync(this UITestContext context, string theme)
     {
-        await context.SelectThemeAsync(theme);
+        await context.SetThemeDirectlyAsync(theme);
         await context.SignInDirectlyAsync();
         await context.TestConsentBannerAsync();
     }
