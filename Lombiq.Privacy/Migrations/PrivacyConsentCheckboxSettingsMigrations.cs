@@ -23,7 +23,7 @@ public class PrivacyConsentCheckboxSettingsMigrations : DataMigration
 
     public async Task<int> CreateAsync()
     {
-        _contentDefinitionManager.AlterTypeDefinition(PrivacyConsentCheckboxSettings, type => type
+        await _contentDefinitionManager.AlterTypeDefinitionAsync(PrivacyConsentCheckboxSettings, type => type
             .WithPart(nameof(LiquidPart))
             .Stereotype("CustomSettings"));
 

@@ -7,13 +7,13 @@ using OrchardCore.Modules.Manifest;
     Version = "0.0.1",
     Description = "Samples for Lombiq Privacy.",
     Category = "Privacy",
-    Dependencies = new[]
-    {
+    Dependencies =
+    [
         Lombiq.HelpfulExtensions.FeatureIds.ContentTypes,
         Lombiq.Privacy.Constants.FeatureNames.ConsentBanner,
         Lombiq.Privacy.Constants.FeatureNames.FormConsent,
         Lombiq.Privacy.Constants.FeatureNames.RegistrationConsent,
         "OrchardCore.ContentFields",
         "OrchardCore.Workflows.Http",
-    }
+    ]
 )]

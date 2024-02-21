@@ -2,6 +2,7 @@ using Lombiq.Privacy.Models;
 using OrchardCore.ContentManagement.Metadata;
 using OrchardCore.ContentManagement.Metadata.Settings;
 using OrchardCore.Data.Migration;
+using System.Threading.Tasks;
 using static Lombiq.Privacy.Constants.TypeNames;
 
 namespace Lombiq.Privacy.Migrations;
@@ -13,12 +14,12 @@ public class PrivacyConsentCheckboxMigrations : DataMigration
     public PrivacyConsentCheckboxMigrations(IContentDefinitionManager contentDefinitionManager) =>
         _contentDefinitionManager = contentDefinitionManager;
 
-    public int Create()
+    public async Task<int> CreateAsync()
     {
-        _contentDefinitionManager.AlterPartDefinition(nameof(PrivacyConsentCheckboxPart), part => part
+        await _contentDefinitionManager.AlterPartDefinitionAsync(nameof(PrivacyConsentCheckboxPart), part => part
             .WithDescription("Provides privacy consent checkbox properties."));
 
-        _contentDefinitionManager.AlterTypeDefinition(PrivacyConsentCheckbox, type => type
+        await _contentDefinitionManager.AlterTypeDefinitionAsync(PrivacyConsentCheckbox, type => type
             .WithPart(nameof(PrivacyConsentCheckboxPart))
             .Stereotype("Widget"));
 

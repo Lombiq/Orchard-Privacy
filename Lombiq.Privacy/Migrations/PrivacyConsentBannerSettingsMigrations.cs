@@ -23,7 +23,7 @@ public class PrivacyConsentBannerSettingsMigrations : DataMigration
 
     public async Task<int> CreateAsync()
     {
-        _contentDefinitionManager.AlterTypeDefinition(PrivacyConsentBannerSettings, type => type
+        await _contentDefinitionManager.AlterTypeDefinitionAsync(PrivacyConsentBannerSettings, type => type
            .WithPart(nameof(LiquidPart))
            .Stereotype("CustomSettings"));
 

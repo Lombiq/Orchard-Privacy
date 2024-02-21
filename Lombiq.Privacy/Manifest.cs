@@ -20,7 +20,7 @@ using static Lombiq.Privacy.Constants.FeatureNames;
     Name = "Lombiq Privacy - Consent banner",
     Description = "Adds the ability to show a privacy consent banner.",
     Category = "Privacy",
-    Dependencies = new[] { Module, "OrchardCore.CustomSettings" }
+    Dependencies = [Module, "OrchardCore.CustomSettings"]
 )]
 
 [assembly: Feature(
@@ -28,7 +28,7 @@ using static Lombiq.Privacy.Constants.FeatureNames;
     Name = "Lombiq Privacy - Registration consent",
     Description = "Adds a privacy consent checkbox to the registration form.",
     Category = "Privacy",
-    Dependencies = new[] { Module, "OrchardCore.CustomSettings", "OrchardCore.Users.Registration" }
+    Dependencies = [Module, "OrchardCore.CustomSettings", "OrchardCore.Users.Registration"]
 )]
 
 [assembly: Feature(
@@ -36,5 +36,5 @@ using static Lombiq.Privacy.Constants.FeatureNames;
     Name = "Lombiq Privacy - Form consent",
     Description = "Provides the Privacy Consent Checkbox widget that can be used on any form.",
     Category = "Privacy",
-    Dependencies = new[] { Module, "OrchardCore.CustomSettings", "OrchardCore.Forms" }
+    Dependencies = [Module, "OrchardCore.CustomSettings", "OrchardCore.Forms"]
 )]
