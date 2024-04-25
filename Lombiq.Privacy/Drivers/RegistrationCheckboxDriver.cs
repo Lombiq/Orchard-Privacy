@@ -8,5 +8,6 @@ namespace Lombiq.Privacy.Drivers;
 public class RegistrationCheckboxDriver : DisplayDriver<RegisterUserForm>
 {
     public override IDisplayResult Edit(RegisterUserForm model) =>
-        Initialize<PrivacyRegistrationConsentCheckboxViewModel>("Lombiq_Privacy_RegistrationCheckbox", _ => { });
+        Initialize<PrivacyRegistrationConsentCheckboxViewModel>("Lombiq_Privacy_RegistrationCheckbox", _ => { })
+            .Location("Content:after");
 }
