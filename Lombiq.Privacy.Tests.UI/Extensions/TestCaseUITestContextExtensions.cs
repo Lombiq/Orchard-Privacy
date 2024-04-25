@@ -107,11 +107,11 @@ public static class TestCaseUITestContextExtensions
 
         // Go to registration and create a new user.
         await context.GoToRegistrationPageAsync();
-        await context.FillInWithRetriesAsync(By.Id("UserName"), TestUser.Name);
-        await context.FillInWithRetriesAsync(By.Id("Email"), TestUser.Email);
-        await context.FillInWithRetriesAsync(By.Id("Password"), TestUser.Password);
-        await context.FillInWithRetriesAsync(By.Id("ConfirmPassword"), TestUser.Password);
-        await context.SetCheckboxValueAsync(By.Id("RegistrationCheckbox"), isChecked: true);
+        await context.FillInWithRetriesAsync(By.Id("RegisterUserForm_UserName"), TestUser.Name);
+        await context.FillInWithRetriesAsync(By.Id("RegisterUserForm_Email"), TestUser.Email);
+        await context.FillInWithRetriesAsync(By.Id("RegisterUserForm_Password"), TestUser.Password);
+        await context.FillInWithRetriesAsync(By.Id("RegisterUserForm_ConfirmPassword"), TestUser.Password);
+        await context.SetCheckboxValueAsync(By.Id("RegisterUserForm_RegistrationCheckbox"), isChecked: true);
         await context.ClickReliablyOnSubmitAsync();
 
         // Login with the created user.
