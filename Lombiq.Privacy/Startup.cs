@@ -95,7 +95,6 @@ public class ConsentBannerStartup : StartupBase
     {
         services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
         services.AddAsyncResultFilter<PrivacyConsentBannerInjectionFilter>();
-        services.Configure<MvcOptions>((options) => options.Filters.Add(typeof(PrivacyConsentBannerInjectionFilter)));
         services.AddDataMigration<PrivacyConsentBannerSettingsMigrations>();
         services.AddScoped<INavigationProvider, PrivacyConsentBannerSettingsMenu>();
     }
