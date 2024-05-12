@@ -28,7 +28,7 @@ public static class TestCaseUITestContextExtensions
         context.GetCurrentUri().AbsolutePath.ShouldBe(AbsolutePaths.CompetitorRegistration);
 
         // Now we set consent checkbox to checked.
-        await context.SetCheckboxValueAsync(By.Id("PrivacyConsentCheckboxPart_ConsentCheckbox"), isChecked: true);
+        await context.SetCheckboxValueAsync(By.Id("PrivacyConsentCheckboxPart_ConsentCheckbox"));
         await context.ClickReliablyOnSubmitAsync();
 
         // After submit, it navigates to the new content items view.
@@ -111,7 +111,7 @@ public static class TestCaseUITestContextExtensions
         await context.FillInWithRetriesAsync(By.Id("RegisterUserForm_Email"), TestUser.Email);
         await context.FillInWithRetriesAsync(By.Id("RegisterUserForm_Password"), TestUser.Password);
         await context.FillInWithRetriesAsync(By.Id("RegisterUserForm_ConfirmPassword"), TestUser.Password);
-        await context.SetCheckboxValueAsync(By.Id("RegisterUserForm_RegistrationCheckbox"), isChecked: true);
+        await context.SetCheckboxValueAsync(By.Id("RegisterUserForm_RegistrationCheckbox"));
         await context.ClickReliablyOnSubmitAsync();
 
         // Login with the created user.
