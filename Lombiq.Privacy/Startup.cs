@@ -1,3 +1,4 @@
+using Lombiq.HelpfulLibraries.AspNetCore.Extensions;
 using Lombiq.Privacy.Activities;
 using Lombiq.Privacy.Constants;
 using Lombiq.Privacy.Drivers;
@@ -9,17 +10,18 @@ using Lombiq.Privacy.Navigation;
 using Lombiq.Privacy.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.Data.Migration;
+using OrchardCore.DisplayManagement.Handlers;
 using OrchardCore.Modules;
 using OrchardCore.Navigation;
 using OrchardCore.ResourceManagement;
 using OrchardCore.Users.Events;
+using OrchardCore.Users.Models;
 using OrchardCore.Workflows.Helpers;
 using System;
 using System.Threading.Tasks;
@@ -91,8 +93,7 @@ public class ConsentBannerStartup : StartupBase
     public override void ConfigureServices(IServiceCollection services)
     {
         services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
-        services.Configure<MvcOptions>((options) =>
-            options.Filters.Add(typeof(PrivacyConsentBannerInjectionFilter)));
+        services.AddAsyncResultFilter<PrivacyConsentBannerInjectionFilter>();
         services.AddDataMigration<PrivacyConsentBannerSettingsMigrations>();
         services.AddScoped<INavigationProvider, PrivacyConsentBannerSettingsMenu>();
     }
@@ -106,8 +107,7 @@ public class RegistrationConsentStartup : StartupBase
 
     public override void ConfigureServices(IServiceCollection services)
     {
-        services.Configure<MvcOptions>((options) =>
-            options.Filters.Add(typeof(RegistrationCheckboxInjectionFilter)));
+        services.AddScoped<IDisplayDriver<RegisterUserForm>, RegistrationCheckboxDriver>();
         services.AddScoped<IRegistrationFormEvents, RegistrationFormEventHandler>();
         services.AddDataMigration<PrivacyRegistrationConsentSettingsMigrations>();
         services.AddScoped<INavigationProvider, PrivacyRegistrationConsentSettingsMenu>();
