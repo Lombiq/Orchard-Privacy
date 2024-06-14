@@ -18,7 +18,7 @@
     <PackageTags>OrchardCore;Lombiq;AspNetCore;GDPR;Privacy</PackageTags>
     <RepositoryUrl>https://github.com/Lombiq/Orchard-Privacy</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Lombiq/Orchard-Privacy/blob/dev/Lombiq.Privacy.Samples/Readme.md</PackageProjectUrl>
-    <PackageLicenseFile>License.md</PackageLicenseFile>
+    <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,7 +40,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="License.md" Pack="true" PackagePath="" />
     <None Include="Readme.md" />
     <None Include="NuGetIcon.png" Pack="true" PackagePath="" />
   </ItemGroup>
