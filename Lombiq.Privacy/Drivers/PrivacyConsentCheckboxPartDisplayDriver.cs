@@ -4,6 +4,7 @@ using Lombiq.Privacy.ViewModels;
 using Microsoft.AspNetCore.Http;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentManagement.Display.Models;
+using OrchardCore.DisplayManagement.Handlers;
 using OrchardCore.DisplayManagement.ModelBinding;
 using OrchardCore.DisplayManagement.Views;
 using System.Threading.Tasks;
@@ -39,12 +40,8 @@ public class PrivacyConsentCheckboxPartDisplayDriver : ContentPartDisplayDriver<
         IUpdateModel updater,
         UpdatePartEditorContext context)
     {
-        var viewModel = new PrivacyConsentCheckboxPartEditViewModel();
-
-        if (await updater.TryUpdateModelAsync(viewModel, Prefix))
-        {
-            part.ShowAlways = viewModel.ShowAlways;
-        }
+        var viewModel = await context.CreateModelAsync<PrivacyConsentCheckboxPartEditViewModel>(Prefix);
+        part.ShowAlways = viewModel.ShowAlways;
 
         return await EditAsync(part, context);
     }
