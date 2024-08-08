@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Http;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentManagement.Display.Models;
 using OrchardCore.DisplayManagement.Handlers;
-using OrchardCore.DisplayManagement.ModelBinding;
 using OrchardCore.DisplayManagement.Views;
 using System.Threading.Tasks;
 
@@ -35,10 +34,7 @@ public class PrivacyConsentCheckboxPartDisplayDriver : ContentPartDisplayDriver<
         Initialize<PrivacyConsentCheckboxPartEditViewModel>(GetEditorShapeType(context), m =>
             m.ShowAlways = part.ShowAlways ?? false);
 
-    public override async Task<IDisplayResult> UpdateAsync(
-        PrivacyConsentCheckboxPart part,
-        IUpdateModel updater,
-        UpdatePartEditorContext context)
+    public override async Task<IDisplayResult> UpdateAsync(PrivacyConsentCheckboxPart part, UpdatePartEditorContext context)
     {
         var viewModel = await context.CreateModelAsync<PrivacyConsentCheckboxPartEditViewModel>(Prefix);
         part.ShowAlways = viewModel.ShowAlways;
