@@ -22,7 +22,7 @@ public class PrivacyRegistrationConsentSettingsMenu : INavigationProvider
         _customSettingsService = customSettingsService;
     }
 
-    public async Task BuildNavigationAsync(string name, NavigationBuilder builder)
+    public async ValueTask BuildNavigationAsync(string name, NavigationBuilder builder)
     {
         if (!name.EqualsOrdinalIgnoreCase("admin"))
         {
