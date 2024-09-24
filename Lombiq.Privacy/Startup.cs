@@ -28,7 +28,7 @@ using System.Threading.Tasks;
 
 namespace Lombiq.Privacy;
 
-public class Startup : StartupBase
+public sealed class Startup : StartupBase
 {
     public override void Configure(
         IApplicationBuilder app,
@@ -85,7 +85,7 @@ public class Startup : StartupBase
 }
 
 [Feature(FeatureNames.ConsentBanner)]
-public class ConsentBannerStartup : StartupBase
+public sealed class ConsentBannerStartup : StartupBase
 {
     // This is important because the custom settings menu item override only runs correctly this way.
     public override int Order => -1;
@@ -100,7 +100,7 @@ public class ConsentBannerStartup : StartupBase
 }
 
 [Feature(FeatureNames.RegistrationConsent)]
-public class RegistrationConsentStartup : StartupBase
+public sealed class RegistrationConsentStartup : StartupBase
 {
     // This is important because the custom settings menu item override only runs correctly this way.
     public override int Order => -1;
@@ -115,7 +115,7 @@ public class RegistrationConsentStartup : StartupBase
 }
 
 [Feature(FeatureNames.FormConsent)]
-public class FormConsentStartup : StartupBase
+public sealed class FormConsentStartup : StartupBase
 {
     // This is important because the custom settings menu item override only runs correctly this way.
     public override int Order => -1;

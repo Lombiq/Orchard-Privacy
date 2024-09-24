@@ -9,7 +9,7 @@ using static Lombiq.Privacy.Constants.TypeNames;
 
 namespace Lombiq.Privacy.Navigation;
 
-public class PrivacyConsentBannerSettingsMenu : INavigationProvider
+public sealed class PrivacyConsentBannerSettingsMenu : INavigationProvider
 {
     private readonly CustomSettingsService _customSettingsService;
     private readonly IStringLocalizer T;

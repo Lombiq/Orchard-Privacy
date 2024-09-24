@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Lombiq.Privacy.Drivers;
 
-public class PrivacyConsentCheckboxPartDisplayDriver : ContentPartDisplayDriver<PrivacyConsentCheckboxPart>
+public sealed class PrivacyConsentCheckboxPartDisplayDriver : ContentPartDisplayDriver<PrivacyConsentCheckboxPart>
 {
     private readonly IPrivacyConsentService _consentService;
     private readonly IHttpContextAccessor _hca;

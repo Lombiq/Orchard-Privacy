@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Lombiq.Privacy.Controllers;
 
-public class PrivacyConsentController : Controller
+public sealed class PrivacyConsentController : Controller
 {
     private readonly IPrivacyConsentService _consentService;
 

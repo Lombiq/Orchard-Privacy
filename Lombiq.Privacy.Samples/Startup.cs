@@ -7,7 +7,7 @@ using OrchardCore.Scripting;
 
 namespace Lombiq.Privacy.Samples;
 
-public class Startup : StartupBase
+public sealed class Startup : StartupBase
 {
     public override void ConfigureServices(IServiceCollection services)
     {
