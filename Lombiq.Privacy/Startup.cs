@@ -95,7 +95,7 @@ public class ConsentBannerStartup : StartupBase
         services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
         services.AddAsyncResultFilter<PrivacyConsentBannerInjectionFilter>();
         services.AddDataMigration<PrivacyConsentBannerSettingsMigrations>();
-        services.AddScoped<INavigationProvider, PrivacyConsentBannerSettingsMenu>();
+        services.AddNavigationProvider<PrivacyConsentBannerSettingsMenu>();
     }
 }
 
@@ -110,7 +110,7 @@ public class RegistrationConsentStartup : StartupBase
         services.AddScoped<IDisplayDriver<RegisterUserForm>, RegistrationCheckboxDriver>();
         services.AddScoped<IRegistrationFormEvents, RegistrationFormEventHandler>();
         services.AddDataMigration<PrivacyRegistrationConsentSettingsMigrations>();
-        services.AddScoped<INavigationProvider, PrivacyRegistrationConsentSettingsMenu>();
+        services.AddNavigationProvider<PrivacyRegistrationConsentSettingsMenu>();
     }
 }
 
@@ -127,6 +127,6 @@ public class FormConsentStartup : StartupBase
         services.AddDataMigration<PrivacyConsentCheckboxMigrations>();
         services.AddDataMigration<PrivacyConsentCheckboxSettingsMigrations>();
         services.AddActivity<ValidatePrivacyConsentCheckboxTask, ValidatePrivacyConsentCheckboxTaskDisplayDriver>();
-        services.AddScoped<INavigationProvider, PrivacyConsentCheckboxSettingsMenu>();
+        services.AddNavigationProvider<PrivacyConsentCheckboxSettingsMenu>();
     }
 }

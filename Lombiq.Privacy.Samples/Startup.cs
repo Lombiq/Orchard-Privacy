@@ -13,6 +13,6 @@ public class Startup : StartupBase
     {
         services.AddSingleton<IGlobalMethodProvider, WorkflowHelperMethodProvider>();
 
-        services.AddScoped<INavigationProvider, PrivacySamplesNavigationProvider>();
+        services.AddNavigationProvider<PrivacySamplesNavigationProvider>();
     }
 }
