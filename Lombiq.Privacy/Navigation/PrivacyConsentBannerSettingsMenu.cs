@@ -9,7 +9,7 @@ using static Lombiq.Privacy.Constants.TypeNames;
 
 namespace Lombiq.Privacy.Navigation;
 
-public class PrivacyConsentBannerSettingsMenu : INavigationProvider
+public sealed class PrivacyConsentBannerSettingsMenu : INavigationProvider
 {
     private readonly CustomSettingsService _customSettingsService;
     private readonly IStringLocalizer T;
@@ -22,7 +22,7 @@ public class PrivacyConsentBannerSettingsMenu : INavigationProvider
         _customSettingsService = customSettingsService;
     }
 
-    public async Task BuildNavigationAsync(string name, NavigationBuilder builder)
+    public async ValueTask BuildNavigationAsync(string name, NavigationBuilder builder)
     {
         if (!name.EqualsOrdinalIgnoreCase("admin"))
         {

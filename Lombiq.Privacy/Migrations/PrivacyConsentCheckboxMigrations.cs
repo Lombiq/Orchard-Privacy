@@ -7,7 +7,7 @@ using static Lombiq.Privacy.Constants.TypeNames;
 
 namespace Lombiq.Privacy.Migrations;
 
-public class PrivacyConsentCheckboxMigrations : DataMigration
+public sealed class PrivacyConsentCheckboxMigrations : DataMigration
 {
     private readonly IContentDefinitionManager _contentDefinitionManager;
 

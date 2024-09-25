@@ -4,13 +4,13 @@ using Lombiq.Privacy.ViewModels;
 using Microsoft.AspNetCore.Http;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentManagement.Display.Models;
-using OrchardCore.DisplayManagement.ModelBinding;
+using OrchardCore.DisplayManagement.Handlers;
 using OrchardCore.DisplayManagement.Views;
 using System.Threading.Tasks;
 
 namespace Lombiq.Privacy.Drivers;
 
-public class PrivacyConsentCheckboxPartDisplayDriver : ContentPartDisplayDriver<PrivacyConsentCheckboxPart>
+public sealed class PrivacyConsentCheckboxPartDisplayDriver : ContentPartDisplayDriver<PrivacyConsentCheckboxPart>
 {
     private readonly IPrivacyConsentService _consentService;
     private readonly IHttpContextAccessor _hca;
@@ -34,17 +34,10 @@ public class PrivacyConsentCheckboxPartDisplayDriver : ContentPartDisplayDriver<
         Initialize<PrivacyConsentCheckboxPartEditViewModel>(GetEditorShapeType(context), m =>
             m.ShowAlways = part.ShowAlways ?? false);
 
-    public override async Task<IDisplayResult> UpdateAsync(
-        PrivacyConsentCheckboxPart part,
-        IUpdateModel updater,
-        UpdatePartEditorContext context)
+    public override async Task<IDisplayResult> UpdateAsync(PrivacyConsentCheckboxPart part, UpdatePartEditorContext context)
     {
-        var viewModel = new PrivacyConsentCheckboxPartEditViewModel();
-
-        if (await updater.TryUpdateModelAsync(viewModel, Prefix))
-        {
-            part.ShowAlways = viewModel.ShowAlways;
-        }
+        var viewModel = await context.CreateModelAsync<PrivacyConsentCheckboxPartEditViewModel>(Prefix);
+        part.ShowAlways = viewModel.ShowAlways;
 
         return await EditAsync(part, context);
     }

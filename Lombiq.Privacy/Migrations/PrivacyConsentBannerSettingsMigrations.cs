@@ -8,7 +8,7 @@ using static Lombiq.Privacy.Constants.TypeNames;
 
 namespace Lombiq.Privacy.Migrations;
 
-public class PrivacyConsentBannerSettingsMigrations : DataMigration
+public sealed class PrivacyConsentBannerSettingsMigrations : DataMigration
 {
     private readonly IContentDefinitionManager _contentDefinitionManager;
     private readonly IRecipeMigrator _recipeMigrator;

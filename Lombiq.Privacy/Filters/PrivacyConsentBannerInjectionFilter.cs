@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lombiq.Privacy.Filters;
 
-public class PrivacyConsentBannerInjectionFilter : IAsyncResultFilter
+public sealed class PrivacyConsentBannerInjectionFilter : IAsyncResultFilter
 {
     private readonly ILayoutAccessor _layoutAccessor;
     private readonly IShapeFactory _shapeFactory;
