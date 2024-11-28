@@ -1,4 +1,5 @@
 using Lombiq.Privacy.Tests.UI.Constants;
+using Lombiq.Tests.UI.Constants;
 using Lombiq.Tests.UI.Extensions;
 using Lombiq.Tests.UI.Services;
 using OpenQA.Selenium;
@@ -107,7 +108,7 @@ public static class TestCaseUITestContextExtensions
 
         // Go to registration and create a new user.
         await context.GoToRegistrationPageAsync();
-        await context.FillInWithRetriesAsync(By.Id("RegisterUserForm_UserName"), TestUser.Name);
+        await context.FillInWithRetriesAsync(By.Id("RegisterUserForm_UserName"), TestUser.UserName);
         await context.FillInWithRetriesAsync(By.Id("RegisterUserForm_Email"), TestUser.Email);
         await context.FillInWithRetriesAsync(By.Id("RegisterUserForm_Password"), TestUser.Password);
         await context.FillInWithRetriesAsync(By.Id("RegisterUserForm_ConfirmPassword"), TestUser.Password);
@@ -115,8 +116,8 @@ public static class TestCaseUITestContextExtensions
         await context.ClickReliablyOnSubmitAsync();
 
         // Login with the created user.
-        await context.SignInDirectlyAsync(TestUser.Name);
-        (await context.GetCurrentUserNameAsync()).ShouldBe(TestUser.Name);
+        await context.SignInDirectlyAsync(TestUser.UserName);
+        (await context.GetCurrentUserNameAsync()).ShouldBe(TestUser.UserName);
 
         // Check that, the consent banner doesn't come up after login.
         await context.GoToHomePageAsync();
