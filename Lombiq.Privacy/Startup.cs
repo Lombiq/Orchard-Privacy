@@ -107,7 +107,7 @@ public sealed class RegistrationConsentStartup : StartupBase
 
     public override void ConfigureServices(IServiceCollection services)
     {
-        services.AddScoped<IDisplayDriver<RegisterUserForm>, RegistrationCheckboxDriver>();
+        services.AddDisplayDriver<RegisterUserForm, RegistrationCheckboxDriver>();
         services.AddScoped<IRegistrationFormEvents, RegistrationFormEventHandler>();
         services.AddDataMigration<PrivacyRegistrationConsentSettingsMigrations>();
         services.AddNavigationProvider<PrivacyRegistrationConsentSettingsMenu>();
