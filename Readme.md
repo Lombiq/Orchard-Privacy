@@ -15,7 +15,7 @@ We at [Lombiq](https://lombiq.com/) also used this module for the following proj
 - The new [Hastlayer website](https://hastlayer.com/) when migrating it from Orchard 1 to Orchard Core ([see case study](https://lombiq.com/blog/modernization-and-orchard-core-migration-of-hastlayer-com)).<!-- #spell-check-ignore-line -->
 - The new [Orchard Dojo website](https://orcharddojo.net/) when migrating it from Orchard 1 to Orchard Core ([see case study](https://orcharddojo.net/blog/another-lombiq-site-was-improved-orchard-dojo)).<!-- #spell-check-ignore-line -->
 
-This module is also available on all sites of [DotNest, the Orchard Core SaaS](https://dotnest.com/), so it is being used in the new [Ik wil een taart website](https://ikwileentaart.nl/) as well ([see case study](https://dotnest.com/blog/revamping-ik-wil-een-taart-migrating-an-old-version-of-orchard-core-website-with-custom-theme-and-commerce-logic-to-dotnest)).<!-- #spell-check-ignore-line -->
+This module is also available on all sites of [DotNest, the Orchard Core SaaS](https://dotnest.com/), so it is being used in the new [Ik wil een taart website](https://ikwileentaart.nl/) as well ([see case study](https://dotnest.com/blog/revamping-ik-wil-een-taart-migrating-an-old-version-of-orchard-core-website-with-custom-theme-and-commerce-logic-to-dotnest)).<!-- #spell-check-ignore-line --><!-- #codespell:ignore wil -->
 
 Do you want to quickly try out this project and see it in action? Check it out in our [Open-Source Orchard Core Extensions](https://github.com/Lombiq/Open-Source-Orchard-Core-Extensions) full Orchard Core solution and also see our other useful Orchard Core-related open-source projects!
 
