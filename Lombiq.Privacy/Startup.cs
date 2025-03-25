@@ -10,6 +10,7 @@ using Lombiq.Privacy.Navigation;
 using Lombiq.Privacy.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -87,6 +88,20 @@ public sealed class RegistrationConsentStartup : StartupBase
         services.AddScoped<IRegistrationFormEvents, RegistrationFormEventHandler>();
         services.AddDataMigration<PrivacyRegistrationConsentSettingsMigrations>();
         services.AddNavigationProvider<PrivacyRegistrationConsentSettingsMenu>();
+    }
+}
+
+[Feature(FeatureNames.ExternalRegistrationConsent)]
+public sealed class ExternalRegistrationConsentStartup : StartupBase
+{
+    // This is important because the custom settings menu item override only runs correctly this way.
+    public override int Order => -1;
+
+    public override void ConfigureServices(IServiceCollection services)
+    {
+        services.Configure<MvcOptions>((options) =>
+            options.Filters.Add(typeof(ExternalRegistrationCheckboxInjectionFilter)));
+        services.AddScoped<IRegistrationFormEvents, ExternalRegistrationFormEventHandler>();
     }
 }
 

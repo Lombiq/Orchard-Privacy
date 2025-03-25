@@ -32,6 +32,18 @@ using static Lombiq.Privacy.Constants.FeatureNames;
 )]
 
 [assembly: Feature(
+    Id = ExternalRegistrationConsent,
+    Name = "Lombiq Privacy - External Registration consent",
+    Description = "Adds a privacy consent checkbox to the external registration form.",
+    Category = "Privacy",
+    Dependencies = [
+        Module,
+        RegistrationConsent,
+        "OrchardCore.Users.ExternalAuthentication"
+        ]
+)]
+
+[assembly: Feature(
     Id = FormConsent,
     Name = "Lombiq Privacy - Form consent",
     Description = "Provides the Privacy Consent Checkbox widget that can be used on any form.",
