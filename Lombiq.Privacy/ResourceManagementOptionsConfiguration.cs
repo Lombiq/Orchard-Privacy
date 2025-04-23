@@ -11,9 +11,7 @@ public class ResourceManagementOptionsConfiguration : IConfigureOptions<Resource
     static ResourceManagementOptionsConfiguration() =>
         _manifest
             .DefineStyle(ConsentBanner)
-            .SetUrl(
-                "~/Lombiq.Privacy/css/lombiq-privacy-consent-banner.min.css",
-                "~/Lombiq.Privacy/css/lombiq-privacy-consent-banner.css");
+            .SetUrl("~/Lombiq.Privacy/css/lombiq-privacy-consent-banner.css");
 
     public void Configure(ResourceManagementOptions options) => options.ResourceManifests.Add(_manifest);
 }
