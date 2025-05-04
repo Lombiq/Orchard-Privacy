@@ -12,4 +12,4 @@ jobs:
     name: Lint Script and Style
     uses: Lombiq/NodeJs-Extensions/.github/workflows/lint.yml@issue/OCC-314
     with:
-      style-css-paths: Lombiq.Privacy
+      styles-css: { "Lombiq.Privacy": { "styles": { "source": "wwwroot/css" } } }

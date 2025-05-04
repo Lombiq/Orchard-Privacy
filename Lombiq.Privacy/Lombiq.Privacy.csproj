@@ -49,12 +49,4 @@
     <PackageReference Include="Lombiq.HelpfulLibraries.OrchardCore" Version="12.2.0" />
   </ItemGroup>
 
-  <Target Name="Copy CSS Assets"
-          AfterTargets="AfterResolveReferences">
-    <ItemGroup>
-      <CssAssets Include="Assets\Styles\**\*.css"/>
-    </ItemGroup>
-    <Copy SourceFiles="@(CssAssets)" DestinationFolder="wwwroot\css\%(RecursiveDir)" SkipUnchangedFiles="true" />
-  </Target>
-
 </Project>
