@@ -5,7 +5,6 @@ obj/
 bin/
 artifacts/
 node_modules/
-wwwroot/
 *.user
 .pnpm-debug.log
 /wwwroot
