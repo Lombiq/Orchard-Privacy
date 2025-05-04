@@ -1,4 +1,4 @@
-name: Lint Scripts and Styles
+name: Lint Scripts, Styles, and Texts
 
 # Runs for PRs opened for any branch, and pushes to the main branch.
 on:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   lint:
-    name: Lint Scripts and Styles
+    name: Lint Scripts, Styles, and Texts
     uses: Lombiq/NodeJs-Extensions/.github/workflows/lint.yml@issue/OCC-314
     with:
       styles-css: '{ "Lombiq.Privacy": { "styles": { "source": "wwwroot/css" } } }'
