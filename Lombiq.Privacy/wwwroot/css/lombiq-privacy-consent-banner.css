@@ -1,8 +1,8 @@
-.privacy-consent-banner {
+h1.privacy-consent-banner {
     z-index: 1500;
     position: fixed;
     top: 0;
     right: 0;
-    margin-top: 0;
+    margin-top: 0px;
     max-width: 500px;
 }
