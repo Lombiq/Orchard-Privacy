@@ -1,34 +1,27 @@
 using Lombiq.HelpfulLibraries.OrchardCore.Navigation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
 using OrchardCore.CustomSettings;
 using OrchardCore.CustomSettings.Services;
-using OrchardCore.Modules;
 using OrchardCore.Navigation;
 using System.Threading.Tasks;
 using static Lombiq.Privacy.Constants.TypeNames;
 
 namespace Lombiq.Privacy.Navigation;
 
-public sealed class PrivacyConsentCheckboxSettingsMenu : INavigationProvider
+public sealed class PrivacyConsentCheckboxSettingsMenu : AdminMenuNavigationProviderBase
 {
     private readonly CustomSettingsService _customSettingsService;
-    private readonly IStringLocalizer T;
 
     public PrivacyConsentCheckboxSettingsMenu(
-        IStringLocalizer<PrivacyConsentCheckboxSettingsMenu> localizer,
+        IHttpContextAccessor hca,
+        IStringLocalizer<PrivacyConsentCheckboxSettingsMenu> stringLocalizer,
         CustomSettingsService customSettingsService)
-    {
-        T = localizer;
+            : base(hca, stringLocalizer) =>
         _customSettingsService = customSettingsService;
-    }
 
-    public async ValueTask BuildNavigationAsync(string name, NavigationBuilder builder)
+    public async ValueTask BuildNavigationAsync(NavigationBuilder builder)
     {
-        if (!name.EqualsOrdinalIgnoreCase("admin"))
-        {
-            return;
-        }
-
         var type = await _customSettingsService.GetSettingsTypeAsync(PrivacyConsentCheckboxSettings);
 
         if (type != null)
