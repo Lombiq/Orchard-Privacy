@@ -93,7 +93,7 @@ public static class TestCaseUITestContextExtensions
         AssertPrivacyConsentAcceptButtonMissing();
 
         // Verify persistence.
-        context.Refresh();
+        await context.RefreshAsync();
         AssertPrivacyConsentAcceptButtonMissing();
     }
 

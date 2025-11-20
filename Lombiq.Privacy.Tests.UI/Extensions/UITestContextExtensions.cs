@@ -31,6 +31,6 @@ public static class UITestContextExtensions
         await context.EnablePrivacyConsentBannerFeatureAsync();
         await context.GoToHomePageAsync(onlyIfNotAlreadyThere: false);
         await context.AcceptPrivacyConsentAsync();
-        context.Refresh();
+        await context.RefreshAsync();
     }
 }
