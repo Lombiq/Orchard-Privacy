@@ -1,36 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-  </PropertyGroup>
+  <Import Project="../../../Utilities/Lombiq.MSBuild.Targets/Lombiq.MSBuild.Tests.UI.Targets/Lombiq.MSBuild.Tests.UI.Targets.props" />
 
   <PropertyGroup>
     <Title>Lombiq Privacy for Orchard Core - UI Test Extensions</Title>
-    <Authors>Lombiq Technologies</Authors>
     <Copyright>Copyright © 2018, Lombiq Technologies Ltd.</Copyright>
     <Description>Lombiq Privacy for Orchard Core - UI Test Extensions: Extensions to aid in UI testing Lombiq Privacy for Orchard Core.</Description>
-    <PackageIcon>NuGetIcon.png</PackageIcon>
     <PackageTags>OrchardCore;Lombiq;AspNetCore;Privacy</PackageTags>
     <RepositoryUrl>https://github.com/Lombiq/Orchard-Privacy</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Lombiq/Orchard-Privacy/tree/dev/Lombiq.Privacy.Tests.UI</PackageProjectUrl>
-    <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Lombiq.Privacy.Samples\Lombiq.Privacy.Samples.csproj" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(NuGetBuild)' != 'true'">
-    <ProjectReference Include="..\..\..\..\test\Lombiq.UITestingToolbox\Lombiq.Tests.UI\Lombiq.Tests.UI.csproj" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(NuGetBuild)' == 'true'">
-    <PackageReference Include="Lombiq.Tests.UI" Version="14.2.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="NuGetIcon.png" Pack="true" PackagePath="" />
-    <None Include="Readme.md" />
   </ItemGroup>
 
 </Project>
