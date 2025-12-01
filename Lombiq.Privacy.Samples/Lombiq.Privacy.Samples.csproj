@@ -17,8 +17,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OrchardCore.Forms" Version="$(OrchardCoreVersion)" />
-    <PackageReference Include="OrchardCore.Workflows" Version="$(OrchardCoreVersion)" />
+    <PackageReference Include="OrchardCore.Forms" Version="2.1.0" />
+    <PackageReference Include="OrchardCore.Workflows" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>
