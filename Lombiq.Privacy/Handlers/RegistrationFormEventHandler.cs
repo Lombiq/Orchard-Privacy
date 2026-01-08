@@ -26,6 +26,7 @@ public class RegistrationFormEventHandler : IRegistrationFormEvents
         _consentService = consentService;
     }
 
+    public Task RegisteringAsync(UserRegisteringContext context) => Task.CompletedTask;
     public Task RegisteredAsync(IUser user) => _consentService.StoreUserConsentAsync(user);
 
     public Task RegistrationValidationAsync(Action<string, string> reportError)
