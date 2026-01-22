@@ -100,7 +100,7 @@ public sealed class ExternalRegistrationConsentStartup : StartupBase
     public override void ConfigureServices(IServiceCollection services)
     {
         services.Configure<MvcOptions>((options) =>
-            options.Filters.Add(typeof(ExternalRegistrationCheckboxInjectionFilter)));
+            options.Filters.Add<ExternalRegistrationCheckboxInjectionFilter>());
         services.AddScoped<IRegistrationFormEvents, ExternalRegistrationFormEventHandler>();
     }
 }
