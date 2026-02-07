@@ -34,15 +34,14 @@ public sealed class PrivacyConsentBannerSettingsMenu : INavigationProvider
         if (type != null)
         {
             builder
-                .Add(T["Configuration"], configuration => configuration
-                    .Add(T["Settings"], settings => settings
-                        .Add(new LocalizedString(type.DisplayName, type.DisplayName), type.DisplayName.PrefixPosition(), layers => layers
-                            .SiteSettings(type.Name)
-                            .Permission(Permissions.CreatePermissionForType(type))
-                            .Resource(type.Name)
-                            .AddClass(type.Name)
-                            .Id(type.Name)
-                            .LocalNav())));
+                .Add(T["Settings"], settings => settings
+                    .Add(new LocalizedString(type.DisplayName, type.DisplayName), type.DisplayName.PrefixPosition(), layers => layers
+                        .SiteSettings(type.Name)
+                        .Permission(Permissions.CreatePermissionForType(type))
+                        .Resource(type.Name)
+                        .AddClass(type.Name)
+                        .Id(type.Name)
+                        .LocalNav()));
         }
     }
 }
