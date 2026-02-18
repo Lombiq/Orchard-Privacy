@@ -25,17 +25,10 @@
     {
       "name": "Settings",
       "RegistrationSettings": {
-        // This is required to show the "Lombiq Privacy - Registration consent" feature in work
-        "UsersCanRegister": "AllowRegistration",
         // Resets all the sites registration settings to default
         "UsersMustValidateEmail": false,
         "UsersAreModerated": false,
-        "UseSiteTheme": false,
-        "NoPasswordForExternalUsers": false,
-        "NoUsernameForExternalUsers": false,
-        "NoEmailForExternalUsers": false,
-        "UseScriptToGenerateUsername": false,
-        "GenerateUsernameScript": "/* Uncomment to map AzureAD\r\n// Uncomment to output the context variable in the logs\r\n// log(\"warning\", JSON.stringify(context));\r\nswitch (context.loginProvider) {\r\n    case \"AzureAD\":\r\n        context.userName = \"azad\" + uuid();\r\n        break;\r\n    default:\r\n        log(\"Warning\", \"Provider \" + context.loginProvider + \" was not handled\");\r\n        // Uncomment to generate a username as a uuid\r\n        // context.userName = \"u\" + uuid();\r\n        break;\r\n}\r\n*/\r\n"
+        "UseSiteTheme": false
       }
     },
     {
