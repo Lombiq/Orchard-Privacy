@@ -58,7 +58,7 @@ public class PrivacyConsentService : IPrivacyConsentService
 
             return
                 user is not User orchardUser ||
-                !(orchardUser.Has<PrivacyConsent>() && orchardUser.As<PrivacyConsent>().Accepted);
+                !(orchardUser.Has<PrivacyConsent>() && orchardUser.GetOrCreate<PrivacyConsent>().Accepted);
         }
 
         return true;
@@ -72,7 +72,8 @@ public class PrivacyConsentService : IPrivacyConsentService
 
             return
                 user is User orchardUser &&
-                orchardUser.Has<PrivacyConsent>() && orchardUser.As<PrivacyConsent>().Accepted;
+                orchardUser.Has<PrivacyConsent>() &&
+                orchardUser.GetOrCreate<PrivacyConsent>().Accepted;
         }
 
         var cookieConsent = httpContext.Request.Cookies[_cookiePolicyOptions.Value.ConsentCookie.Name];

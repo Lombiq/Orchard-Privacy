@@ -1,8 +1,10 @@
-@inject OrchardCore.Settings.ISiteService SiteService
+@using OrchardCore.Settings
+@inject ISiteService SiteService
 
 @{
-    var consentBannerText = (await SiteService.GetSiteSettingsAsync())
-        .As<ContentItem>(TypeNames.PrivacyConsentBannerSettings).GetOrCreate<LiquidPart>()?.Liquid;
+    var consentBannerText = (await SiteService.GetCustomSettingsAsync(TypeNames.PrivacyConsentBannerSettings))
+        .GetOrCreate<LiquidPart>()
+        .Liquid;
 }
 
 @await Orchard.LiquidToHtmlAsync(consentBannerText)
