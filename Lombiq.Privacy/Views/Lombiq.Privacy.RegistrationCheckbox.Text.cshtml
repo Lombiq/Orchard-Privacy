@@ -2,7 +2,7 @@
 
 @{
     var registrationConsentText = (await SiteService.GetSiteSettingsAsync())
-        .As<ContentItem>(TypeNames.PrivacyRegistrationConsentSettings).As<LiquidPart>()?.Liquid;
+        .As<ContentItem>(TypeNames.PrivacyRegistrationConsentSettings).GetOrCreate<LiquidPart>()?.Liquid;
 }
 
 @await Orchard.LiquidToHtmlAsync(registrationConsentText)
