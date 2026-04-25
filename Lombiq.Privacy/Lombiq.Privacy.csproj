@@ -4,23 +4,23 @@
   </PropertyGroup>
 
   <Import Condition="'$(NuGetBuild)' != 'true'" Project="../../../Utilities/Lombiq.MSBuild.Targets/Lombiq.MSBuild.OrchardCore.Module.Sdk/Sdk/Import.props" />
-  <Import Condition="'$(NuGetBuild)' == 'true'" Project="Sdk.props" Sdk="Lombiq.MSBuild.OrchardCore.Module.Sdk" Version="1.0.1-alpha.7.osoe-1208" />
+  <Import Condition="'$(NuGetBuild)' == 'true'" Project="Sdk.props" Sdk="Lombiq.MSBuild.OrchardCore.Module.Sdk" Version="1.0.1-alpha.10.osoe-1208" />
  
   <PropertyGroup>
     <Title>Lombiq Privacy for Orchard Core</Title>
     <CopyrightYear>2018</CopyrightYear>
-    <DescriptionBody>Orchard module containing features related to data protection/privacy and the EU law on it, the General Data Protection Regulation (GDPR). See the project website for detailed documentation.</DescriptionBody>
+    <DescriptionBody>Orchard module containing features related to data protection/privacy and the EU law on it, the General Data Protection Regulation (GDPR).</DescriptionBody>
     <PackageTags>OrchardCore;Lombiq;AspNetCore;GDPR;Privacy</PackageTags>
     <RepositoryUrl>https://github.com/Lombiq/Orchard-Privacy</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OrchardCore.CustomSettings" Version="3.0.0-preview-18960" />
-    <PackageReference Include="OrchardCore.Forms" Version="3.0.0-preview-18960" />
-    <PackageReference Include="OrchardCore.Liquid" Version="3.0.0-preview-18960" />
-    <PackageReference Include="OrchardCore.Users" Version="3.0.0-preview-18960" />
+    <PackageReference Include="OrchardCore.CustomSettings" Version="3.0.0-preview-18975" />
+    <PackageReference Include="OrchardCore.Forms" Version="3.0.0-preview-18975" />
+    <PackageReference Include="OrchardCore.Liquid" Version="3.0.0-preview-18975" />
+    <PackageReference Include="OrchardCore.Users" Version="3.0.0-preview-18975" />
   </ItemGroup>
 
   <Import Condition="'$(NuGetBuild)' != 'true'" Project="../../../Utilities/Lombiq.MSBuild.Targets/Lombiq.MSBuild.OrchardCore.Module.Sdk/Sdk/Import.targets" />
-  <Import Condition="'$(NuGetBuild)' == 'true'" Project="Sdk.targets" Sdk="Lombiq.MSBuild.OrchardCore.Module.Sdk" Version="1.0.1-alpha.7.osoe-1208" />
+  <Import Condition="'$(NuGetBuild)' == 'true'" Project="Sdk.targets" Sdk="Lombiq.MSBuild.OrchardCore.Module.Sdk" Version="1.0.1-alpha.10.osoe-1208" />
 </Project>
