@@ -15,10 +15,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OrchardCore.CustomSettings" Version="3.0.0-preview-18975" />
-    <PackageReference Include="OrchardCore.Forms" Version="3.0.0-preview-18975" />
-    <PackageReference Include="OrchardCore.Liquid" Version="3.0.0-preview-18975" />
-    <PackageReference Include="OrchardCore.Users" Version="3.0.0-preview-18975" />
+    <PackageReference Include="OrchardCore.CustomSettings" Version="3.0.0-preview-18991" />
+    <PackageReference Include="OrchardCore.Forms" Version="3.0.0-preview-18991" />
+    <PackageReference Include="OrchardCore.Liquid" Version="3.0.0-preview-18991" />
+    <PackageReference Include="OrchardCore.Users" Version="3.0.0-preview-18991" />
   </ItemGroup>
 
   <Import Condition="'$(NuGetBuild)' != 'true'" Project="../../../Utilities/Lombiq.MSBuild.Targets/Lombiq.MSBuild.OrchardCore.Module.Sdk/Sdk/Import.targets" />
