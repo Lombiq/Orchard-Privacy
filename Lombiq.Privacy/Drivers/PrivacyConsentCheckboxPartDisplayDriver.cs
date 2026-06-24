@@ -21,9 +21,9 @@ public sealed class PrivacyConsentCheckboxPartDisplayDriver : ContentPartDisplay
         _hca = hca;
     }
 
+    // If the user has already accepted the privacy statement, it doesn't need to display the checkbox.
+    // Except if its configuration explicitly ignores the fact of acceptance.
     public override async Task<IDisplayResult> DisplayAsync(PrivacyConsentCheckboxPart part, BuildPartDisplayContext context) =>
-        // If the user has already accepted the privacy statement, it doesn't need to display the checkbox.
-        // Except if its configuration explicitly ignores the fact of acceptance.
         (part.ShowAlways ?? false) || !await _consentService.IsUserAcceptedConsentAsync(_hca.HttpContext)
             ? Initialize<PrivacyConsentCheckboxPartViewModel>(
                 GetDisplayShapeType(context),
