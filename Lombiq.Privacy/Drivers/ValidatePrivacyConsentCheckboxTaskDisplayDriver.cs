@@ -3,6 +3,4 @@ using OrchardCore.Workflows.Display;
 
 namespace Lombiq.Privacy.Drivers;
 
-public sealed class ValidatePrivacyConsentCheckboxTaskDisplayDriver : ActivityDisplayDriver<ValidatePrivacyConsentCheckboxTask>
-{
-}
+public sealed class ValidatePrivacyConsentCheckboxTaskDisplayDriver : ActivityDisplayDriver<ValidatePrivacyConsentCheckboxTask>;
