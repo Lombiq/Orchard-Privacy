@@ -5,27 +5,31 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using OrchardCore.Entities;
-using OrchardCore.Modules;
 using OrchardCore.Users;
 using OrchardCore.Users.Models;
 using OrchardCore.Users.Services;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using StringExtensions = OrchardCore.Modules.StringExtensions;
 
 namespace Lombiq.Privacy.Services;
 
 public class PrivacyConsentService : IPrivacyConsentService
 {
     private readonly UserManager<IUser> _userManager;
-    private readonly IUserService _userService;
+    private readonly Lazy<IUserService> _userServiceLazy;
 
     private readonly IOptions<CookiePolicyOptions> _cookiePolicyOptions;
 
-    public PrivacyConsentService(UserManager<IUser> userManager, IOptions<CookiePolicyOptions> cookiePolicyOptions, IUserService userService)
+    public PrivacyConsentService(
+        UserManager<IUser> userManager,
+        IOptions<CookiePolicyOptions> cookiePolicyOptions,
+        Lazy<IUserService> userServiceLazy)
     {
         _userManager = userManager;
         _cookiePolicyOptions = cookiePolicyOptions;
-        _userService = userService;
+        _userServiceLazy = userServiceLazy;
     }
 
     public async Task<bool> IsConsentBannerNeededAsync(HttpContext httpContext)
@@ -36,9 +40,9 @@ public class PrivacyConsentService : IPrivacyConsentService
             return false;
         }
 
-        if (httpContext.User.Identity.IsAuthenticated)
+        if (httpContext.User.Identity?.IsAuthenticated ?? false)
         {
-            var user = await _userService.GetAuthenticatedUserAsync(httpContext.User);
+            var user = await _userServiceLazy.Value.GetAuthenticatedUserAsync(httpContext.User);
             return user is not User orchardUser || !orchardUser.Has<PrivacyConsent>();
         }
 
@@ -48,13 +52,13 @@ public class PrivacyConsentService : IPrivacyConsentService
 
     public async Task<bool> IsConsentNeededAsync(HttpContext httpContext)
     {
-        if (httpContext.User.Identity.IsAuthenticated)
+        if (httpContext.User.Identity?.IsAuthenticated ?? false)
         {
-            var user = await _userService.GetAuthenticatedUserAsync(httpContext.User);
+            var user = await _userServiceLazy.Value.GetAuthenticatedUserAsync(httpContext.User);
 
             return
                 user is not User orchardUser ||
-                !(orchardUser.Has<PrivacyConsent>() && orchardUser.As<PrivacyConsent>().Accepted);
+                !(orchardUser.Has<PrivacyConsent>() && orchardUser.GetOrCreate<PrivacyConsent>().Accepted);
         }
 
         return true;
@@ -62,21 +66,22 @@ public class PrivacyConsentService : IPrivacyConsentService
 
     public async Task<bool> IsUserAcceptedConsentAsync(HttpContext httpContext)
     {
-        if (httpContext.User.Identity.IsAuthenticated)
+        if (httpContext.User.Identity?.IsAuthenticated ?? false)
         {
-            var user = await _userService.GetAuthenticatedUserAsync(httpContext.User);
+            var user = await _userServiceLazy.Value.GetAuthenticatedUserAsync(httpContext.User);
 
             return
                 user is User orchardUser &&
-                orchardUser.Has<PrivacyConsent>() && orchardUser.As<PrivacyConsent>().Accepted;
+                orchardUser.Has<PrivacyConsent>() &&
+                orchardUser.GetOrCreate<PrivacyConsent>().Accepted;
         }
 
         var cookieConsent = httpContext.Request.Cookies[_cookiePolicyOptions.Value.ConsentCookie.Name];
-        return !string.IsNullOrEmpty(cookieConsent) && cookieConsent.EqualsOrdinalIgnoreCase("yes");
+        return !string.IsNullOrEmpty(cookieConsent) && StringExtensions.EqualsOrdinalIgnoreCase(cookieConsent, "yes");
     }
 
     public async Task StoreUserConsentAsync(ClaimsPrincipal user) =>
-        await StoreUserConsentAsync(await _userService.GetAuthenticatedUserAsync(user));
+        await StoreUserConsentAsync(await _userServiceLazy.Value.GetAuthenticatedUserAsync(user));
 
     public async Task StoreUserConsentAsync(IUser user)
     {

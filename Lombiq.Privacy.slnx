@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Lombiq.Privacy.Samples/Lombiq.Privacy.Samples.csproj" />
+  <Project Path="Lombiq.Privacy.Tests.UI/Lombiq.Privacy.Tests.UI.csproj" />
+  <Project Path="Lombiq.Privacy/Lombiq.Privacy.csproj" />
+</Solution>

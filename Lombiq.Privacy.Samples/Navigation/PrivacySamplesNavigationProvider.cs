@@ -35,9 +35,9 @@ public class PrivacySamplesNavigationProvider : MainMenuNavigationProviderBase
                 .AddAsync(T["Workflows"], async builder =>
                 {
                     builder
-                        .Permission(Permissions.ManageWorkflows);
+                        .Permission(WorkflowsPermissions.ManageWorkflows);
 
-                    if (await _authorizationService.AuthorizeAsync(_hca.HttpContext?.User, Permissions.ManageWorkflows))
+                    if (await _authorizationService.AuthorizeAsync(_hca.HttpContext?.User, WorkflowsPermissions.ManageWorkflows))
                     {
                         var workflow = await _workflowTypeStore.GetAsync(Ids.RegistrationWorkflowTypeId);
                         if (workflow != null)

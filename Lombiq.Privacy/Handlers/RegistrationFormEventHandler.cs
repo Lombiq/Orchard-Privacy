@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Lombiq.Privacy.Handlers;
 
-public class RegistrationFormEventHandler : IRegistrationFormEvents
+public class RegistrationFormEventHandler : RegistrationFormEventsBase
 {
     private readonly IHttpContextAccessor _hca;
     private readonly IStringLocalizer T;
@@ -26,12 +26,14 @@ public class RegistrationFormEventHandler : IRegistrationFormEvents
         _consentService = consentService;
     }
 
-    public Task RegisteredAsync(IUser user) => _consentService.StoreUserConsentAsync(user);
+    public override Task RegisteredAsync(IUser user) => _consentService.StoreUserConsentAsync(user);
 
-    public Task RegistrationValidationAsync(Action<string, string> reportError)
+    public override Task RegistrationValidationAsync(Action<string, string> reportError)
     {
-        var registrationCheckbox = _hca.HttpContext?.Request
-            ?.Form?["RegisterUserForm." + nameof(PrivacyRegistrationConsentCheckboxViewModel.RegistrationCheckbox)]
+        var registrationCheckbox = _hca
+            .HttpContext?
+            .Request
+            .Form["RegisterUserForm." + nameof(PrivacyRegistrationConsentCheckboxViewModel.RegistrationCheckbox)]
                 .Select(bool.Parse)
                 .ToList();
 
