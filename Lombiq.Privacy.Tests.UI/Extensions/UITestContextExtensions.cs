@@ -3,6 +3,8 @@ using Lombiq.Privacy.Tests.UI.Constants;
 using Lombiq.Tests.UI.Extensions;
 using Lombiq.Tests.UI.Services;
 using OpenQA.Selenium;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Lombiq.Privacy.Tests.UI.Extensions;
@@ -25,6 +27,27 @@ public static class UITestContextExtensions
     /// </remarks>
     public static Task AcceptPrivacyConsentAsync(this UITestContext context) =>
         context.ClickReliablyOnAsync(By.Id(ElementSelectors.PrivacyConsentAcceptButtonId));
+
+    /// <summary>
+    /// Looks for the ASP.NET Core consent cookie. If present, removes it and reloads the page.
+    /// </summary>
+    public static Task ClearPrivacyConsentCookieAndRefreshAsync(this UITestContext context)
+    {
+        const string cookieName = ".AspNet.Consent";
+
+        var cookies = context.Driver.Manage().Cookies;
+        var consentCookie = cookies
+            .AllCookies
+            .FirstOrDefault(cookie => cookieName.EqualsOrdinalIgnoreCase(cookie.Name));
+
+        if (consentCookie?.Value.EqualsOrdinalIgnoreCase("yes") != true)
+        {
+            return Task.CompletedTask;
+        }
+
+        cookies.DeleteCookieNamed(cookieName);
+        return context.RefreshAsync();
+    }
 
     public static async Task EnablePrivacyConsentBannerFeatureAndAcceptPrivacyConsentAsync(this UITestContext context)
     {
